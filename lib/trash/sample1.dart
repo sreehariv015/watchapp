@@ -10,20 +10,9 @@ class LoginPage1 extends StatefulWidget {
 class _LoginPageState extends State<LoginPage1> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: const Center(child: Text("Sign Up",style: TextStyle(
-              color: Colors.pinkAccent,
-              fontWeight: FontWeight.bold
-          ),)),
-        ),
-
         body: Container(
-          height:size.height,
-          width:size.width,
           decoration: const BoxDecoration(
               image: DecorationImage(
                   fit: BoxFit.cover, image: AssetImage('assets/images/img2.jpg'))
@@ -40,7 +29,6 @@ class _LoginPageState extends State<LoginPage1> {
                     ),
                     label: const Text("User name",style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.bold
                     ),),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30)
@@ -58,7 +46,6 @@ class _LoginPageState extends State<LoginPage1> {
                     ),
                     label: const Text("Password",style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.bold
                     ),),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30)
@@ -73,7 +60,6 @@ class _LoginPageState extends State<LoginPage1> {
 
                 }, child: const Text("Forgot Password ?",style: TextStyle(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold
 
                 ),))
             ),
@@ -84,13 +70,13 @@ class _LoginPageState extends State<LoginPage1> {
                   borderRadius: BorderRadius.circular(33),
                   color: Colors.pink,
                 ),
-                width: 500,
+                width: 400,
                 height: 50,
                 child: TextButton(onPressed: () {
 
                 }, child: const Text("Login",style: TextStyle(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold
+                  fontSize: 23
                 ),)),
               ),
             ),
@@ -100,7 +86,6 @@ class _LoginPageState extends State<LoginPage1> {
 
               }, child: const Text("New user? Create new account",style: TextStyle(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold
               ),)
               ),
             ),

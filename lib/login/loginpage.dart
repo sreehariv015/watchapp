@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
                   fit: BoxFit.cover, image: AssetImage('assets/images/img2.jpg'))),
           child: Column(children: [
 
-            Padding(padding: const EdgeInsets.all(10),
+            Padding(padding: const EdgeInsets.all(8.0),
               child: TextField(
                 decoration: InputDecoration(
                     hintText: "Enter your name",
@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            Padding(padding: const EdgeInsets.all(10),
+            Padding(padding: const EdgeInsets.all(8.0),
               child: TextField(
                 decoration: InputDecoration(
                     hintText: "Enter your password",
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.all(10),
               child: TextButton(onPressed: () {
 
-              }, child: const Text("Forgot Password ?",style: TextStyle(
+              }, child:  Text("Forgot Password ?",style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold
 
