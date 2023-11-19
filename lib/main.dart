@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watchapp/login/loginpage.dart';
-import 'package:watchapp/sample/registration.dart';
+import 'package:watchapp/login/registrationpage.dart';
 import 'package:watchapp/trash/sample1.dart';
 import 'package:watchapp/trash/sample2.dart';
 main(){
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(home: LoginPage22(),);
+    return  MaterialApp(home: Login11(),);
   }
 //debugShowCheckedModeBanner: false,);
 }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Login11 extends StatefulWidget {
-  const Login11({super.key});
+class LoginPage24 extends StatefulWidget {
+  const LoginPage24({super.key});
 
   @override
-  State<Login11> createState() => _LoginPage1State();
+  State<LoginPage24> createState() => _LoginPage1State();
 }
 
-class _LoginPage1State extends State<Login11> {
-  final loginkey=GlobalKey<FormState>();
+class _LoginPage1State extends State<LoginPage24> {
+  final registrationkey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -16,7 +16,7 @@ class _LoginPage1State extends State<Login11> {
         backgroundColor: Colors.black12,
         body: SingleChildScrollView(
           child: Form(
-            key:loginkey ,
+            key:registrationkey ,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -26,7 +26,7 @@ class _LoginPage1State extends State<Login11> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: SizedBox(
-                        height: 180,
+                        height: 150,
                         width: 300,
                         child: Stack(
                           children: [
@@ -43,26 +43,27 @@ class _LoginPage1State extends State<Login11> {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(5.0),
                   child: Center(
-                    child: Text("Login here",
+                    child: Text("Create Account",
                       style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 33,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue
                       ),),
                   ),
                 ),
-                const Text("Welcome back! Login with your credentials",
+                const Text("Create an Account it's free",
                   style:TextStyle(
+                    color: Colors.black,
                     fontWeight: FontWeight.bold
                   ) ,),
                 const SizedBox(
                   width: 50,
-                  height: 25,
+                  height: 20,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(10.0),
                   child: TextFormField(
                     decoration:
                     const InputDecoration(
@@ -71,12 +72,33 @@ class _LoginPage1State extends State<Login11> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.white,)),
+                        hintText: "Name",
+                        hintStyle: TextStyle(
+                          color: Colors.black
+                        ),
+                        prefixIcon: Icon(Icons.person)),
+                    validator: (value) {
+                      if (value==null || value.isEmpty){
+                        return "Name can't be empty";
+                      }
+                      return null ;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Colors.grey,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            borderSide: BorderSide(color: Colors.white)),
                         hintText: "E-mail",
                         hintStyle: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold
+                          color: Colors.black
                         ),
-                        prefixIcon: Icon(Icons.mail)),
+                        prefixIcon: Icon(Icons.email)),
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Email can't be empty";
@@ -86,7 +108,7 @@ class _LoginPage1State extends State<Login11> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
                     decoration: const InputDecoration(
                         filled: true,
@@ -96,11 +118,9 @@ class _LoginPage1State extends State<Login11> {
                             borderSide: BorderSide(color: Colors.white)),
                         hintText: "Password",
                         hintStyle: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold
-
+                          color: Colors.black
                         ),
-                        prefixIcon: Icon(Icons.lock,)),
+                        prefixIcon: Icon(Icons.lock)),
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Password can't be empty";
@@ -109,18 +129,9 @@ class _LoginPage1State extends State<Login11> {
                     },
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(onPressed: () {
-
-                    }, child: const Text("Forgot your password?",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold
-                      ),)
-                    ),
-                  ],
+                const SizedBox(
+                  width: 50,
+                  height: 15,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -133,13 +144,14 @@ class _LoginPage1State extends State<Login11> {
                     width: 220,
                     height: 40,
                     child: TextButton(onPressed: () {
-                      if(loginkey.currentState!.validate()){
+                      if(registrationkey.currentState!.validate()){
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
                       }
 
-                    }, child: const Text("Sign in",style: TextStyle(
-                        fontWeight:FontWeight.bold ,
+                    }, child: const Text("Sign up",
+                      style: TextStyle(
                         color: Colors.white,
+                        fontWeight: FontWeight.bold,
                         fontSize: 23
                     ),)),
                   ),
@@ -148,21 +160,25 @@ class _LoginPage1State extends State<Login11> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(onPressed: () {
 
-                  }, child: const Text("New user? Create new account",style: TextStyle(
-                      color: Colors.black,
+                  }, child: const Text("Already have an account",
+                    style: TextStyle(
+                    color: Colors.black,
                       fontWeight: FontWeight.bold
                   ),)
                   ),
                 ),
                 const SizedBox(
-                  width: 50,
-                  height: 50,
+                  width: 30,
+                  height: 30,
                 ),
-                const Text("Or continue with",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black
-                  ),),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Or continue with",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black
+                    ),),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

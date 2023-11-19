@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LoginPage24 extends StatefulWidget {
-  const LoginPage24({super.key});
+class LoginPage25 extends StatefulWidget {
+  const LoginPage25({super.key});
 
   @override
-  State<LoginPage24> createState() => _LoginPage1State();
+  State<LoginPage25> createState() => _LoginPage1State();
 }
 
-class _LoginPage1State extends State<LoginPage24> {
+class _LoginPage1State extends State<LoginPage25> {
   final registrationkey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _LoginPage1State extends State<LoginPage24> {
 
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(20.0),
                   child: TextFormField(
                     decoration:
                     const InputDecoration(
@@ -65,29 +65,8 @@ class _LoginPage1State extends State<LoginPage24> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.white,)),
-                        labelText: "Name",
-                        prefixIcon: Icon(Icons.person)),
-                    validator: (value) {
-                      if (value==null || value.isEmpty){
-                        return 'Enter your email';
-                      }
-                      return null ;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Colors.grey,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            borderSide: BorderSide(color: Colors.white)),
                         labelText: "E-mail",
-                        labelStyle: TextStyle(
-                        ),
-                        prefixIcon: Icon(Icons.email)),
+                        prefixIcon: Icon(Icons.mail)),
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return 'Enter your email';
@@ -97,7 +76,7 @@ class _LoginPage1State extends State<LoginPage24> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: TextFormField(
                     decoration: const InputDecoration(
                         filled: true,
@@ -117,14 +96,16 @@ class _LoginPage1State extends State<LoginPage24> {
                     },
                   ),
                 ),
-                TextButton(onPressed: () {
-
-                }, child: const Text("Already have an account",style: TextStyle(
-                  color: Colors.white,
-                ),)
-                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
+                  child: TextButton(onPressed: () {
+                  }, child:  Text("Forgot Account",style: TextStyle(
+                    color: Colors.white,
+                  ),)
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
                   child: Container(
                     decoration: BoxDecoration(
                         color:Colors.white54,
@@ -144,10 +125,18 @@ class _LoginPage1State extends State<LoginPage24> {
                     ),)),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextButton(onPressed: () {
+
+                  }, child: const Text("New user? Create new account",style: TextStyle(
+                    color: Colors.white,
+                  ),)
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Or continue with"),
                     IconButton(onPressed: () {
 
                     }, icon:const Image(image: AssetImage('assets/images/google.png'))),
