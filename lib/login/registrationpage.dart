@@ -119,8 +119,8 @@ class _LoginPage1State extends State<LoginPage24> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
-                    obscureText: true,
-                    obscuringCharacter: "*",
+                    //obscureText: true,
+                   // obscuringCharacter: "*",
                     decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.grey,
@@ -147,8 +147,8 @@ class _LoginPage1State extends State<LoginPage24> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
-                    obscureText: true,
-                    obscuringCharacter: "*",
+                   // obscureText: true,
+                    //obscuringCharacter: "*",
                     decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.grey,

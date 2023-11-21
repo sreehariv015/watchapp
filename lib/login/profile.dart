@@ -1,91 +1,197 @@
 import 'package:flutter/material.dart';
 
-class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  const Profile({super.key});
 
   @override
-  State<EditProfilePage> createState() => _EditProfilePageState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _EditProfilePageState extends State<EditProfilePage> {
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var profilePictureUrl = TextEditingController();
+class _ProfileState extends State<Profile> {
+  var email=TextEditingController();
+  var password=TextEditingController();
+  var mobile=TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    
-    nameController.text = 'Sreehari V';
-    emailController.text = 'sreehari@gmail.com';
-  }
+  final save_key= GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Stack(
-                  children: [
-                    CircleAvatar(
-                      radius: 80,
-                      //backgroundImage: NetworkImage(),
+      backgroundColor: Colors.grey,
+      body: Form(
+          key: save_key,
+          child: SizedBox(
+            width: size.width,
+            height: size.height,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 10),
+                  const Center(
+                      child: Text("Profile",
+                    style: TextStyle(
+                      color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold
+
+                    ),)),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Stack(
+                        children: [
+                      const CircleAvatar(
+                        radius: 86,
+                        backgroundImage: AssetImage(
+                          'assets/images/luffy.jpg',
+                        ),
+                      ),
+                      Positioned(
+                          left: 130,
+                          top: 110,
+                          child: IconButton(
+                              onPressed: () {
+
+                              },
+                              icon: const Icon(
+                                Icons.add_a_photo_rounded,
+                                color: Colors.redAccent,
+                                size: 35,
+                              )))
+                    ]),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextFormField(
+                      decoration:
+                      const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(30)),
+                              borderSide: BorderSide(color: Colors.white,)),
+                          hintText: "Name",
+                          hintStyle: TextStyle(
+                              color: Colors.black
+                          ),
+                          prefixIcon: Icon(Icons.person)),
+                      validator: (value) {
+                        if (value==null || value.isEmpty){
+                          return "Name can't be empty";
+                        }
+                        return null ;
+                      },
                     ),
-                    Positioned(child: 
-                        IconButton(onPressed: () {
-                          
-                        }, icon: Icon(Icons.camera_alt))
-                    )
-                  ],
-                ),
-                
-                TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Name',
                   ),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextFormField(
+                      decoration:
+                      const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(30)),
+                              borderSide: BorderSide(color: Colors.white,)),
+                          hintText: "Mobile",
+                          hintStyle: TextStyle(
+                              color: Colors.black
+                          ),
+                          prefixIcon: Icon(Icons.person)),
+                      controller: mobile,
+                      validator: (value) {
+                        if (value==null || value.isEmpty){
+                          return "Name can't be empty";
+                        }
+                        if (!RegExp(r'^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$')
+                            .hasMatch(value)) {
+                          return "Enter a valid mobile number address";
+                        }
+                        return null ;
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(30)),
+                              borderSide: BorderSide(color: Colors.white)),
+                          hintText: "E-mail",
+                          hintStyle: TextStyle(
+                              color: Colors.black
+                          ),
+                          prefixIcon: Icon(Icons.email)),
+                      controller: email,
+                      validator: (value) {
+                        if (value==null || value.isEmpty){
+                          return "Email can't be empty";
+                        }
+                        if(!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)){
+                          return "Enter a valid email address";
+                        }
+                        return null ;
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextFormField(
+                      //obscureText: true,
+                      // obscuringCharacter: "*",
+                      decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(30)),
+                              borderSide: BorderSide(color: Colors.white)),
+                          hintText: "Password",
+                          hintStyle: TextStyle(
+                              color: Colors.black
+                          ),
+                          prefixIcon: Icon(Icons.lock)),
+                      controller: password,
+                      validator: (value) {
+                        if (value==null || value.isEmpty){
+                          return "Password can't be empty";
+                        }
+                        if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
+                          return "Enter valid password";
+                        }
+                        return null ;
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    
-                  },
-                  child: const Text('Save'),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color:Colors.white,
+                          borderRadius: BorderRadius.circular(30)
+
+                      ),
+                      width: 220,
+                      height: 53,
+                      child: TextButton(onPressed: () {
+                        if(save_key.currentState!.validate()){
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
+                        }
+
+                      }, child: const Text("Update",style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 28,
+                        fontWeight: FontWeight.bold
+                      ),)),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
-      ),
+          )),
     );
   }
 }
