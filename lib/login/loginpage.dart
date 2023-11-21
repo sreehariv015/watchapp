@@ -8,12 +8,16 @@ class Login11 extends StatefulWidget {
 }
 
 class _LoginPage1State extends State<Login11> {
+  var emailController = TextEditingController();
+  var passController = TextEditingController();
+
+
   final loginkey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black12,
+        backgroundColor: Colors.grey,
         body: SingleChildScrollView(
           child: Form(
             key:loginkey ,
@@ -49,7 +53,7 @@ class _LoginPage1State extends State<Login11> {
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue
+                          color: Colors.red
                       ),),
                   ),
                 ),
@@ -73,13 +77,16 @@ class _LoginPage1State extends State<Login11> {
                             borderSide: BorderSide(color: Colors.white,)),
                         hintText: "E-mail",
                         hintStyle: TextStyle(
-                            color: Colors.black,
                             fontWeight: FontWeight.bold
                         ),
                         prefixIcon: Icon(Icons.mail)),
+                    controller: emailController,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Email can't be empty";
+                      }
+                      if (!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)) {
+                        return "Enter a valid email address";
                       }
                       return null ;
                     },
@@ -96,14 +103,18 @@ class _LoginPage1State extends State<Login11> {
                             borderSide: BorderSide(color: Colors.white)),
                         hintText: "Password",
                         hintStyle: TextStyle(
-                            color: Colors.black,
                             fontWeight: FontWeight.bold
 
                         ),
                         prefixIcon: Icon(Icons.lock,)),
+                    controller: passController,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Password can't be empty";
+                      }
+                      if(!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
+                        return "Enter password";
+
                       }
                       return null ;
                     },
@@ -126,12 +137,12 @@ class _LoginPage1State extends State<Login11> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     decoration: BoxDecoration(
-                        color:Colors.blue,
+                        color:Colors.black,
                         borderRadius: BorderRadius.circular(30)
 
                     ),
                     width: 220,
-                    height: 40,
+                    height: 53,
                     child: TextButton(onPressed: () {
                       if(loginkey.currentState!.validate()){
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);

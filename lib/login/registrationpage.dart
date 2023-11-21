@@ -8,12 +8,17 @@ class LoginPage24 extends StatefulWidget {
 }
 
 class _LoginPage1State extends State<LoginPage24> {
+  var name=TextEditingController();
+  var email=TextEditingController();
+  var password=TextEditingController();
+  var confirm_password=TextEditingController();
+
   final registrationkey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black12,
+        backgroundColor: Colors.grey,
         body: SingleChildScrollView(
           child: Form(
             key:registrationkey ,
@@ -49,7 +54,7 @@ class _LoginPage1State extends State<LoginPage24> {
                       style: TextStyle(
                           fontSize: 33,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue
+                          color: Colors.red
                       ),),
                   ),
                 ),
@@ -99,9 +104,13 @@ class _LoginPage1State extends State<LoginPage24> {
                           color: Colors.black
                         ),
                         prefixIcon: Icon(Icons.email)),
+                    controller: email,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Email can't be empty";
+                      }
+                      if(!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)){
+                        return "Enter a valid email address";
                       }
                       return null ;
                     },
@@ -110,6 +119,8 @@ class _LoginPage1State extends State<LoginPage24> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
+                    obscureText: true,
+                    obscuringCharacter: "*",
                     decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.grey,
@@ -121,9 +132,41 @@ class _LoginPage1State extends State<LoginPage24> {
                           color: Colors.black
                         ),
                         prefixIcon: Icon(Icons.lock)),
+                    controller: password,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Password can't be empty";
+                      }
+                      if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
+                        return "Enter valid password";
+                      }
+                      return null ;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    obscureText: true,
+                    obscuringCharacter: "*",
+                    decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Colors.grey,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            borderSide: BorderSide(color: Colors.white)),
+                        hintText: "Confirm Password",
+                        hintStyle: TextStyle(
+                            color: Colors.black
+                        ),
+                        prefixIcon: Icon(Icons.lock)),
+                    controller: confirm_password,
+                    validator: (value) {
+                      if (value==null || value.isEmpty){
+                        return "Re-enter your password";
+                      }
+                      else if(value!=password.text){
+                        return 'password must be same';
                       }
                       return null ;
                     },
@@ -137,12 +180,12 @@ class _LoginPage1State extends State<LoginPage24> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     decoration: BoxDecoration(
-                        color:Colors.blue,
+                        color:Colors.black,
                         borderRadius: BorderRadius.circular(30)
 
                     ),
-                    width: 220,
-                    height: 40,
+                    width: 260,
+                    height: 50,
                     child: TextButton(onPressed: () {
                       if(registrationkey.currentState!.validate()){
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
