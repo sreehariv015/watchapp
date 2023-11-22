@@ -17,7 +17,7 @@ class _LoginPage1State extends State<Login11> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Form(
             key:loginkey ,

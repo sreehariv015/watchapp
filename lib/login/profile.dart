@@ -38,7 +38,7 @@ class _ProfileState extends State<Profile> {
 
                     ),)),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: Stack(
                         children: [
                       const CircleAvatar(
@@ -62,7 +62,7 @@ class _ProfileState extends State<Profile> {
                     ]),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: TextFormField(
                       decoration:
                       const InputDecoration(
@@ -85,7 +85,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: TextFormField(
                       decoration:
                       const InputDecoration(
@@ -113,7 +113,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: TextFormField(
                       decoration: const InputDecoration(
                           filled: true,
@@ -139,7 +139,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: TextFormField(
                       //obscureText: true,
                       // obscuringCharacter: "*",
