@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:watchapp/screens/loginpage.dart';
 
 class LoginPage24 extends StatefulWidget {
   const LoginPage24({super.key});
@@ -8,6 +9,9 @@ class LoginPage24 extends StatefulWidget {
 }
 
 class _LoginPage1State extends State<LoginPage24> {
+  bool passwordVisible=false;
+  bool passVisible=false;
+
   var name=TextEditingController();
   var email=TextEditingController();
   var password=TextEditingController();
@@ -18,7 +22,7 @@ class _LoginPage1State extends State<LoginPage24> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Form(
             key:registrationkey ,
@@ -73,7 +77,7 @@ class _LoginPage1State extends State<LoginPage24> {
                     decoration:
                     const InputDecoration(
                         filled: true,
-                        fillColor: Colors.grey,
+                        fillColor: Colors.white,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.white,)),
@@ -95,7 +99,7 @@ class _LoginPage1State extends State<LoginPage24> {
                   child: TextFormField(
                     decoration: const InputDecoration(
                         filled: true,
-                        fillColor: Colors.grey,
+                        fillColor: Colors.white,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.white)),
@@ -121,18 +125,25 @@ class _LoginPage1State extends State<LoginPage24> {
                   child: TextFormField(
                     //obscureText: true,
                    // obscuringCharacter: "*",
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                         filled: true,
-                        fillColor: Colors.grey,
-                        border: OutlineInputBorder(
+                        fillColor: Colors.white,
+                        border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.white)),
                         hintText: "Password",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           color: Colors.black
                         ),
-                        prefixIcon: Icon(Icons.lock)),
-                    controller: password,
+                        prefixIcon: Icon(Icons.lock),
+                      suffixIcon: IconButton(onPressed: () {
+                        setState(() {
+                          passwordVisible=!passwordVisible;
+                        });
+                      }, icon: Icon(passwordVisible?Icons.visibility:Icons.visibility_off))
+                    ),
+                    controller: confirm_password,
+                    obscureText: passwordVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Password can't be empty";
@@ -149,18 +160,25 @@ class _LoginPage1State extends State<LoginPage24> {
                   child: TextFormField(
                    // obscureText: true,
                     //obscuringCharacter: "*",
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                         filled: true,
-                        fillColor: Colors.grey,
-                        border: OutlineInputBorder(
+                        fillColor: Colors.white,
+                        border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.white)),
                         hintText: "Confirm Password",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                             color: Colors.black
                         ),
-                        prefixIcon: Icon(Icons.lock)),
-                    controller: confirm_password,
+                        prefixIcon: const Icon(Icons.lock),
+                    suffixIcon: IconButton(onPressed: () {
+                      setState(() {
+                        passVisible=!passVisible;
+                      });
+                    }, icon: Icon(passVisible?Icons.visibility:Icons.visibility_off))
+                    ),
+                    controller: password,
+                    obscureText: passVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Re-enter your password";
@@ -202,7 +220,11 @@ class _LoginPage1State extends State<LoginPage24> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(onPressed: () {
-
+                     setState(() {
+                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                         return const Login11();
+                       },));
+                     });
                   }, child: const Text("Already have an account",
                     style: TextStyle(
                     color: Colors.black,

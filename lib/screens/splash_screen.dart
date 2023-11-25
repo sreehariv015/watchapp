@@ -1,7 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:watchapp/login/loginpage.dart';
+import 'package:watchapp/screens/loginpage.dart';
 class SplashScreen1 extends StatefulWidget {
   const SplashScreen1({super.key});
 
@@ -16,7 +15,7 @@ class _SplashScreen1State extends State<SplashScreen1> {
     super.initState();
 
     Timer(
-      Duration(seconds: 5),
+      Duration(seconds: 10),
           () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(

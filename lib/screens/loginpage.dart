@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:watchapp/screens/forgot_password_page.dart';
+import 'package:watchapp/screens/registrationpage.dart';
 
 class Login11 extends StatefulWidget {
   const Login11({super.key});
@@ -8,6 +10,8 @@ class Login11 extends StatefulWidget {
 }
 
 class _LoginPage1State extends State<Login11> {
+  bool passwordVisible=false;
+
   var emailController = TextEditingController();
   var passController = TextEditingController();
 
@@ -71,7 +75,7 @@ class _LoginPage1State extends State<Login11> {
                     decoration:
                     const InputDecoration(
                         filled: true,
-                        fillColor: Colors.grey,
+                        fillColor: Colors.white70,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.white,)),
@@ -95,19 +99,26 @@ class _LoginPage1State extends State<Login11> {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: TextFormField(
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                         filled: true,
-                        fillColor: Colors.grey,
-                        border: OutlineInputBorder(
+                        fillColor: Colors.white70,
+                        border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.white)),
                         hintText: "Password",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                             fontWeight: FontWeight.bold
 
                         ),
-                        prefixIcon: Icon(Icons.lock,)),
+                        prefixIcon: const Icon(Icons.lock,),
+                        suffixIcon: IconButton(onPressed: () {
+                          setState(() {
+                            passwordVisible=!passwordVisible;
+                          });
+                        }, icon: Icon(passwordVisible?Icons.visibility:Icons.visibility_off))
+                    ),
                     controller: passController,
+                    obscureText: passwordVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Password can't be empty";
@@ -123,13 +134,20 @@ class _LoginPage1State extends State<Login11> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    TextButton(onPressed: () {
-
-                    }, child: const Text("Forgot your password?",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold
-                      ),)
+                    Padding(
+                      padding: const EdgeInsets.all(13.0),
+                      child: TextButton(onPressed: () {
+                      setState(() {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                          return const ForgotPassword();
+                        },));
+                      });
+                      }, child: const Text("Forgot your password?",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                        ),)
+                      ),
                     ),
                   ],
                 ),
@@ -158,7 +176,11 @@ class _LoginPage1State extends State<Login11> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(onPressed: () {
-
+                  setState(() {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                      return LoginPage24();
+                    },));
+                  });
                   }, child: const Text("New user? Create new account",style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold
