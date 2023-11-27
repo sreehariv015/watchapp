@@ -93,7 +93,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                padding: const EdgeInsets.all(13.0),
                child: TextButton(onPressed: () {
                  setState(() {
-                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                      return const Login11();
                    },));
                  });

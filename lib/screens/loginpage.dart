@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watchapp/screens/forgot_password_page.dart';
+import 'package:watchapp/screens/phone_number_page.dart';
 import 'package:watchapp/screens/registrationpage.dart';
 
 class Login11 extends StatefulWidget {
@@ -210,6 +211,9 @@ class _LoginPage1State extends State<Login11> {
                       width: 70,
                       height: 70,
                       child: IconButton(onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return const MobileNumber1();
+                        },));
 
                       }, icon:const Image(image: AssetImage('assets/images/phone.png'))),
                     ),

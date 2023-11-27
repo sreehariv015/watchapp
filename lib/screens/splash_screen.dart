@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:watchapp/screens/frontpage.dart';
 import 'package:watchapp/screens/loginpage.dart';
 class SplashScreen1 extends StatefulWidget {
   const SplashScreen1({super.key});
@@ -15,11 +16,11 @@ class _SplashScreen1State extends State<SplashScreen1> {
     super.initState();
 
     Timer(
-      Duration(seconds: 10),
-          () => Navigator.pushReplacement(
+      const Duration(seconds: 2),
+          () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Login11(),
+          builder: (context) => const FrontPage1(),
         ),
       ),
     );
@@ -29,20 +30,24 @@ class _SplashScreen1State extends State<SplashScreen1> {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 350,
-          ),
-          Center(
-            child: Image(image: AssetImage('assets/images/splash.png'),
-              height: 200,
+
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 330,
             ),
-          ),
-          CircularProgressIndicator(
-            color: Colors.black,
-          )
-        ],
+            Center(
+              child: Image(image: AssetImage('assets/images/splash.png'),
+                height: 280,
+              ),
+            ),
+            SizedBox(height: 220,),
+            CircularProgressIndicator(
+              color: Colors.black,
+            )
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watchapp/screens/loginpage.dart';
+import 'package:watchapp/screens/phone_number_page.dart';
 
 class LoginPage24 extends StatefulWidget {
   const LoginPage24({super.key});
@@ -142,7 +143,7 @@ class _LoginPage1State extends State<LoginPage24> {
                         });
                       }, icon: Icon(passwordVisible?Icons.visibility:Icons.visibility_off))
                     ),
-                    controller: confirm_password,
+                    controller: password,
                     obscureText: passwordVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
@@ -177,7 +178,7 @@ class _LoginPage1State extends State<LoginPage24> {
                       });
                     }, icon: Icon(passVisible?Icons.visibility:Icons.visibility_off))
                     ),
-                    controller: password,
+                    controller: confirm_password,
                     obscureText: passVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
@@ -221,7 +222,7 @@ class _LoginPage1State extends State<LoginPage24> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(onPressed: () {
                      setState(() {
-                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                       Navigator.push(context, MaterialPageRoute(builder: (context) {
                          return const Login11();
                        },));
                      });
@@ -258,7 +259,9 @@ class _LoginPage1State extends State<LoginPage24> {
                       width: 70,
                       height: 70,
                       child: IconButton(onPressed: () {
-
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return const MobileNumber1();
+                        },));
                       }, icon:const Image(image: AssetImage('assets/images/phone.png'))),
                     ),
                   ],
