@@ -29,15 +29,16 @@ class _ProfileState extends State<Profile> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 25),
                     const Center(
                         child: Text("Profile",
                       style: TextStyle(
                         color: Colors.red,
                           fontSize: 50,
-                          fontWeight: FontWeight.bold
+                          //fontWeight: FontWeight.bold
 
                       ),)),
+                    const SizedBox(height: 10,),
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Stack(
@@ -70,7 +71,7 @@ class _ProfileState extends State<Profile> {
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                borderRadius: BorderRadius.all(Radius.circular(25)),
                                 borderSide: BorderSide(color: Colors.white,)),
                             hintText: "Name",
                             hintStyle: TextStyle(
@@ -93,7 +94,7 @@ class _ProfileState extends State<Profile> {
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                borderRadius: BorderRadius.all(Radius.circular(25)),
                                 borderSide: BorderSide(color: Colors.white,)),
                             hintText: "Mobile",
                             hintStyle: TextStyle(
@@ -120,7 +121,7 @@ class _ProfileState extends State<Profile> {
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                borderRadius: BorderRadius.all(Radius.circular(25)),
                                 borderSide: BorderSide(color: Colors.white)),
                             hintText: "E-mail",
                             hintStyle: TextStyle(
@@ -148,7 +149,7 @@ class _ProfileState extends State<Profile> {
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                borderRadius: BorderRadius.all(Radius.circular(25)),
                                 borderSide: BorderSide(color: Colors.white)),
                             hintText: "Password",
                             hintStyle: TextStyle(
@@ -173,7 +174,7 @@ class _ProfileState extends State<Profile> {
                       child: Container(
                         decoration: BoxDecoration(
                             color:Colors.red,
-                            borderRadius: BorderRadius.circular(20)
+                            borderRadius: BorderRadius.circular(28)
 
                         ),
                         width: 240,
@@ -186,7 +187,7 @@ class _ProfileState extends State<Profile> {
                         }, child: const Text("Update",style: TextStyle(
                             color: Colors.white,
                             fontSize: 28,
-                          fontWeight: FontWeight.bold
+                          //fontWeight: FontWeight.bold
                         ),)),
                       ),
                     ),
