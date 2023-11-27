@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(home: Profile(),);
+    return  MaterialApp(home: Settings1(),);
 
   }
   //debugShowCheckedModeBanner: false,);
