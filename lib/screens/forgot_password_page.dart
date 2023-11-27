@@ -11,26 +11,29 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   var email=TextEditingController();
 
 
-  final registrationkey=GlobalKey<FormState>();
+  final forgotkey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
      body: Form(
-       key: registrationkey,
+       key: forgotkey,
        child: SingleChildScrollView(
          child: Column(
            children: [
-             const SizedBox(height: 220,),
-             const Center(child: Text("Forgot your Password",
+             const SizedBox(height: 310,),
+             const Center(
+                 child: Padding(
+                   padding: EdgeInsets.all(8.0),
+                   child: Text("Forgot Password",
                style: TextStyle(
-                 fontSize: 30,
-                 fontWeight: FontWeight.bold,
-                 color: Colors.black87
-               ),)),
-             const SizedBox(height: 15,),
+                   fontSize: 36,
+                   //fontWeight: FontWeight.bold,
+                   color: Colors.red
+               ),),
+                 )),
              const Padding(
-               padding: EdgeInsets.all(15.0),
+               padding: EdgeInsets.all(8.0),
                child: Center(
                  child: Text("please enter the email address you'd like your password reset information sent to...",
                    textAlign: TextAlign.center,
@@ -71,14 +74,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                padding: const EdgeInsets.all(8.0),
                child: Container(
                  decoration: BoxDecoration(
-                     color:Colors.black,
+                     color:Colors.red,
                      borderRadius: BorderRadius.circular(30)
 
                  ),
                  width: 260,
                  height: 50,
                  child: TextButton(onPressed: () {
-                   if(registrationkey.currentState!.validate()){
+                   if(forgotkey.currentState!.validate()){
                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
                    }
 
@@ -90,10 +93,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                    ),)),
                ),
              ),  Padding(
-               padding: const EdgeInsets.all(13.0),
+               padding: const EdgeInsets.all(8.0),
                child: TextButton(onPressed: () {
                  setState(() {
-                   Navigator.push(context, MaterialPageRoute(builder: (context) {
+                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                      return const Login11();
                    },));
                  });

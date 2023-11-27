@@ -21,16 +21,14 @@ class _MobileNumber1State extends State<MobileNumber1> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 220,),
+              const SizedBox(height: 320,),
               const Center(child: Text("Phone Verification",
                 style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87
+                    fontSize: 36,
+                    color: Colors.red
                 ),)),
-              const SizedBox(height: 15,),
               const Padding(
-                padding: EdgeInsets.all(15.0),
+                padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: Text("We need to register your phone without getting started",
                       textAlign: TextAlign.center,
@@ -46,7 +44,7 @@ class _MobileNumber1State extends State<MobileNumber1> {
                   decoration:
                   const InputDecoration(
                       filled: true,
-                      fillColor: Colors.grey,
+                      fillColor: Colors.white,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                           borderSide: BorderSide(color: Colors.white,)),
@@ -54,7 +52,7 @@ class _MobileNumber1State extends State<MobileNumber1> {
                       hintStyle: TextStyle(
                           color: Colors.black
                       ),
-                      prefixIcon: Icon(Icons.person)),
+                      prefixIcon: Icon(Icons.phone_android)),
                   controller: mobile,
                   validator: (value) {
                     if (value==null || value.isEmpty){
@@ -73,7 +71,7 @@ class _MobileNumber1State extends State<MobileNumber1> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   decoration: BoxDecoration(
-                      color:Colors.black,
+                      color:Colors.red,
                       borderRadius: BorderRadius.circular(30)
 
                   ),
