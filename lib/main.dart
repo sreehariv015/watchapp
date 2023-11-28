@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:watchapp/screens/forgot_password_page.dart';
 import 'package:watchapp/screens/frontpage.dart';
+import 'package:watchapp/screens/home_page.dart';
 import 'package:watchapp/screens/loginpage.dart';
 import 'package:watchapp/screens/profile.dart';
 import 'package:watchapp/screens/registrationpage.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(home: Settings1(),);
+    return  MaterialApp(home: Homepage(),);
 
   }
   //debugShowCheckedModeBanner: false,);
