@@ -41,6 +41,7 @@ class _MobileNumber1State extends State<MobileNumber1> {
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: TextFormField(
+                  keyboardType: TextInputType.phone,
                   decoration:
                   const InputDecoration(
                       filled: true,
@@ -56,11 +57,11 @@ class _MobileNumber1State extends State<MobileNumber1> {
                   controller: mobile,
                   validator: (value) {
                     if (value==null || value.isEmpty){
-                      return "Name can't be empty";
+                      return "mobile no can't be empty";
                     }
                     if (!RegExp(r'^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$')
                         .hasMatch(value)) {
-                      return "Enter a valid mobile number address";
+                      return "enter a valid mobile number";
                     }
                     return null ;
                   },

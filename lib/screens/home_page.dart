@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:watchapp/screens/profile.dart';
 import 'package:watchapp/screens/settings_page.dart';
@@ -160,6 +161,19 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       backgroundColor: Colors.white,
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.white,
+        items: const <Widget>[
+          Icon(Icons.home, size: 30),
+          Icon(Icons.favorite, size: 30,),
+          Icon(Icons.shopping_cart, size: 30),
+          Icon(Icons.settings, size: 30),
+        ],
+        color: Colors.white,
+        onTap: (index) {
+          //Handle button tap
+        },
+      ),
     );
   }
 }

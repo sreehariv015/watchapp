@@ -89,10 +89,10 @@ class _LoginPage1State extends State<Login11> {
                     controller: emailController,
                     validator: (value) {
                       if (value==null || value.isEmpty){
-                        return "Email can't be empty";
+                        return "email can't be empty";
                       }
                       if (!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)) {
-                        return "Enter a valid email address";
+                        return "enter a valid email address";
                       }
                       return null ;
                     },
@@ -123,10 +123,10 @@ class _LoginPage1State extends State<Login11> {
                     obscureText: !passwordVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
-                        return "Password can't be empty";
+                        return "password can't be empty";
                       }
                       if(!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
-                        return "Password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
+                        return "password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
 
                       }
                       return null ;

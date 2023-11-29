@@ -77,13 +77,13 @@ class _ProfileState extends State<Profile> {
                             hintStyle: TextStyle(
                                 color: Colors.black
                             ),
-                            prefixIcon: Icon(Icons.person)),
+                            prefixIcon: Icon(Icons.person,color: Colors.black,)),
                         validator: (value) {
                           if (value==null || value.isEmpty){
-                            return "Name can't be empty";
+                            return "name can't be empty";
                           }
                           if(!RegExp(r'^[A-Za-z]+([\ A-Za-z]+)$').hasMatch(value)){
-                            return "Enter a valid email address";
+                            return "name contains[A-Z,a-z]";
                           }
                           return null ;
                         },
@@ -92,6 +92,7 @@ class _ProfileState extends State<Profile> {
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: TextFormField(
+                        keyboardType: TextInputType.phone,
                         decoration:
                         const InputDecoration(
                             filled: true,
@@ -99,19 +100,19 @@ class _ProfileState extends State<Profile> {
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(25)),
                                 borderSide: BorderSide(color: Colors.white,)),
-                            hintText: "Mobile",
+                            hintText: "Mobile no",
                             hintStyle: TextStyle(
                                 color: Colors.black
                             ),
-                            prefixIcon: Icon(Icons.phone)),
+                            prefixIcon: Icon(Icons.phone,color: Colors.black,)),
                         controller: mobile,
                         validator: (value) {
                           if (value==null || value.isEmpty){
-                            return "Name can't be empty";
+                            return "mobile no can't be empty";
                           }
                           if (!RegExp(r'^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$')
                               .hasMatch(value)) {
-                            return "Enter a valid mobile number address";
+                            return "enter a valid mobile number";
                           }
                           return null ;
                         },
@@ -130,14 +131,14 @@ class _ProfileState extends State<Profile> {
                             hintStyle: TextStyle(
                                 color: Colors.black
                             ),
-                            prefixIcon: Icon(Icons.email)),
+                            prefixIcon: Icon(Icons.email,color: Colors.black,)),
                         controller: email,
                         validator: (value) {
                           if (value==null || value.isEmpty){
-                            return "Email can't be empty";
+                            return "email can't be empty";
                           }
                           if(!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)){
-                            return "Enter a valid email address";
+                            return "enter a valid email address";
                           }
                           return null ;
                         },
@@ -158,14 +159,14 @@ class _ProfileState extends State<Profile> {
                             hintStyle: TextStyle(
                                 color: Colors.black
                             ),
-                            prefixIcon: Icon(Icons.lock)),
+                            prefixIcon: Icon(Icons.lock,color: Colors.black,)),
                         controller: password,
                         validator: (value) {
                           if (value==null || value.isEmpty){
-                            return "Password can't be empty";
+                            return "password can't be empty";
                           }
                           if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
-                            return "Enter valid password";
+                            return "password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
                           }
                           return null ;
                         },

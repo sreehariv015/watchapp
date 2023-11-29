@@ -60,10 +60,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                  controller: email,
                  validator: (value) {
                    if (value==null || value.isEmpty){
-                     return "Email can't be empty";
+                     return "email can't be empty";
                    }
                    if(!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)){
-                     return "Enter a valid email address";
+                     return "enter a valid email address";
                    }
                    return null ;
                  },
