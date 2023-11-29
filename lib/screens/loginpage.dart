@@ -83,9 +83,9 @@ class _LoginPage1State extends State<Login11> {
                             borderSide: BorderSide(color: Colors.white,)),
                         hintText: "E-mail",
                         hintStyle: TextStyle(
-                            fontWeight: FontWeight.bold
+                          color: Colors.black
                         ),
-                        prefixIcon: Icon(Icons.mail)),
+                        prefixIcon: Icon(Icons.mail,color: Colors.black,)),
                     controller: emailController,
                     validator: (value) {
                       if (value==null || value.isEmpty){
@@ -109,24 +109,24 @@ class _LoginPage1State extends State<Login11> {
                             borderSide: BorderSide(color: Colors.white)),
                         hintText: "Password",
                         hintStyle: const TextStyle(
-                            fontWeight: FontWeight.bold
-
+                          color: Colors.black
                         ),
-                        prefixIcon: const Icon(Icons.lock,),
+                        prefixIcon: const Icon(Icons.lock,color: Colors.black,),
                         suffixIcon: IconButton(onPressed: () {
                           setState(() {
                             passwordVisible=!passwordVisible;
                           });
-                        }, icon: Icon(passwordVisible?Icons.visibility:Icons.visibility_off))
+                        }, icon: Icon(passwordVisible?Icons.visibility:Icons.visibility_off,
+                          color: Colors.black,))
                     ),
                     controller: passController,
-                    obscureText: passwordVisible,
+                    obscureText: !passwordVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Password can't be empty";
                       }
                       if(!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
-                        return "Enter password";
+                        return "Password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
 
                       }
                       return null ;

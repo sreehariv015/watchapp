@@ -86,7 +86,8 @@ class _LoginPage1State extends State<LoginPage24> {
                         hintStyle: TextStyle(
                           color: Colors.black
                         ),
-                        prefixIcon: Icon(Icons.person)),
+                        prefixIcon: Icon(Icons.person,
+                          color: Colors.black,)),
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Name can't be empty";
@@ -111,7 +112,7 @@ class _LoginPage1State extends State<LoginPage24> {
                         hintStyle: TextStyle(
                           color: Colors.black
                         ),
-                        prefixIcon: Icon(Icons.email)),
+                        prefixIcon: Icon(Icons.email,color: Colors.black,)),
                     controller: email,
                     validator: (value) {
                       if (value==null || value.isEmpty){
@@ -139,15 +140,15 @@ class _LoginPage1State extends State<LoginPage24> {
                         hintStyle: const TextStyle(
                           color: Colors.black
                         ),
-                        prefixIcon: Icon(Icons.lock),
+                        prefixIcon: const Icon(Icons.lock,color: Colors.black,),
                       suffixIcon: IconButton(onPressed: () {
                         setState(() {
                           passwordVisible=!passwordVisible;
                         });
-                      }, icon: Icon(passwordVisible?Icons.visibility:Icons.visibility_off))
+                      }, icon: Icon(passwordVisible?Icons.visibility:Icons.visibility_off,color: Colors.black,))
                     ),
                     controller: password,
-                    obscureText: passwordVisible,
+                    obscureText: !passwordVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Password can't be empty";
@@ -174,21 +175,21 @@ class _LoginPage1State extends State<LoginPage24> {
                         hintStyle: const TextStyle(
                             color: Colors.black
                         ),
-                        prefixIcon: const Icon(Icons.lock),
+                        prefixIcon: const Icon(Icons.lock,color: Colors.black,),
                     suffixIcon: IconButton(onPressed: () {
                       setState(() {
                         passVisible=!passVisible;
                       });
-                    }, icon: Icon(passVisible?Icons.visibility:Icons.visibility_off))
+                    }, icon: Icon(passVisible?Icons.visibility:Icons.visibility_off,color: Colors.black,))
                     ),
                     controller: confirm_password,
-                    obscureText: passVisible,
+                    obscureText: !passVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Re-enter your password";
                       }
                       else if(value!=password.text){
-                        return 'password must be same';
+                        return 'Password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]';
                       }
                       return null ;
                     },
