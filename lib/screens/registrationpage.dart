@@ -153,7 +153,7 @@ class _LoginPage1State extends State<LoginPage24> {
                         return "Password can't be empty";
                       }
                       if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
-                        return "Enter valid password";
+                        return "Password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
                       }
                       return null ;
                     },
