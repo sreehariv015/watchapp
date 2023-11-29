@@ -91,7 +91,7 @@ class _LoginPage1State extends State<LoginPage24> {
                       if (value==null || value.isEmpty){
                         return "Name can't be empty";
                       }
-                      if(!RegExp(r'^[a-zA-Z]').hasMatch(value)){
+                      if(!RegExp(r'^[A-Za-z]+([\ A-Za-z]+)$').hasMatch(value)){
                         return "Enter a valid email address";
                       }
                       return null ;
@@ -211,6 +211,11 @@ class _LoginPage1State extends State<LoginPage24> {
                     child: TextButton(onPressed: () {
                       if(registrationkey.currentState!.validate()){
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
+                        setState(() {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                            return const Login11();
+                          },));
+                        });
                       }
 
                     }, child: const Text("Sign up",

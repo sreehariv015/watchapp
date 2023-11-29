@@ -82,6 +82,9 @@ class _ProfileState extends State<Profile> {
                           if (value==null || value.isEmpty){
                             return "Name can't be empty";
                           }
+                          if(!RegExp(r'^[A-Za-z]+([\ A-Za-z]+)$').hasMatch(value)){
+                            return "Enter a valid email address";
+                          }
                           return null ;
                         },
                       ),
