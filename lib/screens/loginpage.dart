@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watchapp/screens/forgot_password_page.dart';
+import 'package:watchapp/screens/home_page.dart';
 import 'package:watchapp/screens/phone_number_page.dart';
 import 'package:watchapp/screens/registrationpage.dart';
 
@@ -163,8 +164,14 @@ class _LoginPage1State extends State<Login11> {
                     width: 220,
                     height: 53,
                     child: TextButton(onPressed: () {
+
                       if(loginkey.currentState!.validate()){
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
+                        setState(() {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                            return const Homepage();
+                          },));
+                        });
                       }
 
                     }, child: const Text("Sign in",style: TextStyle(
@@ -179,7 +186,7 @@ class _LoginPage1State extends State<Login11> {
                   child: TextButton(onPressed: () {
                   setState(() {
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                      return LoginPage24();
+                      return const LoginPage24();
                     },));
                   });
                   }, child: const Text("New user? Create new account",style: TextStyle(

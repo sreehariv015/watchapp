@@ -91,6 +91,9 @@ class _LoginPage1State extends State<LoginPage24> {
                       if (value==null || value.isEmpty){
                         return "Name can't be empty";
                       }
+                      if(!RegExp(r'^[a-zA-Z]').hasMatch(value)){
+                        return "Enter a valid email address";
+                      }
                       return null ;
                     },
                   ),

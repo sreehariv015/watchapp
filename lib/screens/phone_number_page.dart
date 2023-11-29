@@ -89,20 +89,6 @@ class _MobileNumber1State extends State<MobileNumber1> {
                         fontWeight: FontWeight.bold
                     ),)),
                 ),
-              ),  Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: TextButton(onPressed: () {
-                  setState(() {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return const Login11();
-                    },));
-                  });
-                }, child: const Text("Back to Login",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold
-                  ),)
-                ),
               ),
             ],
           ),

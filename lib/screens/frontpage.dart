@@ -77,7 +77,7 @@ class _FrontPage1State extends State<FrontPage1> {
                         return const Login11();
                       },));
 
-                    }, child: const Text("Sign up",
+                    }, child: const Text("Sign in",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

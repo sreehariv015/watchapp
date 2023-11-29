@@ -92,20 +92,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                      fontWeight: FontWeight.bold
                    ),)),
                ),
-             ),  Padding(
-               padding: const EdgeInsets.all(8.0),
-               child: TextButton(onPressed: () {
-                 setState(() {
-                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                     return const Login11();
-                   },));
-                 });
-               }, child: const Text("Back to Login",
-                 style: TextStyle(
-                     color: Colors.black,
-                      fontWeight: FontWeight.bold
-                 ),)
-               ),
              ),
            ],
          ),
