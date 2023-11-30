@@ -121,7 +121,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 // color: Colors.red,
                 child: Text("All deals",
                     style: TextStyle(
-                      fontFamily: 'Poppins-SemiBold',
                       fontWeight: FontWeight.w600,
                       fontSize: 15,
                       color: Color(0xFF3C3268),

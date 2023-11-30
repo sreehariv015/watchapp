@@ -1,7 +1,6 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:watchapp/screens/profile.dart';
-import 'package:watchapp/screens/registrationpage.dart';
 import 'package:watchapp/screens/settings_page.dart';
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -11,24 +10,17 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  int _currentIndex = 0;
-
-  final List<Widget> _pages = [
-    const Profile(),
-    const LoginPage24(),
-    const Settings1(),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   elevation: 0,
-      //   iconTheme: const IconThemeData(
-      //     color: Colors.red
-      //   ),
-      // ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: const IconThemeData(
+          color: Colors.red
+        ),
+      ),
       drawer: Drawer(
         backgroundColor: Colors.white,
         shape: const OutlineInputBorder(
@@ -169,23 +161,6 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       backgroundColor: Colors.white,
-      body: _pages[_currentIndex],
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.white,
-        items: const <Widget>[
-          Icon(Icons.home, size: 30,),
-          Icon(Icons.favorite, size: 30,),
-          Icon(Icons.shopping_cart, size: 30),
-          Icon(Icons.settings, size: 30),
-        ],
-        color: Colors.white,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-
-          });
-        },
-      ),
     );
   }
 }

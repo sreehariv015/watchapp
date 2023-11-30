@@ -8,6 +8,7 @@ import 'package:watchapp/screens/registrationpage.dart';
 import 'package:watchapp/screens/settings_page.dart';
 import 'package:watchapp/screens/splash_screen.dart';
 import 'package:watchapp/trash/example1.dart';
+import 'package:watchapp/trash/sam.dart';
 
 main(){
   runApp(MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(home:HomeScreen(),);
+    return  MaterialApp(home:MainPage(),);
 
   }
   //debugShowCheckedModeBanner: false,);
