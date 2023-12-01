@@ -10,6 +10,7 @@ class HomeScreen11 extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen11> {
+  int currentindex=0;
   int _selectedIndex = 0;
 
   final List<String> imageList = [
@@ -25,42 +26,64 @@ class _HomeScreenState extends State<HomeScreen11> {
       appBar: AppBar(
         title: const Text('Home Screen'),
       ),
-      body: Column(
-        children: [
-          CarouselSlider(
-            options: CarouselOptions(
-              height: 200,
-              enableInfiniteScroll: true,
-              autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 3),
-              autoPlayAnimationDuration: const Duration(milliseconds: 800),
-              pauseAutoPlayOnTouch: true,
-              enlargeCenterPage: true,
-              aspectRatio: 2.0,
-            ),
-            items: imageList.map((url) {
-              return GestureDetector(
-                onTap: () {
-                  // Handle carousel item tap
-                  print('Tapped on image: $url');
-                },
-                child: Container(
-                  margin: const EdgeInsets.all(5.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      url,
-                      fit: BoxFit.cover,
-                      width: 1000.0,
-                    ),
-                  ),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: size.width,
+          height: size.height,
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(9.0),
+                child: Text("Trending Deals",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18
+                ),),
+              ),
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: 200,
+                  enableInfiniteScroll: true,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                  pauseAutoPlayOnTouch: true,
+                  enlargeCenterPage: true,
+                  aspectRatio: 2.0,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                    currentindex =index;
+                    });
+                  },
                 ),
-              );
-            }).toList(),
+                items: imageList.map((items) {
+                  return Container(
+                    margin: const EdgeInsets.all(5.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.network(
+                        items,
+                        fit: BoxFit.cover,
+                        width: 1000.0,
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Align(alignment: Alignment(-0.96,0),
+                    child: SizedBox(
+                      height: 30,
+                      child: Text("All Category",style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18
+                      ),),
+                    )),
+              ),
+              // Add other widgets or content here
+            ],
           ),
-          const SizedBox(height: 20),
-          // Add other widgets or content here
-        ],
+        ),
       ),
       bottomNavigationBar: CurvedNavigationBar(
         index: _selectedIndex,
