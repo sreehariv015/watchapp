@@ -38,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen11> {
                 padding: EdgeInsets.all(9.0),
                 child: Text("Trending Deals",style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18
+                  fontSize: 18,
+                  color: Color(0xFF3C3268),
                 ),),
               ),
               CarouselSlider(
@@ -78,7 +79,8 @@ class _HomeScreenState extends State<HomeScreen11> {
                     child: SizedBox(
                       child: Text("All Category",style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 18
+                          fontSize: 18,
+                        color: Color(0xFF3C3268),
                       ),),
                     )),
               ),
@@ -96,7 +98,11 @@ class _HomeScreenState extends State<HomeScreen11> {
                             backgroundColor: Colors.white,
                             radius: 40,
                           ),
-                          Text("Fastrack")
+                          Center(
+                            child: Text("Fastrack",style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF3C3268),)),
+                          )
                         ],
                       ),
                     ),
@@ -111,7 +117,11 @@ class _HomeScreenState extends State<HomeScreen11> {
                               'assets/images/titan.jpg',
                             ),
                           ),
-                          Text("Titan")
+                          Center(
+                            child: Text("Titan",style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF3C3268),)),
+                          )
                         ],
                       ),
                     ),
@@ -126,7 +136,11 @@ class _HomeScreenState extends State<HomeScreen11> {
                               'assets/images/logo1.png',
                             ),
                           ),
-                          Text("G-SHOCK",),
+                          Center(
+                            child: Text("G-SHOCK",style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF3C3268),),),
+                          ),
                         ],
                       ),
                     ),
@@ -141,7 +155,11 @@ class _HomeScreenState extends State<HomeScreen11> {
                               'assets/images/logo4.jpg',
                             ),
                           ),
-                          Text("CASIO")
+                          Center(
+                            child: Text("CASIO",style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF3C3268),)),
+                          )
                         ],
                       ),
                     ),
@@ -152,8 +170,15 @@ class _HomeScreenState extends State<HomeScreen11> {
                           CircleAvatar(
                             backgroundColor: Colors.white,
                             radius: 40,
+                            backgroundImage: AssetImage(
+                              'assets/images/logo2.jpg',
+                            ),
                           ),
-                          Text("ROLEX")
+                          Center(
+                            child: Text("ROLEX",style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF3C3268),)),
+                          )
                         ],
                       ),
                     ),
