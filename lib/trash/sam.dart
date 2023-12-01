@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:watchapp/screens/home_page.dart';
 import 'package:watchapp/screens/profile.dart';
 import 'package:watchapp/screens/settings_page.dart';
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class MainPage122 extends StatefulWidget {
+  const MainPage122({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<MainPage122> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage122> {
   static final List<Widget> _pages = <Widget>[
     const Homepage(),
     const Settings1(),
