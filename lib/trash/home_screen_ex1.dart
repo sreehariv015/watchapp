@@ -14,9 +14,11 @@ class _HomeScreenState extends State<HomeScreen11> {
   int _selectedIndex = 0;
 
   final List<String> imageList = [
-    'https://rameshwatch.com/cdn/shop/files/Ramesh_Watch-920x600_px_1944x.jpg?v=1688480707',
-    'https://img.pikbest.com/origin/06/24/82/976pIkbEsTbuZ.jpg!w700wp',
-    'https://i.pinimg.com/736x/0b/26/db/0b26db03dd0f2db4cf7e8b153dba6dec.jpg',
+    'assets/images/photo1.avif',
+    'assets/images/photo2.avif',
+    'assets/images/photo3.avif',
+    'assets/images/photo4.avif',
+    'assets/images/photo5.avif',
   ];
 
   @override
@@ -26,8 +28,8 @@ class _HomeScreenState extends State<HomeScreen11> {
       appBar: AppBar(
         title: const Text('Home Screen'),
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
+      body: ListView(
+        children:[ SizedBox(
           width: size.width,
           height: size.height,
           child: Column(
@@ -60,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen11> {
                     margin: const EdgeInsets.all(5.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      child: Image.network(
+                      child: Image.asset(
                         items,
                         fit: BoxFit.cover,
                         width: 1000.0,
@@ -69,22 +71,102 @@ class _HomeScreenState extends State<HomeScreen11> {
                   );
                 }).toList(),
               ),
+              const SizedBox(height: 10,),
               const Padding(
-                padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(5.0),
                 child: Align(alignment: Alignment(-0.96,0),
                     child: SizedBox(
-                      height: 30,
                       child: Text("All Category",style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18
                       ),),
                     )),
               ),
-              // Add other widgets or content here
+              const SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 40,
+                          ),
+                          Text("Fastrack")
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 40,
+                            backgroundImage: AssetImage(
+                              'assets/images/titan.jpg',
+                            ),
+                          ),
+                          Text("Titan")
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 40,
+                            backgroundImage: AssetImage(
+                              'assets/images/logo1.png',
+                            ),
+                          ),
+                          Text("G-SHOCK",),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 40,
+                            backgroundImage: AssetImage(
+                              'assets/images/logo4.jpg',
+                            ),
+                          ),
+                          Text("CASIO")
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 40,
+                          ),
+                          Text("ROLEX")
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
+      ]
+
       ),
+
       bottomNavigationBar: CurvedNavigationBar(
         index: _selectedIndex,
         height: 50.0,
