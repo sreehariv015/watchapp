@@ -21,6 +21,11 @@ class _HomeScreenState extends State<HomeTrash11> {
     'assets/images/photo4.avif',
     'assets/images/photo5.avif',
   ];
+  final List<String> imageUrls = [
+    'assets/images/img1.jpg',
+    'assets/images/img2.jpg',
+
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +93,7 @@ class _HomeScreenState extends State<HomeTrash11> {
                           borderRadius: BorderRadius.circular(10),
                           color: currentindex == entry.key
                               ? Colors.red
-                              : Colors.teal,
+                              : Colors.blue,
                         ),
                       ),
                     );
@@ -119,6 +124,9 @@ class _HomeScreenState extends State<HomeTrash11> {
                             CircleAvatar(
                               backgroundColor: Colors.white,
                               radius: 40,
+                              backgroundImage: AssetImage(
+                                'assets/images/fastrack.jpg',
+                              ),
                             ),
                             Center(
                               child: Text("Fastrack",style: TextStyle(
@@ -207,12 +215,44 @@ class _HomeScreenState extends State<HomeTrash11> {
                     ],
                   ),
                 ),
+      GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8.0,
+          mainAxisSpacing: 8.0,
+        ),
+        itemCount: imageUrls.length,
+        itemBuilder: (BuildContext context, int index) {
+          // Replace the following with your custom widget for each item
+          return SizedBox(
+            width: size.width,
+            height: size.height,
+            child: Card(
+              elevation: 5,
+              child: Column(
+                children: [
+                  Image.asset(
+                    imageUrls[index],
+                    fit: BoxFit.cover,
+                    height: 100.0, // Adjust the height as needed
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Item $index'),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      )
               ],
             ),
           ),
           ]
 
       ),
+
 
       bottomNavigationBar: CurvedNavigationBar(
         index: _selectedIndex,

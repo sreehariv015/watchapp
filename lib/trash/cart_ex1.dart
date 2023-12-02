@@ -3,14 +3,16 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:watchapp/screens/profile.dart';
 import 'package:watchapp/screens/settings_page.dart';
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+
+import '../screens/home_page.dart';
+class CartPage extends StatefulWidget {
+  const CartPage({super.key});
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  State<CartPage> createState() => _HomepageState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _HomepageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {

@@ -10,6 +10,7 @@ class HomeScreen11 extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen11> {
+  CarouselController carouselController = CarouselController();
   int currentindex=0;
   int _selectedIndex = 0;
 
@@ -67,6 +68,27 @@ class _HomeScreenState extends State<HomeScreen11> {
                         items,
                         fit: BoxFit.cover,
                         width: 1000.0,
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: imageList.asMap().entries.map((entry) {
+                  return GestureDetector(
+                    onTap: () => carouselController.animateToPage(entry.key),
+                    child: Container(
+                      width: currentindex == entry.key ? 17 : 7,
+                      height: 7.0,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 3.0,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: currentindex == entry.key
+                            ? Colors.red
+                            : Colors.blue,
                       ),
                     ),
                   );
