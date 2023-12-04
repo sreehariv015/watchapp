@@ -38,7 +38,7 @@ class _HomepageState extends State<Homepage> {
     "assets/images/add5.webp",
     "assets/images/add2.webp",
     "assets/images/add3.webp",
-    "assets/images/add5.webp"
+    "assets/images/add4.webp"
   ];
 
   final List<String> imageList = [
@@ -200,7 +200,7 @@ class _HomepageState extends State<Homepage> {
               ),
               CarouselSlider(
                 options: CarouselOptions(
-                  height: 180,
+                  height: 200,
                   enableInfiniteScroll: true,
                   autoPlay: true,
                   autoPlayInterval: const Duration(seconds: 3),
@@ -400,7 +400,7 @@ class _HomepageState extends State<Homepage> {
                           borderRadius:
                           const BorderRadius.vertical(top: Radius.circular(10)),
                           child: SizedBox(
-                            height: 160,
+                            height: 140,
                             width: double.infinity,
                             child: Image.asset(
                               height: size.height,
