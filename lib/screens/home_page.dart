@@ -71,28 +71,16 @@ class _HomepageState extends State<Homepage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(15.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Stack(
                     children: [
-                      const CircleAvatar(
+                      CircleAvatar(
                         radius: 50,
                         backgroundImage: AssetImage(
                           'assets/images/profile.png',
                         ),
                       ),
-                      Positioned(
-                          left: 65,
-                          top: 68,
-                          child: IconButton(
-                              onPressed: () {
-
-                              },
-                              icon: const Icon(
-                                Icons.add_a_photo_rounded,
-                                color: Colors.black,
-                                size: 20,
-                              )))
                     ]),
               ),
               const Text("RDJ",
@@ -207,12 +195,12 @@ class _HomepageState extends State<Homepage> {
                 child: Text("Trending Deals",style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
-                  color: Color(0xFF3C3268),
+                  color: Colors.black,
                 ),),
               ),
               CarouselSlider(
                 options: CarouselOptions(
-                  height: 200,
+                  height: 180,
                   enableInfiniteScroll: true,
                   autoPlay: true,
                   autoPlayInterval: const Duration(seconds: 3),
@@ -255,7 +243,7 @@ class _HomepageState extends State<Homepage> {
                         borderRadius: BorderRadius.circular(10),
                         color: currentindex == entry.key
                             ? Colors.red
-                            : Colors.blue,
+                            : Colors.grey,
                       ),
                     ),
                   );
@@ -269,7 +257,7 @@ class _HomepageState extends State<Homepage> {
                     child: Text("All Category",style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                      color: Color(0xFF3C3268),
+                      color: Colors.black,
                     ),),
                   )),
               const SingleChildScrollView(
@@ -386,70 +374,79 @@ class _HomepageState extends State<Homepage> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        color: Color(0xFF3C3268),
+                        color: Colors.black,
                       )
                   ),
                 ),
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 5.0,
-                    mainAxisSpacing: 5.0,
+              GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 5.0,
+                  mainAxisSpacing: 5.0,
+                  childAspectRatio: 0.80,
 
-                  ),
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: watchNames.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      elevation: 2,
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius:
-                            const BorderRadius.vertical(top: Radius.circular(10)),
-                            child: SizedBox(
-                              height: 125,
-                              width: double.infinity,
-                              child: Image.asset(
-                                height: size.height,
-                                width: size.width,
-                                watchImages[index],
-                                //fit: BoxFit.cover,
-                              ),
+                ),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: watchNames.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    elevation: 2,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius:
+                          const BorderRadius.vertical(top: Radius.circular(10)),
+                          child: SizedBox(
+                            height: 160,
+                            width: double.infinity,
+                            child: Image.asset(
+                              height: size.height,
+                              width: size.width,
+                              watchImages[index],
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Text(
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
                             watchNames[index],
                             style: const TextStyle(
-                              color: Color(0xFF3C3268),
+                              color: Colors.red,
                               fontSize: 18,
+                              fontWeight: FontWeight.bold
 
                             ),
                           ),
-                          Text(
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
                             watchName2[index],
                             style: const TextStyle(
                               color: Color(0xFF3C3268),
-                              fontSize: 15,
+                              fontSize: 14,
                             ),
                           ),
-                          Text(
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
                             watchPrice[index],
                             style: const TextStyle(
-                              color: Color(0xFF3C3268),
-                              fontSize: 15,
+                              color: Colors.red,
+                              fontSize: 14,
                             ),
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                        ),
+                      ],
+                    ),
+
+                  );
+                },
               )
             ]
         ),
