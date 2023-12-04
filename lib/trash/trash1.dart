@@ -1,155 +1,203 @@
-import 'package:flutter/material.dart';
-
-class LoginPage25 extends StatefulWidget {
-  const LoginPage25({super.key});
-
-  @override
-  State<LoginPage25> createState() => _LoginPage1State();
-}
-
-class _LoginPage1State extends State<LoginPage25> {
-  final registrationkey=GlobalKey<FormState>();
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.deepOrangeAccent,
-        body: SingleChildScrollView(
-          child: Form(
-            key:registrationkey ,
-            child: Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(right: 25),
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 250,
-                        width: 300,
-                        child: Stack(
-                          children: [
-                            Center(
-                              child: Image(
-                                  image: AssetImage(
-                                    'assets/images/img5.png',
-                                  )),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 300,
-                  height: 50,
-                  child: Center(
-                    child: Text("Sign Up",
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.orange
-                      ),),
-                  ),
-
-                ),
-                Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: TextFormField(
-                    decoration:
-                    const InputDecoration(
-                        filled: true,
-                        fillColor: Colors.grey,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            borderSide: BorderSide(color: Colors.white,)),
-                        labelText: "E-mail",
-                        prefixIcon: Icon(Icons.mail)),
-                    validator: (value) {
-                      if (value==null || value.isEmpty){
-                        return 'Enter your email';
-                      }
-                      return null ;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Colors.grey,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            borderSide: BorderSide(color: Colors.white)),
-                        labelText: "Password",
-                        labelStyle: TextStyle(
-                        ),
-                        prefixIcon: Icon(Icons.lock)),
-                    validator: (value) {
-                      if (value==null || value.isEmpty){
-                        return 'Enter your password';
-                      }
-                      return null ;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextButton(onPressed: () {
-                  }, child:  Text("Forgot Account",style: TextStyle(
-                    color: Colors.white,
-                  ),)
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color:Colors.white54,
-                        borderRadius: BorderRadius.circular(30)
-
-                    ),
-                    width: 100,
-                    height: 40,
-                    child: TextButton(onPressed: () {
-                      if(registrationkey.currentState!.validate()){
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
-                      }
-
-                    }, child: const Text("Login",style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 23
-                    ),)),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextButton(onPressed: () {
-
-                  }, child: const Text("New user? Create new account",style: TextStyle(
-                    color: Colors.white,
-                  ),)
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(onPressed: () {
-
-                    }, icon:const Image(image: AssetImage('assets/images/google.png'))),
-                    IconButton(onPressed: () {
-
-                    }, icon:const Image(image: AssetImage('assets/images/phone.png'))),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+// import 'package:carousel_slider/carousel_controller.dart';
+// import 'package:carousel_slider/carousel_options.dart';
+// import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:deal_app_test/views/product_details.dart';
+// import 'package:flutter/material.dart';
+//
+// class HomeScreen extends StatefulWidget {
+//
+//   const HomeScreen({super.key});
+//
+//   @override
+//   State<HomeScreen> createState() => _HomeScreenState();
+// }
+//
+// class _HomeScreenState extends State<HomeScreen> {
+//
+//   CarouselController carouselController = CarouselController();
+//   int currentIndex = 0;
+//   final List<String> imgList = [
+//     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+//     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
+//   ];
+//   @override
+//   Widget build(BuildContext context) {
+//     Size size = MediaQuery.of(context).size;
+//     return SafeArea(
+//       child: Scaffold(
+//         body: SingleChildScrollView(
+//           child: Container(
+//             height: size.height,
+//             width: size.width,
+//             // padding: EdgeInsets.only(top: 65, bottom: 20, left: 20, right: 20),
+//             decoration: BoxDecoration(color: Colors.white),
+//             child: Stack(children: [
+//               Positioned(
+//                 top: 5,
+//                 left: 10,
+//                 right: 10,
+//                 bottom: 20,
+//                 child: Container(
+//                   height: 20,
+//                   // color: Colors.red,
+//                   child: Column(
+//                     children: [
+//                       Align(
+//                         alignment: Alignment(-0.96, 0),
+//                         child: Text("Trending deals",
+//                             style: TextStyle(
+//                               fontFamily: 'Poppins-SemiBold',
+//                               fontWeight: FontWeight.w600,
+//                               fontSize: 15,
+//                               color: Color(0xFF3C3268),
+//                             )),
+//                       ),
+//                       InkWell(
+//                         onTap: () {
+//                           print(currentIndex);
+//                         },
+//                         child: Container(
+//                           child: CarouselSlider(
+//                             items: imgList.map((item) {
+//                               return Container(
+//                                 width: double.infinity,
+//                                 child: Center(
+//                                   child: Padding(
+//                                     padding: const EdgeInsets.all(8.0),
+//                                     child: Image.network(item,
+//                                         fit: BoxFit.cover,
+//                                         width: double.infinity,
+//                                         height: 500),
+//                                   ),
+//                                 ),
+//                               );
+//                             }).toList(),
+//                             carouselController: carouselController,
+//                             options: CarouselOptions(
+//                               scrollPhysics: const BouncingScrollPhysics(),
+//                               autoPlay: true,
+//                               aspectRatio: 2.0,
+//                               viewportFraction: 1,
+//                               onPageChanged: (index, reason) {
+//                                 setState(() {
+//                                   currentIndex = index;
+//                                 });
+//                               },
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                       Row(
+//                         mainAxisAlignment: MainAxisAlignment.center,
+//                         children: imgList.asMap().entries.map((entry) {
+//                           return GestureDetector(
+//                             onTap: () => carouselController.animateToPage(entry.key),
+//                             child: Container(
+//                               width: currentIndex == entry.key ? 17 : 7,
+//                               height: 7.0,
+//                               margin: const EdgeInsets.symmetric(
+//                                 horizontal: 3.0,
+//                               ),
+//                               decoration: BoxDecoration(
+//                                 borderRadius: BorderRadius.circular(10),
+//                                 color: currentIndex == entry.key
+//                                     ? Colors.red
+//                                     : Colors.teal,
+//                               ),
+//                             ),
+//                           );
+//                         }).toList(),
+//                       ),
+//
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//
+//               Positioned(
+//                 top: 240,
+//                 left: 20,
+//                 bottom: 0,
+//                 right: 0,
+//                 child: SizedBox(
+//                   height: 20,
+//                   child: Text("All deals",
+//                       style: TextStyle(
+//                         fontFamily: 'Poppins-SemiBold',
+//                         fontWeight: FontWeight.w600,
+//                         fontSize: 15,
+//                         color: Color(0xFF3C3268),
+//                       )),
+//                 ),
+//               ),
+//               Positioned(
+//                   left: 10,
+//                   right: 10,
+//                   top: 280,
+//                   bottom: 0,
+//                   child: GridView.builder(
+//                     shrinkWrap: false,
+//                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                       crossAxisCount: 2,
+//                       crossAxisSpacing: 10,
+//                       mainAxisSpacing: 10,
+//                     ),
+//                     scrollDirection: Axis.vertical,
+//                     padding: EdgeInsets.all(0),
+//                     itemCount: 24,
+//                     itemBuilder: (context, index) {
+//                       return GestureDetector(
+//                         onTap: () {
+//                           Navigator.of(context).push(
+//                             MaterialPageRoute(
+//                               builder: (context) => ProductDetails(),
+//                             ),
+//                           );
+//                         },
+//
+//                         child: Container(
+//                           // padding: const EdgeInsets.all(5),
+//                             decoration: BoxDecoration(
+//                               borderRadius: BorderRadius.circular(20),
+//                               color: Colors.white,
+//                               border: Border.all(
+//                                 color: Color(0x91595959),
+//                                 width: 2.0,
+//                               ),
+//                             ),
+//                             child: Center(
+//                               child: Column(
+//                                 mainAxisAlignment: MainAxisAlignment.center,
+//                                 crossAxisAlignment: CrossAxisAlignment.center,
+//                                 children: [
+//                                   Padding(
+//                                     padding: const EdgeInsets.all(2.0),
+//                                     child: SizedBox(
+//                                       height: 85,
+//                                       width: 140,
+//                                       child: const Center(
+//                                         child: Image(
+//                                             fit: BoxFit.cover,
+//                                             image: AssetImage(
+//                                                 'asset/images/acerlap.png')),
+//                                       ),
+//                                     ),
+//                                   ),
+//                                   // SizedBox(height: 7,),
+//                                   ListTile(
+//                                     title: Text("Lenovo laptop"),
+//                                     subtitle: Text("₹3200 only"),
+//                                   )
+//                                 ],
+//                               ),
+//                             )),
+//                       );
+//                     },
+//                   ))
+//             ]),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

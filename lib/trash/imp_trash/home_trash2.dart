@@ -22,7 +22,7 @@ class _HomeTrash11State extends State<HomeTrash11> {
   final List<String> watchName2 = [
     "Bare Basics 2020 Analog Watch",
     "Youth Combination(AEQ-110W-1BVDF)For Men AD218",
-    "G-Shock (GG-1000-1A3DR)Analog-Digital Watch-For Men G662",
+    "(GG-1000-1A3DR)Analog-Digital Watch-For Men G662",
     "Analog Watch -For Men NH1578SM04 "
   ];
   final List<String> watchPrice = [
@@ -247,8 +247,9 @@ class _HomeTrash11State extends State<HomeTrash11> {
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 15.0,
-                    mainAxisSpacing: 15.0,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 10.0,
+
                   ),
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: watchNames.length,
@@ -262,7 +263,7 @@ class _HomeTrash11State extends State<HomeTrash11> {
                             borderRadius:
                             const BorderRadius.vertical(top: Radius.circular(10)),
                             child: SizedBox(
-                              height: 150,
+                              height: 115,
                               width: double.infinity,
                               child: Image.asset(
                                 height: size.height,

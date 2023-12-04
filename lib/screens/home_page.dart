@@ -1,5 +1,6 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:watchapp/screens/profile.dart';
 import 'package:watchapp/screens/settings_page.dart';
@@ -11,17 +12,42 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  
-CarouselController carouselController = CarouselController();
-int currentindex=0;
 
-final List<String> imageList = [
-  'assets/images/photo1.avif',
-  'assets/images/photo2.avif',
-  'assets/images/photo3.avif',
-  'assets/images/photo4.avif',
-  'assets/images/photo5.avif',
-];
+  CarouselController carouselController = CarouselController();
+  int currentindex=0;
+  int _selectedIndex = 0;
+  final List<String> watchNames = [
+    'Fastrack',
+    'CASIO ',
+    'G-SHOCK',
+    'Titan',
+  ];
+  final List<String> watchName2 = [
+    "Bare Basics 2020 Analog Watch",
+    "Youth Combination(AEQ-110W-1BVDF)For Men AD218",
+    "(GG-1000-1A3DR)Analog-Digital Watch-For Men G662",
+    "Analog Watch -For Men NH1578SM04 "
+  ];
+  final List<String> watchPrice = [
+    "₹2,950",
+    "₹3,235",
+    "₹17,095",
+    "₹1,995"
+  ];
+  final List<String> watchImages = [
+    "assets/images/add5.webp",
+    "assets/images/add2.webp",
+    "assets/images/add3.webp",
+    "assets/images/add5.webp"
+  ];
+
+  final List<String> imageList = [
+    'assets/images/photo1.avif',
+    'assets/images/photo2.avif',
+    'assets/images/photo3.avif',
+    'assets/images/photo4.avif',
+    'assets/images/photo5.avif',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -173,195 +199,282 @@ final List<String> imageList = [
           ),
         ),
       ),
-      body: ListView(
-          children:[ SizedBox(
-            width: size.width,
-            height: size.height,
-            child: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(9.0),
-                  child: Text("Trending Deals",style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Color(0xFF3C3268),
-                  ),),
+      body: SingleChildScrollView(
+        child: Column(
+            children:[
+              const Padding(
+                padding: EdgeInsets.all(9.0),
+                child: Text("Trending Deals",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Color(0xFF3C3268),
+                ),),
+              ),
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: 200,
+                  enableInfiniteScroll: true,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                  pauseAutoPlayOnTouch: true,
+                  enlargeCenterPage: true,
+                  aspectRatio: 2.0,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      currentindex =index;
+                    });
+                  },
                 ),
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: 200,
-                    enableInfiniteScroll: true,
-                    autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 3),
-                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                    pauseAutoPlayOnTouch: true,
-                    enlargeCenterPage: true,
-                    aspectRatio: 2.0,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        currentindex =index;
-                      });
-                    },
-                  ),
-                  items: imageList.map((items) {
-                    return Container(
-                      margin: const EdgeInsets.all(5.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          items,
-                          fit: BoxFit.cover,
-                          width: 1000.0,
-                        ),
+                items: imageList.map((items) {
+                  return Container(
+                    margin: const EdgeInsets.all(5.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        items,
+                        fit: BoxFit.cover,
+                        width: 1000.0,
                       ),
-                    );
-                  }).toList(),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: imageList.asMap().entries.map((entry) {
-                    return GestureDetector(
-                      onTap: () => carouselController.animateToPage(entry.key),
-                      child: Container(
-                        width: currentindex == entry.key ? 17 : 7,
-                        height: 7.0,
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 3.0,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: currentindex == entry.key
-                              ? Colors.red
-                              : Colors.blue,
-                        ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: imageList.asMap().entries.map((entry) {
+                  return GestureDetector(
+                    onTap: () => carouselController.animateToPage(entry.key),
+                    child: Container(
+                      width: currentindex == entry.key ? 17 : 7,
+                      height: 7.0,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 3.0,
                       ),
-                    );
-                  }).toList(),
-                ),
-                const SizedBox(height: 10,),
-                const Padding(
-                  padding: EdgeInsets.all(5.0),
-                  child: Align(alignment: Alignment(-0.96,0),
-                      child: SizedBox(
-                        child: Text("All Category",style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Color(0xFF3C3268),
-                        ),),
-                      )),
-                ),
-                const SingleChildScrollView(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: currentindex == entry.key
+                            ? Colors.red
+                            : Colors.blue,
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              const SizedBox(height: 10,),
+              const Align(
+                  alignment: Alignment(-0.96,0),
+                  child:
+                  SizedBox(
+                    child: Text("All Category",style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Color(0xFF3C3268),
+                    ),),
+                  )),
+              const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
 
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 40,
-                              backgroundImage: AssetImage(
-                                'assets/images/fastrack.jpg',
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  'assets/images/fastrack.jpg',
+                                ),
                               ),
-                            ),
-                            Center(
-                              child: Text("Fastrack",style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF3C3268),)),
-                            )
-                          ],
+                              Text("Fastrack",
+                                  style:
+                                  TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF3C3268),))
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 40,
-                              backgroundImage: AssetImage(
-                                'assets/images/titan.jpg',
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  'assets/images/titan.jpg',
+                                ),
                               ),
-                            ),
-                            Center(
-                              child: Text("Titan",style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF3C3268),)),
-                            )
-                          ],
+                              Text("Titan",
+                                  style:
+                                  TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF3C3268),))
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 40,
-                              backgroundImage: AssetImage(
-                                'assets/images/logo1.png',
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  'assets/images/logo1.png',
+                                ),
                               ),
-                            ),
-                            Center(
-                              child: Text("G-SHOCK",style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF3C3268),),),
-                            ),
-                          ],
+                              Text("G-SHOCK",
+                                style:
+                                TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF3C3268),),),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 40,
-                              backgroundImage: AssetImage(
-                                'assets/images/logo4.jpg',
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  'assets/images/logo4.jpg',
+                                ),
                               ),
-                            ),
-                            Center(
-                              child: Text("CASIO",style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF3C3268),)),
-                            )
-                          ],
+                              Text("CASIO",
+                                  style:
+                                  TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF3C3268),))
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 40,
-                              backgroundImage: AssetImage(
-                                'assets/images/logo2.jpg',
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  'assets/images/logo2.jpg',
+                                ),
                               ),
-                            ),
-                            Center(
-                              child: Text("ROLEX",style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF3C3268),)),
-                            )
-                          ],
+                              Text("ROLEX",
+                                  style:
+                                  TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF3C3268),)),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ]
+                  )
+              ),
+              const SizedBox(height: 10,),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment(-0.96, 0),
+                  child: Text(
+                      "Top Selection",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Color(0xFF3C3268),
+                      )
                   ),
                 ),
-              ],
-            ),
-          ),
-          ]
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 5.0,
+                    mainAxisSpacing: 5.0,
 
+                  ),
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: watchNames.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Card(
+                      elevation: 2,
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius:
+                            const BorderRadius.vertical(top: Radius.circular(10)),
+                            child: SizedBox(
+                              height: 125,
+                              width: double.infinity,
+                              child: Image.asset(
+                                height: size.height,
+                                width: size.width,
+                                watchImages[index],
+                                //fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            watchNames[index],
+                            style: const TextStyle(
+                              color: Color(0xFF3C3268),
+                              fontSize: 18,
+
+                            ),
+                          ),
+                          Text(
+                            watchName2[index],
+                            style: const TextStyle(
+                              color: Color(0xFF3C3268),
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            watchPrice[index],
+                            style: const TextStyle(
+                              color: Color(0xFF3C3268),
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              )
+            ]
+        ),
       ),
-
       backgroundColor: Colors.white,
+      bottomNavigationBar: CurvedNavigationBar(
+        index: _selectedIndex,
+        height: 50.0,
+        items: const <Widget>[
+          Icon(Icons.home, size: 30,),
+          Icon(Icons.favorite, size: 30,),
+          Icon(Icons.shopping_cart, size: 30),
+          Icon(Icons.settings, size: 30),
+        ],
+        color: Colors.red,
+        buttonBackgroundColor: Colors.red,
+        backgroundColor: Colors.white,
+        animationCurve: Curves.easeInOut,
+        animationDuration: const Duration(milliseconds: 300),
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+      ),
     );
   }
 }
