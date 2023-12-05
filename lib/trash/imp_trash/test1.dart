@@ -23,11 +23,7 @@ class _Trash1123State extends State<Trash1123> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
-        elevation: 0,
-        iconTheme: const IconThemeData(
-            color: Colors.black
-        ),
+
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -38,16 +34,20 @@ class _Trash1123State extends State<Trash1123> {
                     child:
                     Text("CASIO",
                       style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
+                        fontSize: 27,
+                        fontWeight: FontWeight.w400,
                       ),)),
                 const Align(
                     alignment: Alignment(-0.95, 0),
                     child:
-                    Text( "G-Shock(GA-700-1BDR)Analog-Digital Watch-For Men G715",
-                      style: TextStyle(
-                          fontSize: 18
-                      ),)),
+                    Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: Text( "G-Shock(GA-700-1BDR)Analog-Digital Watch-For Men G715",
+                        style: TextStyle(
+                            fontSize: 21,
+                          fontWeight: FontWeight.w300,
+                        ),),
+                    )),
                 const SizedBox(height: 10,),
                 CarouselSlider(
                   options: CarouselOptions(
@@ -254,161 +254,296 @@ class _Trash1123State extends State<Trash1123> {
                 const Align(
                     alignment: Alignment(-0.96, 0),
                     child:
-                    Text("₹10,295.00"
-                      ,style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black
+                    Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Text("₹10,295.00"
+                        ,style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black
+                        ),
                       ),
                     )
                 ),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Align(
-                    alignment: Alignment(-0.96, 0),
+                    alignment: Alignment(-0.98, 0),
                     child: Text("Product Details",
                       style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 25
+                        fontSize: 27,
+                        fontWeight: FontWeight.w400,
                       ),),
                   ),
                 ),
                 const Column(
                   children: [
-                    Row(
-                      children: [
-                        Text("Water Resistant",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 21
-                          ),),
-                        Text("Yes",
-                          style:TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 21,
-                              color: Colors.black
-                          ) ,),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text("Water Resistant",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w100,
+                                fontSize: 21
+                            ),),
+                          SizedBox(width: 45,),
+                          Text("Yes",
+                            style:TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 21,
+                                color: Colors.black
+                            ) ,),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Text("Display Type",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 21
-                          ),),
-                        Text("Analog-Digital",
-                          style:TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 21,
-                              color: Colors.black
-                          ) ,),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text("Display Type",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w100,
+                                fontSize: 21
+                            ),),
+                          SizedBox(width: 76,),
+                          Text("Analog-Digital",
+                            style:TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 21,
+                                color: Colors.black
+                            ) ,),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Text("Series",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 21
-                          ),),
-                        Text("G-Shock(GG-1000-1ADR)",
-                          style:TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 21,
-                              color: Colors.black
-                          ) ,),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text("Series",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 21
+                            ),),
+                          SizedBox(width: 130,),
+                          Text("G-Shock(GG-1000-1ADR)",
+                            style:TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 21,
+                                color: Colors.black
+                            ) ,),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Text("Occasion",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 21
-                          ),),
-                        Text("Sports",
-                          style:TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 21,
-                              color: Colors.black
-                          ) ,),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text("Occasion",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 21
+                            ),),
+                          SizedBox(width: 102,),
+                          Text("Sports",
+                            style:TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 21,
+                                color: Colors.black
+                            ) ,),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Text("Watch Type",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 21
-                          ),),
-                        Text("Wrist Watch",
-                          style:TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 21,
-                              color: Colors.black
-                          ) ,),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text("Watch Type",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 21
+                            ),),
+                          SizedBox(width: 78,),
+                          Text("Wrist Watch",
+                            style:TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 21,
+                                color: Colors.black
+                            ) ,),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Text("Pack of",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 21
-                          ),),
-                        Text("1",
-                          style:TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 21,
-                              color: Colors.black
-                          ) ,),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text("Pack of",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 21
+                            ),),
+                          SizedBox(width: 140,),
+                          Text("1",
+                            style:TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 21,
+                                color: Colors.black
+                            ) ,),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Text("Model Name",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 21
-                          ),),
-                        Text("GG-1000-1ADR",
-                          style:TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 21,
-                              color: Colors.black
-                          ) ,),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text("Model Name",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 21
+                            ),),
+                          SizedBox(width: 70,),
+                          Text("GG-1000-1ADR",
+                            style:TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 21,
+                                color: Colors.black
+                            ) ,),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Text("Domestic Warranty",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 21
-                          ),),
-                        Text("2 Year",
-                          style:TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 21,
-                              color: Colors.black
-                          ) ,),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text("Domestic Warranty",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 21
+                            ),),
+                          SizedBox(width: 54,),
+                          Text("2 Year",
+                            style:TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 21,
+                                color: Colors.black
+                            ) ,),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Text("International Warranty",
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text("International Warranty",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 21
+                            ),),
+                          SizedBox(width: 30,),
+                          Text("2 Year",
+                            style:TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 21,
+                                color: Colors.black
+                            ),)
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment(-0.96, 0),
+                      child: Text("Description",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 27
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Strengthen your look with G-SHOCK in a design evoking rusted iron that stands the test of time. These watches pay homage to the undying G-SHOCK quest for the ultimate toughness in neoclassic black and rust designs evoking the sheer tenacity of rusted iron. Sepia tones inspired by the textural look of rusted metal nicely complement the base black. Accents in light blue make for timeless style with a rustic flair.",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w200,
+                            fontSize: 21
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment(-0.96, 0),
+                      child: Text("Manufacturer",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 21
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Imported By - Casio India Co Pvt Ltd, Casio India Co Pvt Ltd, A-41, 1st Floor, MCIE, Mathura Road, New Delhi-110044",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w200,
+                            fontSize: 21
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment(-0.96, 0),
+                      child: Text("Importer",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 21
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Imported By - Casio India Co Pvt Ltd, A-41, 1st Floor, MCIE, Mathura Road, New Delhi-110044",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w200,
+                            fontSize: 21
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment(-0.96, 0),
+                      child: Text("Item Dimensions LxWxH",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 21
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment(-0.96, 0),
+                        child: Text("21.5 x 1.7 x 5.1 Centimeters",
                           style: TextStyle(
-                              fontWeight: FontWeight.w100,
+                              fontWeight: FontWeight.w200,
                               fontSize: 21
-                          ),),
-                        Text("2 Year",
-                          style:TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 21,
-                              color: Colors.black
-                          ),)
-                      ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment(-0.97, 0),
+                      child: Text("Generic Name",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 21
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Align(
+                        alignment: Alignment(-0.97, 0),
+                        child: Text("Casual Watch",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w200,
+                              fontSize: 21
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 )
