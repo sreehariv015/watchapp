@@ -1,15 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-class ProductDetails1 extends StatefulWidget {
-  const ProductDetails1({super.key});
+
+import '../../screens/home_page.dart';
+class Trash1123 extends StatefulWidget {
+  const Trash1123({super.key});
 
   @override
-  State<ProductDetails1> createState() => _ProductDetails1State();
+  State<Trash1123> createState() => _Trash1123State();
 }
 
-class _ProductDetails1State extends State<ProductDetails1> {
+class _Trash1123State extends State<Trash1123> {
   CarouselController carouselController = CarouselController();
   int currentindex=0;
+  bool isFavorite = false;
   final List<String> watchImages = [
     "assets/images/pro1.webp",
     "assets/images/pro2.webp",
@@ -23,8 +26,54 @@ class _ProductDetails1State extends State<ProductDetails1> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back,
+              size: 30,
+              color: Colors.black),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const Homepage();
+            }));
+          },
+        ),
+        actions: [
+          Container(
+            margin: const EdgeInsets.all(10),
+            width: 320,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Search here...',
+                  border: InputBorder.none,
+                  icon: Icon(Icons.search,
+                      size: 30,
+                      color: Colors.black),
+                ),
+                onChanged: (value) {
+                  // Handle search text changes
+                },
+              ),
+            ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.shopping_cart,
+                size: 30,
+                color: Colors.black),
+            onPressed: () {
+              // Handle "Add to Cart" icon tapped
+            },
+          ),
+        ],
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
           child: Column(
               children: [
@@ -34,7 +83,7 @@ class _ProductDetails1State extends State<ProductDetails1> {
                     child:
                     Text("CASIO",
                       style: TextStyle(
-                        fontSize: 27,
+                        fontSize: 25,
                         fontWeight: FontWeight.w400,
                       ),)),
                 const Align(
@@ -58,20 +107,33 @@ class _ProductDetails1State extends State<ProductDetails1> {
                     scrollPhysics: const BouncingScrollPhysics(),
                     onPageChanged: (index, reason) {
                       setState(() {
-                        currentindex =index;
+                        currentindex = index;
                       });
                     },
                   ),
-                  items: watchImages.map((items) {
+                  items: watchImages.map((imagePath) {
                     return Container(
                       margin: const EdgeInsets.all(5.0),
-                      child: Center(
-                        child: Image(image: AssetImage(
-                            watchImages[currentindex]),
-                          fit: BoxFit.cover,
-                          width: size.width,
-                          height: size.height,
-                        ),
+                      child: Stack(
+                        alignment: Alignment.topRight,
+                        children: [
+                          Image(
+                            image: AssetImage(imagePath),
+                            fit: BoxFit.cover,
+                            width: size.width,
+                            height: size.height,
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              isFavorite ? Icons.favorite : Icons.favorite_border,
+                              size: 40,
+                              color: Colors.red,
+                            ),
+                            onPressed: () {
+                              isFavorite = !isFavorite;
+                            },
+                          ),
+                        ],
                       ),
                     );
                   }).toList(),
@@ -268,10 +330,10 @@ class _ProductDetails1State extends State<ProductDetails1> {
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Align(
-                    alignment: Alignment(-0.98, 0),
+                    alignment: Alignment(-0.99, 0),
                     child: Text("Product Details",
                       style: TextStyle(
-                        fontSize: 27,
+                        fontSize: 25,
                         fontWeight: FontWeight.w400,
                       ),),
                   ),
