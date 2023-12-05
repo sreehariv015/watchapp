@@ -15,7 +15,6 @@ class _HomepageState extends State<Homepage> {
 
   CarouselController carouselController = CarouselController();
   int currentindex=0;
-  int _selectedIndex = 0;
   final List<String> watchNames = [
     'Fastrack',
     'CASIO ',
@@ -57,16 +56,16 @@ class _HomepageState extends State<Homepage> {
         backgroundColor: Colors.red,
         elevation: 0,
         iconTheme: const IconThemeData(
-          color: Colors.black
+            color: Colors.black
         ),
       ),
       drawer: Drawer(
         backgroundColor: Colors.white,
         shape: const OutlineInputBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(40),
-            topRight: Radius.circular(40)
-          )
+            borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(40),
+                topRight: Radius.circular(40)
+            )
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -86,36 +85,36 @@ class _HomepageState extends State<Homepage> {
               const Text("RDJ",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.red
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red
                 ),
               ),
               const Text("rdj@gmail.com",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
 
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return const Homepage();
-                      },));
-                    },
-                    leading: const Icon(Icons.home,
-                      size: 30,
-                      color: Color(0xFF000000),
-                    ),
-                    title: const Text("Home",
-                      style: TextStyle(
-                        fontSize: 19,
-                      ),),
+                child: ListTile(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return const Homepage();
+                    },));
+                  },
+                  leading: const Icon(Icons.home,
+                    size: 30,
+                    color: Color(0xFF000000),
                   ),
+                  title: const Text("Home",
+                    style: TextStyle(
+                      fontSize: 19,
+                    ),),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -391,16 +390,16 @@ class _HomepageState extends State<Homepage> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: watchNames.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Card(
+                  return
+                    Card(
                     elevation: 2,
                     color: Colors.white,
                     child: Column(
                       children: [
-                        ClipRRect(
-                          borderRadius:
-                          const BorderRadius.vertical(top: Radius.circular(10)),
+                        ClipRect(
+                         // borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
                           child: SizedBox(
-                            height: 140,
+                            height: 200,
                             width: double.infinity,
                             child: Image.asset(
                               height: size.height,
@@ -452,26 +451,6 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       backgroundColor: Colors.white,
-      bottomNavigationBar: CurvedNavigationBar(
-        index: _selectedIndex,
-        height: 50.0,
-        items: const <Widget>[
-          Icon(Icons.home, size: 30,),
-          Icon(Icons.favorite, size: 30,),
-          Icon(Icons.shopping_cart, size: 30),
-          Icon(Icons.settings, size: 30),
-        ],
-        color: Colors.red,
-        buttonBackgroundColor: Colors.red,
-        backgroundColor: Colors.white,
-        animationCurve: Curves.easeInOut,
-        animationDuration: const Duration(milliseconds: 300),
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-      ),
     );
   }
 }
