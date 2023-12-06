@@ -1,15 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../screens/home_page.dart';
-class ProductDetails extends StatefulWidget {
-  const ProductDetails({super.key});
+class ProductDetails1 extends StatefulWidget {
+  const ProductDetails1({super.key});
 
   @override
-  State<ProductDetails> createState() => _ProductDetailsState();
+  State<ProductDetails1> createState() => _ProductDetails1State();
 }
 
-class _ProductDetailsState extends State<ProductDetails> {
+class _ProductDetails1State extends State<ProductDetails1> {
   CarouselController carouselController = CarouselController();
   int currentindex=0;
   bool isFavorite = false;
@@ -77,14 +78,15 @@ class _ProductDetailsState extends State<ProductDetails> {
       body: SingleChildScrollView(
           child: Column(
               children: [
-                const SizedBox(height: 15,),
+                const SizedBox(height: 5,),
                 const Align(
                     alignment: Alignment(-0.99, 0),
                     child:
                     Text("CASIO",
                       style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w400,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.red
                       ),)),
                 const Align(
                     alignment: Alignment(-0.95, 0),
@@ -93,54 +95,99 @@ class _ProductDetailsState extends State<ProductDetails> {
                       padding: EdgeInsets.all(4.0),
                       child: Text( "G-Shock(GA-700-1BDR)Analog-Digital Watch-For Men G715",
                         style: TextStyle(
-                          fontSize: 21,
+                          fontSize: 18,
                           fontWeight: FontWeight.w300,
                         ),),
                     )),
-                const SizedBox(height: 10,),
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: 500,
-                    autoPlay: true,
-                    aspectRatio: 2.0,
-                    viewportFraction: 1,
-                    scrollPhysics: const BouncingScrollPhysics(),
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        currentindex = index;
-                      });
-                    },
-                  ),
-                  items: watchImages.map((imagePath) {
-                    return Container(
-                      margin: const EdgeInsets.all(5.0),
-                      child: Stack(
-                        alignment: Alignment.topRight,
-                        children: [
-                          Image(
-                            image: AssetImage(
-                                watchImages[currentindex]
-                            ),
-                            fit: BoxFit.cover,
-                            width: size.width,
-                            height: size.height,
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              isFavorite ? Icons.favorite : Icons.favorite_border,
-                              size: 40,
-                              color: Colors.red,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                isFavorite = !isFavorite;
-                              });
-                            },
-                          ),
-                        ],
+                const Row(
+                  children: [
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.orangeAccent,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.orangeAccent,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.orangeAccent,
+                    ),
+                    Icon(
+                      Icons.star_half,
+                      color: Colors.orangeAccent,
+                    ),
+                    Icon(
+                      Icons.star_border,
+                      color: Colors.orangeAccent,
+                    ),
+                  ],
+                ),
+                Stack(
+                    children:[ CarouselSlider(
+                      options: CarouselOptions(
+                        height: 480,
+                        autoPlay: false,
+                        aspectRatio: 2.0,
+                        viewportFraction: 1,
+                        // scrollPhysics:  BouncingScrollPhysics(),
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            currentindex = index;
+                          });
+                        },
                       ),
-                    );
-                  }).toList(),
+                      items: watchImages.map((imagePath) {
+                        return Container(
+                          margin: const EdgeInsets.all(5.0),
+                          child: Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              Image(
+                                image: AssetImage(
+                                    watchImages[currentindex]
+                                ),
+                                fit: BoxFit.cover,
+                                width: size.width,
+                                height: size.height,
+                              ),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                      Positioned(top: 10,left: 360,
+                        child: IconButton(
+                          icon: Icon(
+                            isFavorite ? Icons.favorite : Icons.favorite_border,
+                            size: 40,
+                            color: Colors.redAccent,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              isFavorite = !isFavorite;
+                            });
+                          },
+                        ),
+                      ),
+                      Positioned(top: 60,left: 360,
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.share_outlined,
+                            size: 40,
+                            color: Colors.black,
+                          ),
+                          onPressed: () {
+                            setState(() {
+
+                            });
+                          },
+                        ),
+                      ),
+                    ]
                 ),
                 const SizedBox(height: 10,),
                 Row(
@@ -321,7 +368,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     alignment: Alignment(-0.96, 0),
                     child:
                     Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Text("₹10,295.00"
                         ,style: TextStyle(
                             fontSize: 40,
@@ -337,7 +384,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     alignment: Alignment(-0.99, 0),
                     child: Text("Product Details",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 20,
                         fontWeight: FontWeight.w400,
                       ),),
                   ),
@@ -351,13 +398,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                           Text("Water Resistant",
                             style: TextStyle(
                                 fontWeight: FontWeight.w100,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 45,),
                           Text("Yes",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -370,13 +417,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                           Text("Display Type",
                             style: TextStyle(
                                 fontWeight: FontWeight.w100,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 76,),
                           Text("Analog-Digital",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -389,13 +436,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                           Text("Series",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 130,),
                           Text("G-Shock(GG-1000-1ADR)",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -408,13 +455,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                           Text("Occasion",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 102,),
                           Text("Sports",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -427,13 +474,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                           Text("Watch Type",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 78,),
                           Text("Wrist Watch",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -446,13 +493,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                           Text("Pack of",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 140,),
                           Text("1",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -465,13 +512,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                           Text("Model Name",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 70,),
                           Text("GG-1000-1ADR",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -484,13 +531,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                           Text("Domestic Warranty",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 54,),
                           Text("2 Year",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -503,13 +550,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                           Text("International Warranty",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 30,),
                           Text("2 Year",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ),)
                         ],
@@ -520,16 +567,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Text("Description",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 27
+                            fontSize: 20
                         ),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text("Strengthen your look with G-SHOCK in a design evoking rusted iron that stands the test of time. These watches pay homage to the undying G-SHOCK quest for the ultimate toughness in neoclassic black and rust designs evoking the sheer tenacity of rusted iron. Sepia tones inspired by the textural look of rusted metal nicely complement the base black. Accents in light blue make for timeless style with a rustic flair.",
+                      child: Text("Strengthen your look with G-SHOCK in a design evoking rusted iron that stands the test of time. These watches pay homage to the undying G-SHOCK quest for the ultimate toughness in neoclassic black and rust designs evoking the sheer tenacity of rusted iron. Sepia tones inspired by the textural look of rusted metal nicely complement the base black. Accents in light blue make for timeless style with a rustic flair.",
                         style: TextStyle(
                             fontWeight: FontWeight.w200,
-                            fontSize: 21
+                            fontSize: 18
                         ),
                       ),
                     ),
@@ -538,7 +585,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Text("Manufacturer",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 21
+                            fontSize: 19
                         ),
                       ),
                     ),
@@ -547,7 +594,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Text("Imported By - Casio India Co Pvt Ltd, Casio India Co Pvt Ltd, A-41, 1st Floor, MCIE, Mathura Road, New Delhi-110044",
                         style: TextStyle(
                             fontWeight: FontWeight.w200,
-                            fontSize: 21
+                            fontSize: 18
                         ),
                       ),
                     ),
@@ -556,7 +603,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Text("Importer",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 21
+                            fontSize: 19
                         ),
                       ),
                     ),
@@ -565,7 +612,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Text("Imported By - Casio India Co Pvt Ltd, A-41, 1st Floor, MCIE, Mathura Road, New Delhi-110044",
                         style: TextStyle(
                             fontWeight: FontWeight.w200,
-                            fontSize: 21
+                            fontSize: 18
                         ),
                       ),
                     ),
@@ -574,7 +621,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Text("Item Dimensions LxWxH",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 21
+                            fontSize: 19
                         ),
                       ),
                     ),
@@ -585,7 +632,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         child: Text("21.5 x 1.7 x 5.1 Centimeters",
                           style: TextStyle(
                               fontWeight: FontWeight.w200,
-                              fontSize: 21
+                              fontSize: 18
                           ),
                         ),
                       ),
@@ -595,7 +642,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Text("Generic Name",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 21
+                            fontSize: 19
                         ),
                       ),
                     ),
@@ -606,7 +653,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         child: Text("Casual Watch",
                           style: TextStyle(
                               fontWeight: FontWeight.w200,
-                              fontSize: 21
+                              fontSize: 18
                           ),
                         ),
                       ),
@@ -622,9 +669,16 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: [
               Container(
                 width: 216,
-                height: 60,
+                height: 56,
                 color: Colors.white,
                 child: TextButton(onPressed: () {
+                  Fluttertoast.showToast(msg: "Added to cart",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 10,
+                      backgroundColor: Colors.grey,
+                      fontSize: 16.0
+                  );
 
                 }, child: const Text("Add to cart",
                   style: TextStyle(
@@ -634,8 +688,8 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               Container(
                 width: 216,
-                height: 60,
-                color: Colors.redAccent,
+                height: 56,
+                color: Colors.red,
                 child: TextButton(onPressed: () {
 
                 }, child: const Text("Buy now",

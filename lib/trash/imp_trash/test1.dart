@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../screens/home_page.dart';
 class Trash1123 extends StatefulWidget {
@@ -77,7 +78,7 @@ class _Trash1123State extends State<Trash1123> {
       body: SingleChildScrollView(
           child: Column(
               children: [
-                const SizedBox(height: 15,),
+                const SizedBox(height: 5,),
                 const Align(
                     alignment: Alignment(-0.99, 0),
                     child:
@@ -125,66 +126,68 @@ class _Trash1123State extends State<Trash1123> {
                     ),
                   ],
                 ),
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: 500,
-                    autoPlay: false,
-                    aspectRatio: 2.0,
-                    viewportFraction: 1,
-                    scrollPhysics: const BouncingScrollPhysics(),
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        currentindex = index;
-                      });
-                    },
+                Stack(
+                  children:[ CarouselSlider(
+                    options: CarouselOptions(
+                      height: 480,
+                      autoPlay: false,
+                      aspectRatio: 2.0,
+                      viewportFraction: 1,
+                     // scrollPhysics:  BouncingScrollPhysics(),
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          currentindex = index;
+                        });
+                      },
+                    ),
+                    items: watchImages.map((imagePath) {
+                      return Container(
+                        margin: const EdgeInsets.all(5.0),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Image(
+                              image: AssetImage(
+                                watchImages[currentindex]
+                              ),
+                              fit: BoxFit.cover,
+                              width: size.width,
+                              height: size.height,
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
                   ),
-                  items: watchImages.map((imagePath) {
-                    return Container(
-                      margin: const EdgeInsets.all(5.0),
-                      child: Stack(
-                        alignment: Alignment.topRight,
-                        children: [
-                          Image(
-                            image: AssetImage(
-                              watchImages[currentindex]
-                            ),
-                            fit: BoxFit.cover,
-                            width: size.width,
-                            height: size.height,
-                          ),
-                          Positioned(top: 1,left: 360,
-                            child: IconButton(
-                              icon: Icon(
-                                isFavorite ? Icons.favorite : Icons.favorite_border,
-                                size: 40,
-                                color: Colors.redAccent,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  isFavorite = !isFavorite;
-                                });
-                              },
-                            ),
-                          ),
-                          Positioned(top: 40,left: 360,
-                            child: IconButton(
-                              icon: const Icon(
-                                Icons.share,
-                                size: 40,
-                                color: Colors.black,
-                              ),
-                              onPressed: () {
-                                setState(() {
-
-                                });
-                              },
-                            ),
-                          ),
-
-                        ],
+                    Positioned(top: 10,left: 360,
+                      child: IconButton(
+                        icon: Icon(
+                          isFavorite ? Icons.favorite : Icons.favorite_border,
+                          size: 40,
+                          color: Colors.redAccent,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            isFavorite = !isFavorite;
+                          });
+                        },
                       ),
-                    );
-                  }).toList(),
+                    ),
+                    Positioned(top: 60,left: 360,
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.share_outlined,
+                          size: 40,
+                          color: Colors.black,
+                        ),
+                        onPressed: () {
+                          setState(() {
+
+                          });
+                        },
+                      ),
+                    ),
+                 ]
                 ),
                 const SizedBox(height: 10,),
                 Row(
@@ -666,9 +669,16 @@ class _Trash1123State extends State<Trash1123> {
             children: [
               Container(
                 width: 216,
-                height: 60,
+                height: 56,
                 color: Colors.white,
                 child: TextButton(onPressed: () {
+                  Fluttertoast.showToast(msg: "Added to cart",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 10,
+                      backgroundColor: Colors.grey,
+                      fontSize: 16.0
+                  );
 
                 }, child: const Text("Add to cart",
                   style: TextStyle(
@@ -678,8 +688,8 @@ class _Trash1123State extends State<Trash1123> {
               ),
               Container(
                 width: 216,
-                height: 60,
-                color: Colors.redAccent,
+                height: 56,
+                color: Colors.red,
                 child: TextButton(onPressed: () {
 
                 }, child: const Text("Buy now",
