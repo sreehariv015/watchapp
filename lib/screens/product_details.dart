@@ -2,14 +2,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../../screens/home_page.dart';
-class Trash1123 extends StatefulWidget {
-  const Trash1123({super.key});
+class ProductDetails extends StatefulWidget {
+  const ProductDetails({super.key});
 
   @override
-  State<Trash1123> createState() => _Trash1123State();
+  State<ProductDetails> createState() => _ProductDetailsState();
 }
 
-class _Trash1123State extends State<Trash1123> {
+class _ProductDetailsState extends State<ProductDetails> {
   CarouselController carouselController = CarouselController();
   int currentindex=0;
   bool isFavorite = false;
@@ -101,7 +101,7 @@ class _Trash1123State extends State<Trash1123> {
                 CarouselSlider(
                   options: CarouselOptions(
                     height: 500,
-                    autoPlay: false,
+                    autoPlay: true,
                     aspectRatio: 2.0,
                     viewportFraction: 1,
                     scrollPhysics: const BouncingScrollPhysics(),
@@ -118,7 +118,9 @@ class _Trash1123State extends State<Trash1123> {
                         alignment: Alignment.topRight,
                         children: [
                           Image(
-                            image: AssetImage(imagePath),
+                            image: AssetImage(
+                                watchImages[currentindex]
+                            ),
                             fit: BoxFit.cover,
                             width: size.width,
                             height: size.height,
@@ -130,7 +132,9 @@ class _Trash1123State extends State<Trash1123> {
                               color: Colors.red,
                             ),
                             onPressed: () {
-                              isFavorite = !isFavorite;
+                              setState(() {
+                                isFavorite = !isFavorite;
+                              });
                             },
                           ),
                         ],

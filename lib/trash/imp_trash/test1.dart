@@ -83,8 +83,9 @@ class _Trash1123State extends State<Trash1123> {
                     child:
                     Text("CASIO",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 20,
                         fontWeight: FontWeight.w400,
+                        color: Colors.red
                       ),)),
                 const Align(
                     alignment: Alignment(-0.95, 0),
@@ -93,11 +94,37 @@ class _Trash1123State extends State<Trash1123> {
                       padding: EdgeInsets.all(4.0),
                       child: Text( "G-Shock(GA-700-1BDR)Analog-Digital Watch-For Men G715",
                         style: TextStyle(
-                            fontSize: 21,
+                            fontSize: 18,
                           fontWeight: FontWeight.w300,
                         ),),
                     )),
-                const SizedBox(height: 10,),
+                const Row(
+                  children: [
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.orangeAccent,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.orangeAccent,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.orangeAccent,
+                    ),
+                    Icon(
+                      Icons.star_half,
+                      color: Colors.orangeAccent,
+                    ),
+                    Icon(
+                      Icons.star_border,
+                      color: Colors.orangeAccent,
+                    ),
+                  ],
+                ),
                 CarouselSlider(
                   options: CarouselOptions(
                     height: 500,
@@ -118,21 +145,42 @@ class _Trash1123State extends State<Trash1123> {
                         alignment: Alignment.topRight,
                         children: [
                           Image(
-                            image: AssetImage(imagePath),
+                            image: AssetImage(
+                              watchImages[currentindex]
+                            ),
                             fit: BoxFit.cover,
                             width: size.width,
                             height: size.height,
                           ),
-                          IconButton(
-                            icon: Icon(
-                              isFavorite ? Icons.favorite : Icons.favorite_border,
-                              size: 40,
-                              color: Colors.red,
+                          Positioned(top: 1,left: 360,
+                            child: IconButton(
+                              icon: Icon(
+                                isFavorite ? Icons.favorite : Icons.favorite_border,
+                                size: 40,
+                                color: Colors.redAccent,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  isFavorite = !isFavorite;
+                                });
+                              },
                             ),
-                            onPressed: () {
-                              isFavorite = !isFavorite;
-                            },
                           ),
+                          Positioned(top: 40,left: 360,
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.share,
+                                size: 40,
+                                color: Colors.black,
+                              ),
+                              onPressed: () {
+                                setState(() {
+
+                                });
+                              },
+                            ),
+                          ),
+
                         ],
                       ),
                     );
@@ -317,7 +365,7 @@ class _Trash1123State extends State<Trash1123> {
                     alignment: Alignment(-0.96, 0),
                     child:
                     Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Text("₹10,295.00"
                         ,style: TextStyle(
                             fontSize: 40,
@@ -333,7 +381,7 @@ class _Trash1123State extends State<Trash1123> {
                     alignment: Alignment(-0.99, 0),
                     child: Text("Product Details",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 20,
                         fontWeight: FontWeight.w400,
                       ),),
                   ),
@@ -347,13 +395,13 @@ class _Trash1123State extends State<Trash1123> {
                           Text("Water Resistant",
                             style: TextStyle(
                                 fontWeight: FontWeight.w100,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 45,),
                           Text("Yes",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -366,13 +414,13 @@ class _Trash1123State extends State<Trash1123> {
                           Text("Display Type",
                             style: TextStyle(
                                 fontWeight: FontWeight.w100,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 76,),
                           Text("Analog-Digital",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -385,13 +433,13 @@ class _Trash1123State extends State<Trash1123> {
                           Text("Series",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 130,),
                           Text("G-Shock(GG-1000-1ADR)",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -404,13 +452,13 @@ class _Trash1123State extends State<Trash1123> {
                           Text("Occasion",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 102,),
                           Text("Sports",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -423,13 +471,13 @@ class _Trash1123State extends State<Trash1123> {
                           Text("Watch Type",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 78,),
                           Text("Wrist Watch",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -442,13 +490,13 @@ class _Trash1123State extends State<Trash1123> {
                           Text("Pack of",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 140,),
                           Text("1",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -461,13 +509,13 @@ class _Trash1123State extends State<Trash1123> {
                           Text("Model Name",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 70,),
                           Text("GG-1000-1ADR",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -480,13 +528,13 @@ class _Trash1123State extends State<Trash1123> {
                           Text("Domestic Warranty",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 54,),
                           Text("2 Year",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ) ,),
                         ],
@@ -499,13 +547,13 @@ class _Trash1123State extends State<Trash1123> {
                           Text("International Warranty",
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
-                                fontSize: 21
+                                fontSize: 18
                             ),),
                           SizedBox(width: 30,),
                           Text("2 Year",
                             style:TextStyle(
                                 fontWeight: FontWeight.w300,
-                                fontSize: 21,
+                                fontSize: 18,
                                 color: Colors.black
                             ),)
                         ],
@@ -516,16 +564,16 @@ class _Trash1123State extends State<Trash1123> {
                       child: Text("Description",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 27
+                            fontSize: 20
                         ),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text("Strengthen your look with G-SHOCK in a design evoking rusted iron that stands the test of time. These watches pay homage to the undying G-SHOCK quest for the ultimate toughness in neoclassic black and rust designs evoking the sheer tenacity of rusted iron. Sepia tones inspired by the textural look of rusted metal nicely complement the base black. Accents in light blue make for timeless style with a rustic flair.",
+                      child: Text("Strengthen your look with G-SHOCK in a design evoking rusted iron that stands the test of time. These watches pay homage to the undying G-SHOCK quest for the ultimate toughness in neoclassic black and rust designs evoking the sheer tenacity of rusted iron. Sepia tones inspired by the textural look of rusted metal nicely complement the base black. Accents in light blue make for timeless style with a rustic flair.",
                         style: TextStyle(
                             fontWeight: FontWeight.w200,
-                            fontSize: 21
+                            fontSize: 18
                         ),
                       ),
                     ),
@@ -534,7 +582,7 @@ class _Trash1123State extends State<Trash1123> {
                       child: Text("Manufacturer",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 21
+                            fontSize: 19
                         ),
                       ),
                     ),
@@ -543,7 +591,7 @@ class _Trash1123State extends State<Trash1123> {
                       child: Text("Imported By - Casio India Co Pvt Ltd, Casio India Co Pvt Ltd, A-41, 1st Floor, MCIE, Mathura Road, New Delhi-110044",
                         style: TextStyle(
                             fontWeight: FontWeight.w200,
-                            fontSize: 21
+                            fontSize: 18
                         ),
                       ),
                     ),
@@ -552,7 +600,7 @@ class _Trash1123State extends State<Trash1123> {
                       child: Text("Importer",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 21
+                            fontSize: 19
                         ),
                       ),
                     ),
@@ -561,7 +609,7 @@ class _Trash1123State extends State<Trash1123> {
                       child: Text("Imported By - Casio India Co Pvt Ltd, A-41, 1st Floor, MCIE, Mathura Road, New Delhi-110044",
                         style: TextStyle(
                             fontWeight: FontWeight.w200,
-                            fontSize: 21
+                            fontSize: 18
                         ),
                       ),
                     ),
@@ -570,7 +618,7 @@ class _Trash1123State extends State<Trash1123> {
                       child: Text("Item Dimensions LxWxH",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 21
+                            fontSize: 19
                         ),
                       ),
                     ),
@@ -581,7 +629,7 @@ class _Trash1123State extends State<Trash1123> {
                         child: Text("21.5 x 1.7 x 5.1 Centimeters",
                           style: TextStyle(
                               fontWeight: FontWeight.w200,
-                              fontSize: 21
+                              fontSize: 18
                           ),
                         ),
                       ),
@@ -591,7 +639,7 @@ class _Trash1123State extends State<Trash1123> {
                       child: Text("Generic Name",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 21
+                            fontSize: 19
                         ),
                       ),
                     ),
@@ -602,7 +650,7 @@ class _Trash1123State extends State<Trash1123> {
                         child: Text("Casual Watch",
                           style: TextStyle(
                               fontWeight: FontWeight.w200,
-                              fontSize: 21
+                              fontSize: 18
                           ),
                         ),
                       ),
