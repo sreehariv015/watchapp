@@ -392,59 +392,59 @@ class _HomepageState extends State<Homepage> {
                 itemBuilder: (BuildContext context, int index) {
                   return
                     Card(
-                    elevation: 2,
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        ClipRect(
-                         // borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-                          child: SizedBox(
-                            height: 200,
-                            width: double.infinity,
-                            child: Image.asset(
-                              height: size.height,
-                              width: size.width,
-                              watchImages[index],
-                              fit: BoxFit.cover,
+                      elevation: 2,
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          ClipRect(
+                            // borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+                            child: SizedBox(
+                              height: 200,
+                              width: double.infinity,
+                              child: Image.asset(
+                                height: size.height,
+                                width: size.width,
+                                watchImages[index],
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            watchNames[index],
-                            style: const TextStyle(
-                              color: Colors.red,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              watchNames[index],
+                              style: const TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold
 
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            watchName2[index],
-                            style: const TextStyle(
-                              color: Color(0xFF3C3268),
-                              fontSize: 14,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              watchName2[index],
+                              style: const TextStyle(
+                                color: Color(0xFF3C3268),
+                                fontSize: 14,
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            watchPrice[index],
-                            style: const TextStyle(
-                              color: Colors.red,
-                              fontSize: 14,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              watchPrice[index],
+                              style: const TextStyle(
+                                color: Colors.red,
+                                fontSize: 14,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
 
-                  );
+                    );
                 },
               )
             ]

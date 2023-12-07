@@ -1,18 +1,20 @@
-import 'package:flutter/material.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-
-class HomeTrash11 extends StatefulWidget {
-  const HomeTrash11({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:watchapp/screens/profile.dart';
+import 'package:watchapp/screens/settings_page.dart';
+class HomepageTrash extends StatefulWidget {
+  const HomepageTrash({super.key});
 
   @override
-  _HomeTrash11State createState() => _HomeTrash11State();
+  State<HomepageTrash> createState() => _HomepageTrashState();
 }
 
-class _HomeTrash11State extends State<HomeTrash11> {
+class _HomepageTrashState extends State<HomepageTrash> {
+
   CarouselController carouselController = CarouselController();
   int currentindex=0;
-  int _selectedIndex = 0;
   final List<String> watchNames = [
     'Fastrack',
     'CASIO ',
@@ -35,7 +37,7 @@ class _HomeTrash11State extends State<HomeTrash11> {
     "assets/images/add5.webp",
     "assets/images/add2.webp",
     "assets/images/add3.webp",
-    "assets/images/add5.webp"
+    "assets/images/add4.webp"
   ];
 
   final List<String> imageList = [
@@ -45,225 +47,397 @@ class _HomeTrash11State extends State<HomeTrash11> {
     'assets/images/photo4.avif',
     'assets/images/photo5.avif',
   ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Screen'),
-      ),
-       body: SingleChildScrollView(
-         child: Column(
-            children:[
-              const Padding(
-              padding: EdgeInsets.all(9.0),
-              child: Text("Trending Deals",style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: Color(0xFF3C3268),
-              ),),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+        toolbarHeight: 65.0,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
+        actions: [
+          Container(
+            margin: const EdgeInsets.all(10),
+            width: 370,
+            height: 10,
+            decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(5)
             ),
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 200,
-                enableInfiniteScroll: true,
-                autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 3),
-                autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                pauseAutoPlayOnTouch: true,
-                enlargeCenterPage: true,
-                aspectRatio: 2.0,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    currentindex =index;
-                  });
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Search here...',
+                  border: InputBorder.none,
+                  icon: Icon(Icons.search,
+                      size: 25,
+                      color: Colors.black),
+                ),
+                onChanged: (value) {
+                  // Handle search text changes
                 },
               ),
-              items: imageList.map((items) {
-                return Container(
-                  margin: const EdgeInsets.all(5.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      items,
-                      fit: BoxFit.cover,
-                      width: 1000.0,
-                    ),
-                  ),
-                );
-              }).toList(),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: imageList.asMap().entries.map((entry) {
-                return GestureDetector(
-                  onTap: () => carouselController.animateToPage(entry.key),
-                  child: Container(
-                    width: currentindex == entry.key ? 17 : 7,
-                    height: 7.0,
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 3.0,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: currentindex == entry.key
-                          ? Colors.red
-                          : Colors.blue,
-                    ),
-                  ),
-                );
-              }).toList(),
-            ),
-            const SizedBox(height: 10,),
-            const Align(
-                alignment: Alignment(-0.96,0),
-                child:
-                SizedBox(
-                  child: Text("All Category",style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Color(0xFF3C3268),
-                  ),),
-                )),
-              const SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+          ),
+        ],
+      ),
 
-                children: [
-                   Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 40,
-                          backgroundImage: AssetImage(
-                            'assets/images/fastrack.jpg',
-                          ),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        shape: const OutlineInputBorder(
+            borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(40),
+                topRight: Radius.circular(40)
+            )
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundImage: AssetImage(
+                          'assets/images/profile.png',
                         ),
-                        Text("Fastrack",
-                            style:
-                            TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF3C3268),))
-                      ],
-                    ),
+                      ),
+                    ]),
+              ),
+              const Text("RDJ",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red
+                ),
+              ),
+              const Text("rdj@gmail.com",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return const HomepageTrash();
+                    },));
+                  },
+                  leading: const Icon(Icons.home,
+                    size: 30,
+                    color: Color(0xFF000000),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 40,
-                          backgroundImage: AssetImage(
-                            'assets/images/titan.jpg',
-                          ),
-                        ),
-                        Text("Titan",
-                            style:
-                            TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF3C3268),))
-                      ],
-                    ),
+                  title: const Text("Home",
+                    style: TextStyle(
+                      fontSize: 19,
+                    ),),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return const Profile();
+                    },));
+                  },
+                  leading: const Icon(Icons.account_box_outlined,
+                    size: 30,
+                    color: Color(0xFF000000),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 40,
-                          backgroundImage: AssetImage(
-                            'assets/images/logo1.png',
-                          ),
-                        ),
-                        Text("G-SHOCK",
-                          style:
-                          TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF3C3268),),),
-                      ],
-                    ),
+                  title: const Text("Accounts",
+                    style: TextStyle(
+                      fontSize: 19,
+                    ),),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  onTap: () {
+                  },
+                  leading: const Icon(Icons.shopping_cart,
+                    size: 30,
+                    color: Color(0xFF000000),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 40,
-                          backgroundImage: AssetImage(
-                            'assets/images/logo4.jpg',
-                          ),
-                        ),
-                        Text("CASIO",
-                            style:
-                            TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF3C3268),))
-                      ],
-                    ),
+                  title: const Text("My Orders",
+                    style: TextStyle(
+                      fontSize: 19,
+                    ),),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return const Settings1();
+                    },));
+                  },
+                  leading: const Icon(Icons.settings,
+                    size: 30,
+                    color: Color(0xFF000000),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 40,
-                          backgroundImage: AssetImage(
-                            'assets/images/logo2.jpg',
-                          ),
-                        ),
-                        Text("ROLEX",
-                            style:
-                            TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF3C3268),)),
-                      ],
-                    ),
+                  title: const Text("Settings",
+                    style: TextStyle(
+                      fontSize: 19,
+                    ),),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  onTap: () {
+                  },
+                  leading: const Icon(Icons.logout,
+                    size: 30,
+                    color: Color(0xFF000000),
                   ),
-                 ]
-              )
+                  title: const Text("Logout",
+                    style: TextStyle(
+                      fontSize: 19,
+                    ),),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+            children:[
+              const Align(
+                alignment: Alignment(-0.96, 0),
+                child: Text("Trending Deals",style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.black,
+                ),),
+              ),
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: 200,
+                  enableInfiniteScroll: true,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                  pauseAutoPlayOnTouch: true,
+                  enlargeCenterPage: true,
+                  aspectRatio: 2.0,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      currentindex =index;
+                    });
+                  },
+                ),
+                items: imageList.map((items) {
+                  return Container(
+                    margin: const EdgeInsets.all(5.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        items,
+                        fit: BoxFit.cover,
+                        width: 1000.0,
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: imageList.asMap().entries.map((entry) {
+                  return GestureDetector(
+                    onTap: () => carouselController.animateToPage(entry.key),
+                    child: Container(
+                      width: currentindex == entry.key ? 17 : 7,
+                      height: 7.0,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 3.0,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: currentindex == entry.key
+                            ? Colors.red
+                            : Colors.grey,
+                      ),
+                    ),
+                  );
+                }).toList(),
               ),
               const SizedBox(height: 10,),
               const Align(
-                alignment: Alignment(-0.96, 0),
-                child: Text(
-                  "Top Selection",
-                    style: TextStyle(
+                  alignment: Alignment(-0.96,0),
+                  child:
+                  SizedBox(
+                    child: Text("All Category",style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                      color: Color(0xFF3C3268),
-                    )
+                      color: Colors.black,
+                    ),),
+                  )),
+              const SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  'assets/images/fastrack.jpg',
+                                ),
+                              ),
+                              Text("Fastrack",
+                                  style:
+                                  TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF3C3268),))
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  'assets/images/titan.jpg',
+                                ),
+                              ),
+                              Text("Titan",
+                                  style:
+                                  TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF3C3268),))
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  'assets/images/logo1.png',
+                                ),
+                              ),
+                              Text("G-SHOCK",
+                                style:
+                                TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF3C3268),),),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  'assets/images/logo4.jpg',
+                                ),
+                              ),
+                              Text("CASIO",
+                                  style:
+                                  TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF3C3268),))
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  'assets/images/logo2.jpg',
+                                ),
+                              ),
+                              Text("ROLEX",
+                                  style:
+                                  TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF3C3268),)),
+                            ],
+                          ),
+                        ),
+                      ]
+                  )
+              ),
+              const SizedBox(height: 10,),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment(-0.96, 0),
+                  child: Text(
+                      "Top Selection",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.black,
+                      )
+                  ),
                 ),
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10.0,
-                    mainAxisSpacing: 10.0,
+              GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 5.0,
+                  mainAxisSpacing: 5.0,
+                  childAspectRatio: 0.80,
 
-                  ),
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: watchNames.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      elevation: 5,
+                ),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: watchNames.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return
+                    Card(
+                      elevation: 2,
                       color: Colors.white,
                       child: Column(
                         children: [
                           ClipRRect(
-                            borderRadius:
-                            const BorderRadius.vertical(top: Radius.circular(10)),
+                             borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
                             child: SizedBox(
-                              height: 115,
+                              height: 174,
                               width: double.infinity,
                               child: Image.asset(
                                 height: size.height,
@@ -276,56 +450,39 @@ class _HomeTrash11State extends State<HomeTrash11> {
                           Text(
                             watchNames[index],
                             style: const TextStyle(
-                              color: Color(0xFF3C3268),
-                              fontSize: 18,
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold
 
                             ),
                           ),
-                          Text(
-                            watchName2[index],
-                            style: const TextStyle(
-                              color: Color(0xFF3C3268),
-                              fontSize: 15,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              watchName2[index],
+                              style: const TextStyle(
+                                color: Color(0xFF3C3268),
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                           Text(
                             watchPrice[index],
                             style: const TextStyle(
-                              color: Color(0xFF3C3268),
+                              color: Colors.red,
                               fontSize: 15,
                             ),
                           ),
                         ],
                       ),
+
                     );
-                  },
-                ),
+                },
               )
             ]
-           ),
-         ),
-
-
-
-      bottomNavigationBar: CurvedNavigationBar(
-        index: _selectedIndex,
-        height: 50.0,
-        items: const <Widget>[
-          Icon(Icons.home, size: 30),
-          Icon(Icons.account_box_outlined, size: 30),
-          Icon(Icons.settings, size: 30),
-        ],
-        color: Colors.red,
-        buttonBackgroundColor: Colors.red,
-        backgroundColor: Colors.white,
-        animationCurve: Curves.easeInOut,
-        animationDuration: const Duration(milliseconds: 300),
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
+        ),
       ),
+      backgroundColor: Colors.white,
     );
   }
 }
