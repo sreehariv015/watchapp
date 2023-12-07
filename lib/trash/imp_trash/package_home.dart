@@ -3,17 +3,23 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:watchapp/screens/product_details.dart';
-class FlutterDrawerPackage extends StatefulWidget {
-  const FlutterDrawerPackage({super.key});
+class CodeZero extends StatefulWidget {
+  const CodeZero({super.key});
 
   @override
-  State<FlutterDrawerPackage> createState() => _FlutterDrawerPackageState();
+  State<CodeZero> createState() => _CodeZeroState();
 }
 
-class _FlutterDrawerPackageState extends State<FlutterDrawerPackage> {
+class _CodeZeroState extends State<CodeZero> {
   final _advancedDrawerController = AdvancedDrawerController();
   CarouselController carouselController = CarouselController();
   int currentindex=0;
+  @override
+  void dispose() {
+    // Dispose of the controller when the widget is disposed.
+    _advancedDrawerController.dispose();
+    super.dispose();
+  }
   final List<String> watchNames = [
     'Fastrack',
     'CASIO ',
@@ -72,12 +78,12 @@ class _FlutterDrawerPackageState extends State<FlutterDrawerPackage> {
       childDecoration: const BoxDecoration(
         // NOTICE: Uncomment if you want to add shadow behind the page.
         // Keep in mind that it may cause animation jerks.
-        // boxShadow: <BoxShadow>[
-        //   BoxShadow(
-        //     color: Colors.black12,
-        //     blurRadius: 0.0,
-        //   ),
-        // ],
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 0.0,
+          ),
+        ],
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       drawer: SafeArea(
@@ -87,21 +93,18 @@ class _FlutterDrawerPackageState extends State<FlutterDrawerPackage> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
-                width: 128.0,
-                height: 128.0,
-                margin: const EdgeInsets.only(
-                  top: 24.0,
-                  bottom: 64.0,
-                ),
-                clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(
-                  color: Colors.black26,
-                  shape: BoxShape.circle,
-                ),
-                child: Image.asset(
-                  'assets/images/profile.png',
-                ),
+              const SizedBox(height: 50,),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundImage: AssetImage(
+                          'assets/images/profile.png',
+                        ),
+                      ),
+                    ]),
               ),
               const Text("RDJ",
                 textAlign: TextAlign.center,
@@ -407,7 +410,7 @@ class _FlutterDrawerPackageState extends State<FlutterDrawerPackage> {
                         onTap: () {
                           setState(() {
                             Navigator.push(context, MaterialPageRoute(builder: (context) {
-                             return const ProductDetails1();
+                              return const ProductDetails1();
                             },));
                           });
                         },
