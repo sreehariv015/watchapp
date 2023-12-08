@@ -2,15 +2,16 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:watchapp/screens/home_page.dart';
 import 'package:watchapp/screens/product_details.dart';
-class CodeZero extends StatefulWidget {
-  const CodeZero({super.key});
+class CodeZero11 extends StatefulWidget {
+  const CodeZero11({super.key});
 
   @override
-  State<CodeZero> createState() => _CodeZeroState();
+  State<CodeZero11> createState() => _CodeZero11State();
 }
 
-class _CodeZeroState extends State<CodeZero> {
+class _CodeZero11State extends State<CodeZero11> {
   final _advancedDrawerController = AdvancedDrawerController();
   CarouselController carouselController = CarouselController();
   int currentindex=0;
@@ -27,10 +28,10 @@ class _CodeZeroState extends State<CodeZero> {
     'Titan',
   ];
   final List<String> watchName2 = [
-    "Bare Basics 2020 Analog Watch",
-    "Youth Combination(AEQ-110W-1BVDF)For Men AD218",
+    "Bare Basics 2020 Analog-Digital Watch-For Men",
+    "(AEQ-110W-1BVDF)Analog-Digital Watch-For Men AD218",
     "(GG-1000-1A3DR)Analog-Digital Watch-For Men G662",
-    "Analog Watch -For Men NH1578SM04 "
+    "Analog-Digital Watch-For Men NH1578SM04 "
   ];
   final List<String> watchPrice = [
     "₹2,950",
@@ -41,7 +42,7 @@ class _CodeZeroState extends State<CodeZero> {
   final List<String> watchImages = [
     "assets/images/add5.webp",
     "assets/images/add2.webp",
-    "assets/images/add3.webp",
+    "assets/images/pro1.webp",
     "assets/images/add4.webp"
   ];
 
@@ -50,7 +51,7 @@ class _CodeZeroState extends State<CodeZero> {
     'assets/images/photo2.avif',
     'assets/images/photo3.avif',
     'assets/images/photo4.avif',
-    'assets/images/photo5.avif',
+    'assets/images/photo6.avif',
   ];
 
   @override
@@ -64,7 +65,7 @@ class _CodeZeroState extends State<CodeZero> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Colors.blueGrey, Colors.blueGrey.withOpacity(0.2)],
+            colors: [Colors.blue, Colors.red.withOpacity(0.2)],
           ),
         ),
       ),
@@ -110,7 +111,7 @@ class _CodeZeroState extends State<CodeZero> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: Colors.red
                 ),
               ),
@@ -122,24 +123,50 @@ class _CodeZeroState extends State<CodeZero> {
                 ),
               ),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const Homepage();
+                  },));
+                },
                 leading: const Icon(Icons.home),
                 title: const Text('Home'),
               ),
               ListTile(
-                onTap: () {},
-                leading: const Icon(Icons.account_circle_rounded),
+                onTap: () {
+
+                },
+                leading: const Icon(Icons.shopping_cart_outlined),
+                title: const Text('My Orders'
+
+                ),
+              ),
+              ListTile(
+                onTap: () {
+
+                },
+                leading: const Icon(Icons.account_box),
                 title: const Text('Profile'),
               ),
               ListTile(
-                onTap: () {},
+                onTap: () {
+
+                },
                 leading: const Icon(Icons.favorite),
                 title: const Text('Favourites'),
               ),
               ListTile(
-                onTap: () {},
+                onTap: () {
+
+                },
                 leading: const Icon(Icons.settings),
                 title: const Text('Settings'),
+              ),
+              ListTile(
+                onTap: () {
+
+                },
+                leading: const Icon(Icons.logout),
+                title: const Text('Logout'),
               ),
               const Spacer(),
               DefaultTextStyle(
@@ -151,7 +178,11 @@ class _CodeZeroState extends State<CodeZero> {
                   margin: const EdgeInsets.symmetric(
                     vertical: 16.0,
                   ),
-                  child: const Text('Terms of Service | Privacy Policy'),
+                  child: const Text('Terms of Service | Privacy Policy',
+                    style: TextStyle(
+                      color: Colors.black
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -207,8 +238,8 @@ class _CodeZeroState extends State<CodeZero> {
                 const Align(
                   alignment: Alignment(-0.96, 0),
                   child: Text("Trending Deals",style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 17,
                     color: Colors.black,
                   ),),
                 ),
@@ -269,8 +300,8 @@ class _CodeZeroState extends State<CodeZero> {
                     child:
                     SizedBox(
                       child: Text("All Category",style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
                         color: Colors.black,
                       ),),
                     )),
@@ -294,8 +325,8 @@ class _CodeZeroState extends State<CodeZero> {
                                 Text("Fastrack",
                                     style:
                                     TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF3C3268),))
+                                      fontSize: 11,
+                                      color: Colors.black,))
                               ],
                             ),
                           ),
@@ -313,8 +344,8 @@ class _CodeZeroState extends State<CodeZero> {
                                 Text("Titan",
                                     style:
                                     TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF3C3268),))
+                                      fontSize: 11,
+                                      color: Colors.black,))
                               ],
                             ),
                           ),
@@ -332,8 +363,8 @@ class _CodeZeroState extends State<CodeZero> {
                                 Text("G-SHOCK",
                                   style:
                                   TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF3C3268),),),
+                                    fontSize: 11,
+                                    color: Colors.black,),),
                               ],
                             ),
                           ),
@@ -345,14 +376,14 @@ class _CodeZeroState extends State<CodeZero> {
                                   backgroundColor: Colors.white,
                                   radius: 40,
                                   backgroundImage: AssetImage(
-                                    'assets/images/logo4.jpg',
+                                    'assets/images/casio.jpg',
                                   ),
                                 ),
                                 Text("CASIO",
                                     style:
                                     TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF3C3268),))
+                                      fontSize: 11,
+                                      color: Colors.black,))
                               ],
                             ),
                           ),
@@ -364,14 +395,14 @@ class _CodeZeroState extends State<CodeZero> {
                                   backgroundColor: Colors.white,
                                   radius: 40,
                                   backgroundImage: AssetImage(
-                                    'assets/images/logo2.jpg',
+                                    'assets/images/rolex1.jpg',
                                   ),
                                 ),
                                 Text("ROLEX",
                                     style:
                                     TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF3C3268),)),
+                                      fontSize: 11,
+                                      color: Colors.black,)),
                               ],
                             ),
                           ),
@@ -386,8 +417,8 @@ class _CodeZeroState extends State<CodeZero> {
                     child: Text(
                         "Top Selection",
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
                           color: Colors.black,
                         )
                     ),
@@ -422,7 +453,7 @@ class _CodeZeroState extends State<CodeZero> {
                               ClipRRect(
                                 borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
                                 child: SizedBox(
-                                  height: 174,
+                                  height: 182,
                                   width: double.infinity,
                                   child: Image.asset(
                                     height: size.height,
@@ -437,16 +468,16 @@ class _CodeZeroState extends State<CodeZero> {
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 15,
-                                    fontWeight: FontWeight.bold
-
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(4.0),
                                 child: Text(
                                   watchName2[index],
                                   style: const TextStyle(
-                                    color: Color(0xFF3C3268),
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.black,
                                     fontSize: 12,
                                   ),
                                 ),
