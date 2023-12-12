@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:watchapp/screens/forgot_password_page.dart';
 import 'package:watchapp/screens/home_page.dart';
+import 'package:watchapp/screens/main_page.dart';
 import 'package:watchapp/screens/phone_number_page.dart';
 import 'package:watchapp/screens/registrationpage.dart';
 
@@ -89,10 +90,10 @@ class _LoginPage1State extends State<Login11> {
                     controller: emailController,
                     validator: (value) {
                       if (value==null || value.isEmpty){
-                        return "email can't be empty";
+                        return "Email can't be empty";
                       }
                       if (!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)) {
-                        return "enter a valid email address";
+                        return "Enter a valid email address";
                       }
                       return null ;
                     },
@@ -123,10 +124,10 @@ class _LoginPage1State extends State<Login11> {
                     obscureText: !passwordVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
-                        return "password can't be empty";
+                        return "Password can't be empty";
                       }
                       if(!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
-                        return "password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
+                        return "Password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
 
                       }
                       return null ;
@@ -168,9 +169,9 @@ class _LoginPage1State extends State<Login11> {
                       if(loginkey.currentState!.validate()){
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
                         setState(() {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                            return const Homepage();
-                          },));
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+                           return const MainPage1();
+                          },), (route) => false);
                         });
                       }
 

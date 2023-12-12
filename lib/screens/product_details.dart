@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:watchapp/screens/main_page.dart';
 
 import '../../screens/home_page.dart';
 class ProductDetails1 extends StatefulWidget {
@@ -25,53 +26,53 @@ class _ProductDetails1State extends State<ProductDetails1> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    Size halfwidth= MediaQuery.of(context).size/ 2;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        toolbarHeight: 50,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back,
-              size: 30,
-              color: Colors.black),
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const Homepage();
-            }));
-          },
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+          size: 25
         ),
+        centerTitle: true,
         actions: [
-          Container(
-            margin: const EdgeInsets.all(10),
-            width: 320,
-            height: 80,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Search here...',
-                  border: InputBorder.none,
-                  icon: Icon(Icons.search,
-                      size: 30,
-                      color: Colors.black),
+          Padding(
+            padding: const EdgeInsets.all(3.0),
+            child: Container(
+              alignment: Alignment.center,
+              width: 320,
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: TextField(
+                  decoration: const InputDecoration(
+                    hintText: 'Search here...',
+                    border: InputBorder.none,
+                    icon: Icon(
+                        Icons.search,
+                        size: 25,
+                        color: Colors.black),
+                  ),
+                  onChanged: (value) {
+
+                  },
                 ),
-                onChanged: (value) {
-                  // Handle search text changes
-                },
               ),
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.shopping_cart,
-                size: 30,
-                color: Colors.black),
-            onPressed: () {
-              // Handle "Add to Cart" icon tapped
-            },
-          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: IconButton(onPressed: () {
+
+            }, icon: const Icon(Icons.shopping_cart,
+              size: 25,
+              color: Colors.black,)),
+          )
         ],
       ),
       backgroundColor: Colors.white,
@@ -133,7 +134,7 @@ class _ProductDetails1State extends State<ProductDetails1> {
                         autoPlay: false,
                         aspectRatio: 2.0,
                         viewportFraction: 1,
-                        // scrollPhysics:  BouncingScrollPhysics(),
+                         scrollPhysics:  BouncingScrollPhysics(),
                         onPageChanged: (index, reason) {
                           setState(() {
                             currentindex = index;
@@ -159,7 +160,7 @@ class _ProductDetails1State extends State<ProductDetails1> {
                         );
                       }).toList(),
                     ),
-                      Positioned(top: 10,left: 370,
+                      Positioned(top: 20,left: 370,
                         child: IconButton(
                           icon: Icon(
                             isFavorite ? Icons.favorite : Icons.favorite_border,
@@ -173,7 +174,7 @@ class _ProductDetails1State extends State<ProductDetails1> {
                           },
                         ),
                       ),
-                      Positioned(top: 50,left: 370,
+                      Positioned(top: 65,left: 370,
                         child: IconButton(
                           icon: const Icon(
                             Icons.share_outlined,
@@ -661,41 +662,43 @@ class _ProductDetails1State extends State<ProductDetails1> {
           )
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 216,
-                height: 56,
-                color: Colors.white,
-                child: TextButton(onPressed: () {
-                  Fluttertoast.showToast(msg: "Added to cart",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 10,
-                      backgroundColor: Colors.grey,
-                      fontSize: 16.0
-                  );
+        child: SingleChildScrollView(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: halfwidth.width,
+                  height: 56,
+                  color: Colors.white,
+                  child: TextButton(onPressed: () {
+                    Fluttertoast.showToast(msg: "Added to cart",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 10,
+                        backgroundColor: Colors.grey,
+                        fontSize: 16.0
+                    );
 
-                }, child: const Text("Add to cart",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 21
-                  ),)),
-              ),
-              Container(
-                width: 216,
-                height: 56,
-                color: Colors.red,
-                child: TextButton(onPressed: () {
+                  }, child: const Text("Add to cart",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 21
+                    ),)),
+                ),
+                Container(
+                  width: halfwidth.width,
+                  height: 56,
+                  color: Colors.red,
+                  child: TextButton(onPressed: () {
 
-                }, child: const Text("Buy now",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 21
-                  ),)),
-              ),
-            ]
+                  }, child: const Text("Buy now",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 21
+                    ),)),
+                ),
+              ]
+          ),
         ),
       ),
     );

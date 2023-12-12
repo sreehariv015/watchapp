@@ -80,10 +80,10 @@ class _ProfileState extends State<Profile> {
                             prefixIcon: Icon(Icons.person,color: Colors.black,)),
                         validator: (value) {
                           if (value==null || value.isEmpty){
-                            return "name can't be empty";
+                            return "Name can't be empty";
                           }
                           if(!RegExp(r'^[A-Za-z]+([\ A-Za-z]+)$').hasMatch(value)){
-                            return "name contains[A-Z,a-z]";
+                            return "Name contains[A-Z,a-z]";
                           }
                           return null ;
                         },
@@ -108,11 +108,11 @@ class _ProfileState extends State<Profile> {
                         controller: mobile,
                         validator: (value) {
                           if (value==null || value.isEmpty){
-                            return "mobile no can't be empty";
+                            return "Mobile no can't be empty";
                           }
                           if (!RegExp(r'^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$')
                               .hasMatch(value)) {
-                            return "enter a valid mobile number";
+                            return "Enter a valid mobile number";
                           }
                           return null ;
                         },
@@ -135,10 +135,10 @@ class _ProfileState extends State<Profile> {
                         controller: email,
                         validator: (value) {
                           if (value==null || value.isEmpty){
-                            return "email can't be empty";
+                            return "Email can't be empty";
                           }
                           if(!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)){
-                            return "enter a valid email address";
+                            return "Enter a valid email address";
                           }
                           return null ;
                         },
@@ -163,10 +163,10 @@ class _ProfileState extends State<Profile> {
                         controller: password,
                         validator: (value) {
                           if (value==null || value.isEmpty){
-                            return "password can't be empty";
+                            return "Password can't be empty";
                           }
                           if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
-                            return "password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
+                            return "Password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
                           }
                           return null ;
                         },

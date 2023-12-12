@@ -23,14 +23,6 @@ class _Settings1State extends State<Settings1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Settings",textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 25,
-        ),),
-        backgroundColor: Colors.red,
-      ),
       drawer: Drawer(
         backgroundColor: Colors.white,
         shape: const OutlineInputBorder(
@@ -225,7 +217,7 @@ class _Settings1State extends State<Settings1> {
                 trailing: Transform.scale(
                   scale: 0.9,
                   child: Switch(value: switchOn1,
-                    activeColor: Colors.red,
+                    activeColor: Colors.black,
                     onChanged:(value) {
                       setState(() {
                         switchOn1=!switchOn1;
@@ -251,7 +243,7 @@ class _Settings1State extends State<Settings1> {
                 trailing: Transform.scale(
                   scale: 0.9,
                   child: Switch(value: switchOn2,
-                    activeColor: Colors.red,
+                    activeColor: Colors.black,
                     onChanged: (value) {
                       setState(() {
                         switchOn2=!switchOn2;

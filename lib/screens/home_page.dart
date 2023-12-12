@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:watchapp/screens/home_page.dart';
 import 'package:watchapp/screens/product_details.dart';
-
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
@@ -13,15 +12,8 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final _advancedDrawerController = AdvancedDrawerController();
   CarouselController carouselController = CarouselController();
   int currentindex=0;
-  @override
-  void dispose() {
-    // Dispose of the controller when the widget is disposed.
-    _advancedDrawerController.dispose();
-    super.dispose();
-  }
   final List<String> watchNames = [
     'Fastrack',
     'CASIO ',
@@ -58,184 +50,46 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return AdvancedDrawer(
-      backdrop: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Colors.blue, Colors.white.withOpacity(0.2)],
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Container(
+          width: size.width,
+          height: 43,
+          margin: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(10),
           ),
-        ),
-      ),
-      controller: _advancedDrawerController,
-      animationCurve: Curves.easeInOut,
-      animationDuration: const Duration(milliseconds: 300),
-      animateChildDecoration: true,
-      rtlOpening: false,
-      // openScale: 1.0,
-      disabledGestures: false,
-      childDecoration: const BoxDecoration(
-        // NOTICE: Uncomment if you want to add shadow behind the page.
-        // Keep in mind that it may cause animation jerks.
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 0.0,
-          ),
-        ],
-        borderRadius: BorderRadius.all(Radius.circular(16)),
-      ),
-      drawer: SafeArea(
-        child: ListTileTheme(
-          textColor: Colors.white,
-          iconColor: Colors.white,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const SizedBox(height: 50,),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 50,
-                        backgroundImage: AssetImage(
-                          'assets/images/profile.png',
-                        ),
-                      ),
-                    ]),
-              ),
-              const Text("RDJ",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.red
-                ),
-              ),
-              const Text("rdj@gmail.com",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              ListTile(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const Homepage();
-                  },));
-                },
-                leading: const Icon(Icons.home),
-                title: const Text('Home'),
-              ),
-              ListTile(
-                onTap: () {
-
-                },
-                leading: const Icon(Icons.shopping_cart_outlined),
-                title: const Text('My Orders'
-
-                ),
-              ),
-              ListTile(
-                onTap: () {
-
-                },
-                leading: const Icon(Icons.account_box),
-                title: const Text('Profile'),
-              ),
-              ListTile(
-                onTap: () {
-
-                },
-                leading: const Icon(Icons.favorite),
-                title: const Text('Favourites'),
-              ),
-              ListTile(
-                onTap: () {
-
-                },
-                leading: const Icon(Icons.settings),
-                title: const Text('Settings'),
-              ),
-              ListTile(
-                onTap: () {
-
-                },
-                leading: const Icon(Icons.logout),
-                title: const Text('Logout'),
-              ),
-              const Spacer(),
-              DefaultTextStyle(
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.white54,
-                ),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 16.0,
-                  ),
-                  child: const Text('Terms of Service | Privacy Policy',
-                    style: TextStyle(
-                        color: Colors.black
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              children: [
+                const Icon(Icons.search, size: 30, color: Colors.black),
+                const SizedBox(width: 10), // Add some spacing between the icon and TextField
+                Expanded(
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      hintText: 'Search here...',
+                      border: InputBorder.none,
                     ),
+                    onChanged: (value) {
+                      // Handle search text changes
+                    },
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          iconTheme: const IconThemeData(
-            color: Colors.black,
-          ),
-          toolbarHeight: 65.0,
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: const Icon(Icons.menu),
-                onPressed: _handleMenuButtonPressed,
-              );
-            },
-          ),
-          actions: [
-            Container(
-              margin: const EdgeInsets.all(10),
-              width: 370,
-              height: 10,
-              decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(5)
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: TextField(
-                  decoration: const InputDecoration(
-                    hintText: 'Search here...',
-                    border: InputBorder.none,
-                    icon: Icon(Icons.search,
-                        size: 25,
-                        color: Colors.black),
-                  ),
-                  onChanged: (value) {
-                    // Handle search text changes
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
-        body: SingleChildScrollView(
+
+      body: SingleChildScrollView(
           child: Column(
               children:[
+                const SizedBox(height: 10,),
                 const Align(
                   alignment: Alignment(-0.96, 0),
                   child: Text("Trending Deals",style: TextStyle(
@@ -496,14 +350,11 @@ class _HomepageState extends State<Homepage> {
                         ),
                       );
                   },
-                )
+                ),
+                const SizedBox(height: 10,)
               ]
           ),
         ),
-      ),
-    );
-  }
-  void _handleMenuButtonPressed() {
-    _advancedDrawerController.showDrawer();
+      );
   }
 }

@@ -90,10 +90,10 @@ class _LoginPage1State extends State<LoginPage24> {
                           color: Colors.black,)),
                     validator: (value) {
                       if (value==null || value.isEmpty){
-                        return "name can't be empty";
+                        return "Name can't be empty";
                       }
                       if(!RegExp(r'^[A-Za-z]+([\ A-Za-z]+)$').hasMatch(value)){
-                        return "name contains[A-Z,a-z]";
+                        return "Name contains[A-Z,a-z]";
                       }
                       return null ;
                     },
@@ -116,10 +116,10 @@ class _LoginPage1State extends State<LoginPage24> {
                     controller: email,
                     validator: (value) {
                       if (value==null || value.isEmpty){
-                        return "email can't be empty";
+                        return "Email can't be empty";
                       }
                       if(!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)){
-                        return "enter a valid email address";
+                        return "Enter a valid email address";
                       }
                       return null ;
                     },
@@ -151,10 +151,10 @@ class _LoginPage1State extends State<LoginPage24> {
                     obscureText: !passwordVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
-                        return "password can't be empty";
+                        return "Password can't be empty";
                       }
                       if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
-                        return "password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
+                        return "Password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
                       }
                       return null ;
                     },
@@ -186,10 +186,10 @@ class _LoginPage1State extends State<LoginPage24> {
                     obscureText: !passVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
-                        return "re-enter your password";
+                        return "Re-enter your password";
                       }
                       else if(value!=password.text){
-                        return 'password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]';
+                        return 'Password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]';
                       }
                       return null ;
                     },
