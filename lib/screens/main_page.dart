@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:watchapp/screens/add_to_cart.dart';
+import 'package:watchapp/screens/favorites_page.dart';
 import 'package:watchapp/screens/home_page.dart';
 import 'package:watchapp/screens/profile.dart';
 import 'package:watchapp/screens/settings_page.dart';
@@ -19,7 +20,7 @@ class _MainPageState extends State<MainPage1> {
   final List<Widget> _pages=[
     const Homepage(),
     const AddToCart(),
-    const AddToCart(),
+    const Favorites(),
     const Settings1()
   ];
   final _advancedDrawerController = AdvancedDrawerController();
@@ -112,7 +113,7 @@ class _MainPageState extends State<MainPage1> {
                 ListTile(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return Profile();
+                      return const Profile();
                     },));
                   },
                   leading: const Icon(Icons.account_box),

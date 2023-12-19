@@ -5,6 +5,7 @@ import 'package:watchapp/screens/home_page.dart';
 import 'package:watchapp/screens/main_page.dart';
 import 'package:watchapp/screens/product_details.dart';
 import 'package:watchapp/screens/splash_screen.dart';
+import 'package:watchapp/trash/getxsamples/view.dart';
 import 'package:watchapp/trash/imp_trash/home_trash2.dart';
 import 'package:watchapp/trash/imp_trash/package_home.dart';
 import 'package:watchapp/trash/imp_trash/package_home1.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-    return  MaterialApp(home:MainPage1(),);
+    return  MaterialApp(home:AddToCart(),);
 
   }
   //debugShowCheckedModeBanner: false,);
