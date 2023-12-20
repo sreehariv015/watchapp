@@ -19,6 +19,9 @@ class _GetProductWidgetState extends State<GetProductWidget> {
   Get.put(GetProductDataController());
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.of(context).size;
+
     return FutureBuilder<List<QueryDocumentSnapshot<Object?>>>(
       future: _getProductDataController.getProductData(),
       builder: (context, snapshot) {
@@ -37,96 +40,106 @@ class _GetProductWidgetState extends State<GetProductWidget> {
           int dataLength = data.length;
 
           // Rest of your widget tree using the 'data'
-
-          return Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.height,
-              height: MediaQuery.of(context).size.width,
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 5.0,
-                  mainAxisSpacing: 5.0,
+          return Column(
+            children: [
+              const Align(
+                alignment: Alignment(-0.96, 0),
+                child: Text(
+                    "Top Selection",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      color: Colors.black,
+                    )
                 ),
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: dataLength,
-                itemBuilder: (BuildContext context, int index) {
-                  final productData = data[index];
-                  ProductModel productModel = ProductModel(
-                    productId: productData['productId'],
-                    categoryId: productData['categoryId'],
-                    productName: productData['productName'],
-                    categoryName: productData['categoryName'],
-                    salePrice: productData['salePrice'].toString(),
-                    fullPrice: productData['fullPrice'].toString(),
-                    productImages: productData['productImages'],
-                    deliveryTime: productData['deliveryTime'],
-                    isSale: productData['isSale'],
-                    productDescription: productData['productDescription'],
-                    createdAt: productData['createdAt'],
-                    updatedAt: productData['updatedAt'],
-                  );
-                  return GestureDetector(
-                    onTap: () {
-                      Get.to(() => ProductDetailsScreen(productModel:productModel));
-                    },
-                    child: Card(
-                      elevation: 2,
-                      color: Colors.white,
-                      child: SizedBox(
-                        child: Column(
-                          children: [
-                            ClipRRect(
-                              borderRadius: const BorderRadius.vertical(
-                                  top: Radius.circular(10)),
-                              child: SizedBox(
-                                width: double.infinity,
-                                height: 130,
-                                child: Image.network(
-                                  "${productModel.productImages[0]}",
-                                  fit: BoxFit.cover,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.width,
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 5.0,
+                    mainAxisSpacing: 5.0,
+                    childAspectRatio: 0.80,
+
+                  ),
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: dataLength,
+                  itemBuilder: (BuildContext context, int index) {
+                    final productData = data[index];
+                    ProductModel productModel = ProductModel(
+                      productId: productData['productId'],
+                      categoryId: productData['categoryId'],
+                      productName: productData['productName'],
+                      categoryName: productData['categoryName'],
+                      salePrice: productData['salePrice'].toString(),
+                      fullPrice: productData['fullPrice'].toString(),
+                      productImages: productData['productImages'],
+                      deliveryTime: productData['deliveryTime'],
+                      isSale: productData['isSale'],
+                      productDescription: productData['productDescription'],
+                      createdAt: productData['createdAt'],
+                      updatedAt: productData['updatedAt'],
+                    );
+                    return GestureDetector(
+                      onTap: () {
+                        Get.to(() => ProductDetailsScreen(productModel:productModel));
+                      },
+                        child: Card(
+                          elevation: 2,
+                          color: Colors.white,
+                          child: Column(
+                            children: [
+                              ClipRRect(
+                                borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
+                                child: SizedBox(
+                                  height: 182,
+                                  width: double.infinity,
+                                  child: Image.network(
+                                    height: size.height,
+                                    width: size.width,
+                                    "${productModel.productImages[0]}",
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "${productModel.productName}",
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
+                              Text(
+                                "${productModel.productName}",
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              "${productModel.productName}",
-                              style: const TextStyle(
-                                color: Colors.black87,
-                                fontSize: 15,
+                              Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Text(
+                                  "${productModel.productName}",
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                  ),
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              ' ₹ ${productModel.fullPrice}',
-                              style: const TextStyle(
-                                color: Colors.black87,
-                                fontSize: 15,
+                              Text(
+                                ' ₹ ${productModel.fullPrice}',
+                                style: const TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 15,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+
                         ),
-                      ),
-                    ),
-                  );
-                },
+                      );
+                  },
+                ),
               ),
-            ),
+            ],
           );
         }
       },

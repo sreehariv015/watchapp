@@ -23,15 +23,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
-        title: Text(
+        title: const Text(
           "Product Details",
           style: TextStyle(color: Colors.black),
         ),
         actions: [
           GestureDetector(
             onTap: () => Get.to(() => null),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Icon(
                 Icons.shopping_cart,
               ),
@@ -42,7 +42,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       body: Column(
         children: [
           //product images
-
           SizedBox(
             height: Get.height / 60,
           ),
@@ -107,10 +106,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           widget.productModel.isSale == true &&
                               widget.productModel.salePrice != ''
                               ? Text(
-                            "INR: " + widget.productModel.salePrice,
+                            "INR: ${widget.productModel.salePrice}",
                           )
                               : Text(
-                            "INR: " + widget.productModel.fullPrice,
+                            "INR: ${widget.productModel.fullPrice}",
                           ),
                         ],
                       ),
@@ -121,7 +120,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     child: Container(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        "Category: " + widget.productModel.categoryName,
+                        "Category: ${widget.productModel.categoryName}",
                       ),
                     ),
                   ),
@@ -174,7 +173,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             child: TextButton(
                               child: const Text(
                                 "Add to cart",
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: Colors.white),
                               ),
                               onPressed: () async {
                                 // Get.to(() => SignInScreen())

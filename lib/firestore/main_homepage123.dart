@@ -76,10 +76,10 @@ class _HomePageState extends State<HomePage> {
             height: 5,
           ),
 
-          // Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: GetProductWidget(),
-          // )
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GetProductWidget(),
+          )
         ]),
       ]),
     );
