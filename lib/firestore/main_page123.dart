@@ -3,23 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:watchapp/screens/add_to_cart.dart';
 import 'package:watchapp/screens/favorites_page.dart';
-import 'package:watchapp/screens/home_page.dart';
 import 'package:watchapp/screens/profile.dart';
 import 'package:watchapp/screens/settings_page.dart';
-class MainPage1 extends StatefulWidget {
-  const MainPage1({super.key});
+
+import 'main_homepage123.dart';
+class MainPage123 extends StatefulWidget {
+  const MainPage123({super.key});
 
   @override
-  State<MainPage1> createState() => _MainPageState();
+  State<MainPage123> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage1> {
+class _MainPageState extends State<MainPage123> {
 
   int _currentSelectedIndex = 0;
   var titles = ["Home", "Favorites", "Cart", "Settings"];
   final List<Widget> _pages=[
-    const Homepage(),
-          Favorites(),
+    const HomePage(),
+    Favorites(),
     const AddToCart(),
     const Settings1()
   ];
@@ -104,7 +105,7 @@ class _MainPageState extends State<MainPage1> {
                 ListTile(
                   onTap: () {
                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
-                      return const MainPage1();
+                      return const MainPage123();
                     },), (route) => false);
                   },
                   leading: const Icon(Icons.home),
@@ -178,7 +179,7 @@ class _MainPageState extends State<MainPage1> {
               builder: (BuildContext context) {
                 return IconButton(
                   icon: const Icon(Icons.menu,
-                  color: Colors.black,),
+                    color: Colors.black,),
                   onPressed: _handleMenuButtonPressed,
                 );
               },

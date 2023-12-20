@@ -9,13 +9,16 @@ class AddToCart extends StatefulWidget {
 
 class _AddToCartState extends State<AddToCart> {
   int quantity = 1;
+  double basePrice = 10000; // Set your base price
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: 10, // Assuming you have only one item
+        itemCount: 1, // Assuming you have only one item
         itemBuilder: (context, index) {
+          double totalPrice = basePrice * quantity;
+
           return Container(
             padding: const EdgeInsets.all(8),
             child: Card(
@@ -38,7 +41,7 @@ class _AddToCartState extends State<AddToCart> {
                           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 5),
-                        const Text("Price: \₹10000"),
+                        Text("Price: \₹$totalPrice"),
                         const SizedBox(height: 10),
                         Row(
                           children: [
@@ -63,12 +66,6 @@ class _AddToCartState extends State<AddToCart> {
                                 });
                               },
                               icon: Icon(Icons.add),
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                // Add your logic for the Buy button
-                              },
-                              child: const Text("Buy"),
                             ),
                           ],
                         ),

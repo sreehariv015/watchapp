@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "235476245912",
+    "project_id": "watch-mate",
+    "storage_bucket": "watch-mate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235476245912:android:16529c75bfa5b661395fed",
+        "android_client_info": {
+          "package_name": "com.sreehari.watchapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArIgJ0kMRaezRywnH1BhRDUB8dv7ze8g8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
