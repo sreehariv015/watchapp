@@ -6,6 +6,8 @@ import 'package:watchapp/screens/favorites_page.dart';
 import 'package:watchapp/screens/home_page.dart';
 import 'package:watchapp/screens/profile.dart';
 import 'package:watchapp/screens/settings_page.dart';
+
+import 'controller/google_signin_controller.dart';
 class MainPage1 extends StatefulWidget {
   const MainPage1({super.key});
 
@@ -33,6 +35,9 @@ class _MainPageState extends State<MainPage1> {
   _handleMenuButtonPressed() {
     _advancedDrawerController.showDrawer();
   }
+
+  GoogleSignInController googleSignInController=GoogleSignInController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +140,9 @@ class _MainPageState extends State<MainPage1> {
                 ),
                 ListTile(
                   onTap: () {
-
+                    setState(() {
+                      googleSignInController.signOutGoogle();
+                    });
                   },
                   leading: const Icon(Icons.logout),
                   title: const Text('Logout'),

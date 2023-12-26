@@ -79,7 +79,6 @@ class _ProductDetails1State extends State<ProductDetails1> {
       body: SingleChildScrollView(
           child: Column(
               children: [
-                const SizedBox(height: 5,),
                 const Align(
                     alignment: Alignment(-0.99, 0),
                     child:
@@ -134,7 +133,7 @@ class _ProductDetails1State extends State<ProductDetails1> {
                         autoPlay: false,
                         aspectRatio: 2.0,
                         viewportFraction: 1,
-                         scrollPhysics:  BouncingScrollPhysics(),
+                         scrollPhysics:  const BouncingScrollPhysics(),
                         onPageChanged: (index, reason) {
                           setState(() {
                             currentindex = index;

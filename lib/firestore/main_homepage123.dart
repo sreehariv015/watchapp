@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watchapp/firestore/widget/banner-widget.dart';
+import 'package:watchapp/firestore/widget/category_widget.dart';
 import 'package:watchapp/firestore/widget/product-list-widget.dart';
 
 
@@ -12,19 +13,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String title = "Settings";
-
-  final List<String> shoeNames = [
-
-  ];
-  final List<String> shoeName2 = [
-
-  ];
-  final List<String> shoePrice = [
-  ];
-
-  final List<String> shoeImages = [
-
-  ];
   int currentIndex = 0;
 
 
@@ -59,27 +47,24 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: ListView(
-          children:  [
+          children:  const [
         Column(
             children: [
           SizedBox(height: 10,),
           Align(
             alignment: Alignment(-0.96, 0),
-            child: Text("Trending Deals",style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 17,
-              color: Colors.black,
-            ),),
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Trending Deals",style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                color: Colors.black,
+              ),),
+            ),
           ),
           BannerWidget(),
-          SizedBox(
-            height: 5,
-          ),
-
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GetProductWidget(),
-          )
+          CategoryWidget(),
+          GetProductWidget()
         ]),
       ]),
     );

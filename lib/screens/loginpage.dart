@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:watchapp/screens/controller/google_signin_controller.dart';
 import 'package:watchapp/screens/forgot_password_page.dart';
 import 'package:watchapp/screens/home_page.dart';
 import 'package:watchapp/screens/main_page.dart';
@@ -20,6 +22,10 @@ class _LoginPage1State extends State<Login11> {
 
 
   final loginkey=GlobalKey<FormState>();
+
+  GoogleSignInController googleSignInController=GoogleSignInController();
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -212,6 +218,9 @@ class _LoginPage1State extends State<Login11> {
                       width: 70,
                       height: 70,
                       child: IconButton(onPressed: () {
+                        setState(() {
+                         googleSignInController.signInWithGoogle();
+                        });
 
                       }, icon:const Image(image: AssetImage('assets/images/google.png'))),
                     ),

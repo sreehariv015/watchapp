@@ -44,13 +44,16 @@ class _GetProductWidgetState extends State<GetProductWidget> {
             children: [
               const Align(
                 alignment: Alignment(-0.96, 0),
-                child: Text(
-                    "Top Selection",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                      color: Colors.black,
-                    )
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                      "Top Selection",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                        color: Colors.black,
+                      )
+                  ),
                 ),
               ),
               SizedBox(
@@ -74,6 +77,7 @@ class _GetProductWidgetState extends State<GetProductWidget> {
                       categoryId: productData['categoryId'],
                       productName: productData['productName'],
                       categoryName: productData['categoryName'],
+                      categoryName1: productData['categoryName1'],
                       salePrice: productData['salePrice'].toString(),
                       fullPrice: productData['fullPrice'].toString(),
                       productImages: productData['productImages'],
@@ -95,7 +99,7 @@ class _GetProductWidgetState extends State<GetProductWidget> {
                               ClipRRect(
                                 borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
                                 child: SizedBox(
-                                  height: 182,
+                                  height: 170,
                                   width: double.infinity,
                                   child: Image.network(
                                     height: size.height,
@@ -106,7 +110,7 @@ class _GetProductWidgetState extends State<GetProductWidget> {
                                 ),
                               ),
                               Text(
-                                "${productModel.productName}",
+                                productModel.productName,
                                 style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 15,
@@ -116,7 +120,7 @@ class _GetProductWidgetState extends State<GetProductWidget> {
                               Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Text(
-                                  "${productModel.productName}",
+                                  productModel.categoryName1,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w300,
                                     color: Colors.black,

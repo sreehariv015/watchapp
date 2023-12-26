@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:watchapp/screens/profile.dart';
 
+import 'controller/google_signin_controller.dart';
 import 'home_page.dart';
 class Settings1 extends StatefulWidget {
   const Settings1({super.key});
@@ -20,6 +21,8 @@ class _Settings1State extends State<Settings1> {
     'Tamil',
     'Hindi',
   ];
+  GoogleSignInController googleSignInController=GoogleSignInController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -320,7 +323,11 @@ class _Settings1State extends State<Settings1> {
             padding: const EdgeInsets.all(8.0),
             child: Card(
               child: ListTile(
-                onTap: () {},
+                onTap: () {
+                  setState(() {
+                    googleSignInController.signOutGoogle();
+                  });
+                },
                 leading: const Icon(Icons.logout,
                   size: 30,
                   color: Color(0xFF4A4A5F),

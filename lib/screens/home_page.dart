@@ -306,7 +306,7 @@ class _HomepageState extends State<Homepage> {
                           child: Column(
                             children: [
                               ClipRRect(
-                                borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+                                borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
                                 child: SizedBox(
                                   height: 182,
                                   width: double.infinity,

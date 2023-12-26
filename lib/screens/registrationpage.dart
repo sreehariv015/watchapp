@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:watchapp/screens/loginpage.dart';
 import 'package:watchapp/screens/phone_number_page.dart';
 
+import 'controller/google_signin_controller.dart';
+
 class LoginPage24 extends StatefulWidget {
   const LoginPage24({super.key});
 
@@ -19,6 +21,10 @@ class _LoginPage1State extends State<LoginPage24> {
   var confirm_password=TextEditingController();
 
   final registrationkey=GlobalKey<FormState>();
+
+  GoogleSignInController googleSignInController=GoogleSignInController();
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -261,7 +267,9 @@ class _LoginPage1State extends State<LoginPage24> {
                       width: 70,
                       height: 70,
                       child: IconButton(onPressed: () {
-
+                        setState(() {
+                          googleSignInController.signInWithGoogle();
+                        });
                       }, icon:const Image(image: AssetImage('assets/images/google.png'))),
                     ),
                     SizedBox(

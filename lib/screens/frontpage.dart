@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:watchapp/screens/loginpage.dart';
 import 'package:watchapp/screens/phone_number_page.dart';
 import 'package:watchapp/screens/registrationpage.dart';
+import 'controller/google_signin_controller.dart';
 class FrontPage1 extends StatefulWidget {
   const FrontPage1({super.key});
 
@@ -11,6 +12,8 @@ class FrontPage1 extends StatefulWidget {
 
 class _FrontPage1State extends State<FrontPage1> {
   final loginkey=GlobalKey<FormState>();
+  GoogleSignInController googleSignInController=GoogleSignInController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,7 +133,9 @@ class _FrontPage1State extends State<FrontPage1> {
                     width: 70,
                     height: 70,
                     child: IconButton(onPressed: () {
-
+                      setState(() {
+                        googleSignInController.signInWithGoogle();
+                      });
                     }, icon:const Image(image: AssetImage('assets/images/google.png'))),
                   ),
                   SizedBox(
