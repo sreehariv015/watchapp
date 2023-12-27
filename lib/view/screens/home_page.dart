@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:watchapp/widget/banner-widget.dart';
-import 'package:watchapp/widget/category_widget.dart';
-import 'package:watchapp/widget/product-list-widget.dart';
+
+import '../widget/banner-widget.dart';
+import '../widget/category_widget.dart';
+import '../widget/product-list-widget.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: ListView(
-          children:  const [
+          children: const [
             Column(
                 children: [
                   SizedBox(height: 10,),

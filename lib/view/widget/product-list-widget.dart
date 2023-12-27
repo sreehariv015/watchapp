@@ -2,9 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../controller/get-product-data-controller.dart';
-import '../models/product-model.dart';
-import '../view/screens/product-deatils-screen.dart';
+
+import '../../controller/get-product-data-controller.dart';
+import '../../models/product-model.dart';
+import '../screens/product-deatils-screen.dart';
 class GetProductWidget extends StatefulWidget {
   const GetProductWidget({super.key});
 

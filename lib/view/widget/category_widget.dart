@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controller/get_category_data_controller.dart';
-import '../models/category_model.dart';
 
+import '../../controller/get_category_data_controller.dart';
+import '../../models/category_model.dart';
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget({super.key});
 
