@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../screens/controller/get-cart-product-controller.dart';
 import '../model/product-model.dart';
 
 
@@ -20,6 +22,9 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  User? user = FirebaseAuth.instance.currentUser;
+  final CartItemController _CartItemController = Get.put(CartItemController());
+
   final CarouselController carouselController = CarouselController();
   bool isFavorite = false;
   int currentIndex = 0;
@@ -428,14 +433,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   width: halfwidth.width,
                   height: 56,
                   color: Colors.white,
-                  child: TextButton(onPressed: () {
-                    Fluttertoast.showToast(msg: "Added to cart",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 10,
-                        backgroundColor: Colors.grey,
-                        fontSize: 16.0
-                    );
+                  child: TextButton(onPressed: () async {
+                        await _CartItemController
+                            .checkProductExistence(
+                        uId: user!.uid,
+                        productModel: widget.productModel
+                        );
+
 
                   }, child: const Text("Add to cart",
                     style: TextStyle(

@@ -65,7 +65,7 @@ class _AddToCartState extends State<AddToCart> {
                                   quantity++;
                                 });
                               },
-                              icon: Icon(Icons.add),
+                              icon: const Icon(Icons.add),
                             ),
                           ],
                         ),

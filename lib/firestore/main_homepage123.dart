@@ -4,14 +4,14 @@ import 'package:watchapp/firestore/widget/category_widget.dart';
 import 'package:watchapp/firestore/widget/product-list-widget.dart';
 
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MainHomePage extends StatefulWidget {
+  const MainHomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MainHomePage> createState() => _MainHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MainHomePageState extends State<MainHomePage> {
   String title = "Settings";
   int currentIndex = 0;
 

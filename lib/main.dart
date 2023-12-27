@@ -6,6 +6,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:watchapp/screens/loginpage.dart';
 import 'package:watchapp/screens/main_page.dart';
 import 'package:watchapp/screens/splash_screen.dart';
+import 'package:watchapp/trash/empnew.dart';
 
 import 'firestore/main_homepage123.dart';
 import 'firestore/main_page123.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           theme: ThemeData(primarySwatch: Colors.blue),
           debugShowCheckedModeBanner: false,
-          home: const SplashScreen1(),
+          home:  SplashScreen1(),
         );
       },
     );

@@ -173,28 +173,6 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     const SizedBox(height: 20,),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color:Colors.red,
-                            borderRadius: BorderRadius.circular(28)
-
-                        ),
-                        width: 240,
-                        height: 53,
-                        child: TextButton(onPressed: () {
-                          if(save_key.currentState!.validate()){
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
-                          }
-
-                        }, child: const Text("Update",style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 28,
-                          //fontWeight: FontWeight.bold
-                        ),)),
-                      ),
-                    ),
                   ],
                 ),
               ),

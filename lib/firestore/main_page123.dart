@@ -19,7 +19,7 @@ class _MainPageState extends State<MainPage123> {
   int _currentSelectedIndex = 0;
   var titles = ["Home", "Favorites", "Cart", "Settings"];
   final List<Widget> _pages=[
-    const HomePage(),
+    const MainHomePage(),
     Favorites(),
     const AddToCart(),
     const Settings1()
