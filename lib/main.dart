@@ -3,13 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:watchapp/screens/loginpage.dart';
-import 'package:watchapp/screens/main_page.dart';
-import 'package:watchapp/screens/splash_screen.dart';
-import 'package:watchapp/trash/empnew.dart';
-
-import 'firestore/main_homepage123.dart';
-import 'firestore/main_page123.dart';
+import 'package:watchapp/view/screens/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
