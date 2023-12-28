@@ -14,8 +14,7 @@ class GetProductWidget extends StatefulWidget {
 }
 
 class _GetProductWidgetState extends State<GetProductWidget> {
-  final GetProductDataController _getProductDataController =
-  Get.put(GetProductDataController());
+  final GetProductDataController _getProductDataController = Get.put(GetProductDataController());
   @override
   Widget build(BuildContext context) {
 
@@ -75,8 +74,8 @@ class _GetProductWidgetState extends State<GetProductWidget> {
                       productId: productData['productId'],
                       categoryId: productData['categoryId'],
                       productName: productData['productName'],
+                      productName2: productData['productName2'],
                       categoryName: productData['categoryName'],
-                      categoryName1: productData['categoryName1'],
                       salePrice: productData['salePrice'].toString(),
                       fullPrice: productData['fullPrice'].toString(),
                       productImages: productData['productImages'],
@@ -119,7 +118,7 @@ class _GetProductWidgetState extends State<GetProductWidget> {
                               Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Text(
-                                  productModel.categoryName1,
+                                  productModel.productName2,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w300,
                                     color: Colors.black,

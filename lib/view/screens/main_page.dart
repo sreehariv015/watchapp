@@ -4,15 +4,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:watchapp/view/screens/home_page.dart';
 import 'package:watchapp/view/screens/profile.dart';
 import 'package:watchapp/view/screens/settings_page.dart';
 
 import '../../controller/get_user_data_controller.dart';
 import '../../controller/google_signin_controller.dart';
-import '../../trash/important_example_needed/empnew.dart';
+import 'cart_screen.dart';
 import 'favorites_page.dart';
-import 'home_page.dart';
 
 class MainPage1 extends StatefulWidget {
   const MainPage1({super.key});
@@ -27,7 +26,7 @@ class _MainPageState extends State<MainPage1> {
   final List<Widget> _pages = [
     const HomePage(),
     Favorites(),
-    const CartPageTrash(),
+    const Cart(),
     const Settings1(),
   ];
 
@@ -35,8 +34,8 @@ class _MainPageState extends State<MainPage1> {
   final GoogleSignInController googleSignInController = GoogleSignInController();
   final GetUserDataController _getUserDataController = Get.put(GetUserDataController());
 
-  late User user;
-  late List<QueryDocumentSnapshot<Object?>> userData;
+  late final User user;
+  late List<QueryDocumentSnapshot<Object?>> userData = [];
 
   @override
   void initState() {
@@ -97,12 +96,12 @@ class _MainPageState extends State<MainPage1> {
                     height: 50,
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Stack(
                       children: [
                         CircleAvatar(
                           radius: 50,
-                          backgroundImage: NetworkImage("${userData[0]['userImg']}"),
+                          backgroundImage: NetworkImage(userData.isNotEmpty ? userData[0]['userImg'] ?? '' : ''),
                         ),
                       ],
                     ),
@@ -110,7 +109,7 @@ class _MainPageState extends State<MainPage1> {
                   Text(
                     "${userData.isNotEmpty ? userData[0]['username'] : 'N/A'}",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w500,
                       color: Colors.red,
