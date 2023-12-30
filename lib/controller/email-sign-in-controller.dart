@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-
+import 'package:watchapp/view/screens/splash_screen.dart';
 import '../models/user_model.dart';
-import '../view/screens/splash_screen.dart';
+import 'get-device-token-controller.dart';
 
 class EmailPassController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -19,6 +19,8 @@ class EmailPassController extends GetxController {
   FirebaseAuth get auth => _auth;
 
   Future<void> signupUser(String email, String password, String name) async {
+    final GetDeviceTokenController getDeviceTokenController =
+    Get.put(GetDeviceTokenController());
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);

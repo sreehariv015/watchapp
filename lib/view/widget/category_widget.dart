@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../controller/get_category_data_controller.dart';
 import '../../models/category_model.dart';
+
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget({super.key});
 
@@ -14,9 +15,7 @@ class CategoryWidget extends StatefulWidget {
 }
 
 class _CategoryWidgetState extends State<CategoryWidget> {
-
   final CategoryDataController _categoryDataController = Get.put(CategoryDataController());
-
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +25,10 @@ class _CategoryWidgetState extends State<CategoryWidget> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const SizedBox(
-              width: 20,
-              height: 20,
-              child: Center(child: CircularProgressIndicator()));
+            width: 20,
+            height: 20,
+            child: Center(child: CircularProgressIndicator()),
+          );
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
@@ -44,23 +44,44 @@ class _CategoryWidgetState extends State<CategoryWidget> {
               itemBuilder: (context, index) {
                 final productData = data[index];
                 CategoriesModel categoryModel = CategoriesModel(
-                    categoryId: productData['categoryId'],
-                    categoryImg: productData['categoryImg'],
-                    categoryName: productData['categoryName'],
-                    createdAt: productData['createdAt'],
-                    updatedAt: productData['updatedAt']);
+                  categoryId: productData['categoryId'],
+                  categoryImg: productData['categoryImg'],
+                  categoryName: productData['categoryName'],
+                  createdAt: productData['createdAt'],
+                  updatedAt: productData['updatedAt'],
+                );
                 return Padding(
                   padding: const EdgeInsets.all(.0),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
+                  child: GestureDetector(
+                    onTap: () {
+                      // Handle onTap action here
+                      print('Category tapped: ${categoryModel.categoryName}');
+                      // You can navigate to a new screen or perform any action on tap
+                    },
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: 80, // Set a fixed width for the container
+                                  height: 80, // Set a fixed height for the container
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.1),
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                        offset: const Offset(0, 3), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: CircleAvatar(
                                     radius: 40,
                                     backgroundColor: Colors.white,
                                     child: ClipOval(
@@ -73,24 +94,28 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                                             child: CupertinoActivityIndicator(),
                                           ),
                                         ),
-                                        errorWidget: (context, url, error) => const Icon(Icons.error),
+                                        errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
                                       ),
                                     ),
                                   ),
-                                  Text(
-                                    categoryModel.categoryName,
-                                    textAlign: TextAlign.center,
-                                      style:
-                                      const TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.black,)
-                                  )
-                                ],
-                              ),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  categoryModel.categoryName,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.black,
+                                  ),
+                                )
+                              ],
                             ),
-                          ],
-                        ),
-                      )
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 );
               },
             ),

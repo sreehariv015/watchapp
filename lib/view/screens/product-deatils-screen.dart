@@ -396,9 +396,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               color: Colors.white,
               child: TextButton(
                   onPressed: () async {
-                    await _CartItemController.checkProductExistence(
-                        uId: user!.uid, productModel: widget.productModel);
+                    try {
+                      await _CartItemController.checkProductExistence(
+                          uId: user!.uid, productModel: widget.productModel);
+                      // Navigate to the CartScreen
+                      Get.to(() => const Cart());
+                    } catch (e) {
+                      print("Error adding to cart: $e");
+                      // Handle the error, e.g., show a snackbar or display an error message.
+                    }
                   },
+
                   child: const Text(
                     "Add to cart",
                     style: TextStyle(color: Colors.black, fontSize: 21),
