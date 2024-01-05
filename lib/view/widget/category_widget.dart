@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../controller/get_category_data_controller.dart';
 import '../../models/category_model.dart';
+import '../screens/category_tap_page.dart';
 
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget({super.key});
@@ -54,9 +55,9 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                   padding: const EdgeInsets.all(.0),
                   child: GestureDetector(
                     onTap: () {
-                      // Handle onTap action here
-                      print('Category tapped: ${categoryModel.categoryName}');
-                      // You can navigate to a new screen or perform any action on tap
+                   Navigator.push(context, MaterialPageRoute(builder: (context) {
+                     return const CategoryTapPage();
+                   },));
                     },
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,

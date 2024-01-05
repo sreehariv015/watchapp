@@ -67,7 +67,7 @@ class _MainPageState extends State<MainPage1> {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Colors.blue, Colors.red.withOpacity(0.2)],
+                colors: [Colors.blue, Colors.white.withOpacity(0.2)],
               ),
             ),
           ),
@@ -101,7 +101,10 @@ class _MainPageState extends State<MainPage1> {
                       children: [
                         CircleAvatar(
                           radius: 50,
-                          backgroundImage: NetworkImage(userData.isNotEmpty ? userData[0]['userImg'] ?? '' : ''),
+                          backgroundImage:
+                          NetworkImage(
+                              userData.isNotEmpty ? userData[0]['userImg'] ?? '' : ''
+                          ),
                         ),
                       ],
                     ),
@@ -196,7 +199,7 @@ class _MainPageState extends State<MainPage1> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.blueAccent,
               elevation: 0,
               toolbarHeight: 65.0,
               leading: Builder(
@@ -214,7 +217,7 @@ class _MainPageState extends State<MainPage1> {
             body: _pages[_currentSelectedIndex],
             bottomNavigationBar: CurvedNavigationBar(
               height: 52,
-              color: Colors.black54,
+              color: Colors.blueAccent,
               backgroundColor: Colors.white,
               items: const <Widget>[
                 Icon(Icons.home, size: 25, color: Colors.white),

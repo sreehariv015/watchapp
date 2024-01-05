@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blueAccent,
         title: Container(
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10),
@@ -65,6 +65,20 @@ class _HomePageState extends State<HomePage> {
                   ),
                   BannerWidget(),
                   CategoryWidget(),
+                  Align(
+                    alignment: Alignment(-0.96, 0),
+                    child: Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: Text(
+                          "Top Selection",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            color: Colors.black,
+                          )
+                      ),
+                    ),
+                  ),
                   GetProductWidget()
                 ]),
           ]),

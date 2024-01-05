@@ -46,21 +46,21 @@ class _OrdersPageState extends State<OrdersPage> {
               .snapshots(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Center(
+              return const Center(
                 child: Text("Error"),
               );
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Container(
+              return SizedBox(
                 height: Get.height / 5,
-                child: Center(
+                child: const Center(
                   child: CupertinoActivityIndicator(),
                 ),
               );
             }
 
             if (snapshot.data!.docs.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text("No products found!"),
               );
             }

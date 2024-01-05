@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:watchapp/view/screens/cart_screen.dart';
 import '../../controller/get-cart-product-controller.dart';
 import '../../models/product-model.dart';
@@ -400,7 +399,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       await _CartItemController.checkProductExistence(
                           uId: user!.uid, productModel: widget.productModel);
                       // Navigate to the CartScreen
-                      Get.to(() => const Cart());
+                      // Get.to(() => const Cart());
                     } catch (e) {
                       print("Error adding to cart: $e");
                       // Handle the error, e.g., show a snackbar or display an error message.

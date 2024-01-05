@@ -31,7 +31,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     Get.bottomSheet(
       Container(
         height: Get.height * 0.8,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(16.0),
@@ -43,11 +43,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 20.0, vertical: 20.0),
-                child: Container(
+                child: SizedBox(
                   height: 55.0,
                   child: TextFormField(
                     controller: nameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Name',
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: 10.0,
@@ -62,7 +62,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 20.0, vertical: 20.0),
-                child: Container(
+                child: SizedBox(
                   height: 55.0,
                   child: TextFormField(
                     controller: phoneController,
@@ -83,11 +83,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 20.0, vertical: 20.0),
-                child: Container(
+                child: SizedBox(
                   height: 55.0,
                   child: TextFormField(
                     controller: addressController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Address',
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: 10.0,
@@ -102,7 +102,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   // backgroundColor: AppConstant.appMainColor,
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                 ),
                 onPressed: () async {
                   if (nameController.text != '' &&
@@ -114,7 +114,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     String customerToken = await getCustomerDeviceToken();
 
                     //place order serice
-
                     _placeOrderController.placeOrder(
                       context: context,
                       customerName: name,
@@ -126,7 +125,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     print("Fill The Details");
                   }
                 },
-                child: Text(
+                child: const Text(
                   "Place Order",
                   style: TextStyle(color: Colors.white),
                 ),
@@ -170,93 +169,91 @@ class _CheckoutPageState extends State<CheckoutPage> {
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Center(
+              return const Center(
                 child: Text("Error"),
               );
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Container(
+              return SizedBox(
                 height: Get.height / 5,
-                child: Center(
+                child: const Center(
                   child: CupertinoActivityIndicator(),
                 ),
               );
             }
 
             if (snapshot.data!.docs.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text("No products found!"),
               );
             }
 
             if (snapshot.data != null) {
-              return Container(
-                child: ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
-                  shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    final productData = snapshot.data!.docs[index];
-                    CartModel cartModel = CartModel(
-                      productId: productData['productId'],
-                      categoryId: productData['categoryId'],
-                      productName: productData['productName'],
-                      categoryName: productData['categoryName'],
-                      salePrice: productData['salePrice'],
-                      fullPrice: productData['fullPrice'],
-                      productImages: productData['productImages'],
-                      deliveryTime: productData['deliveryTime'],
-                      isSale: productData['isSale'],
-                      productDescription: productData['productDescription'],
-                      createdAt: productData['createdAt'],
-                      updatedAt: productData['updatedAt'],
-                      productQuantity: productData['productQuantity'],
-                      productTotalPrice: double.parse(
-                          productData['productTotalPrice'].toString()),
-                    );
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  final productData = snapshot.data!.docs[index];
+                  CartModel cartModel = CartModel(
+                    productId: productData['productId'],
+                    categoryId: productData['categoryId'],
+                    productName: productData['productName'],
+                    categoryName: productData['categoryName'],
+                    salePrice: productData['salePrice'],
+                    fullPrice: productData['fullPrice'],
+                    productImages: productData['productImages'],
+                    deliveryTime: productData['deliveryTime'],
+                    isSale: productData['isSale'],
+                    productDescription: productData['productDescription'],
+                    createdAt: productData['createdAt'],
+                    updatedAt: productData['updatedAt'],
+                    productQuantity: productData['productQuantity'],
+                    productTotalPrice: double.parse(
+                        productData['productTotalPrice'].toString()),
+                  );
 
-                    //calculate price
-                    productPriceController.fetchProductPrice();
-                    return SwipeActionCell(
-                      key: ObjectKey(cartModel.productId),
-                      trailingActions: [
-                        SwipeAction(
-                          title: "Delete",
-                          forceAlignmentToBoundary: true,
-                          performsFirstActionWithFullSwipe: true,
-                          onTap: (CompletionHandler handler) async {
-                            print('deleted');
+                  //calculate price
+                  productPriceController.fetchProductPrice();
+                  return SwipeActionCell(
+                    key: ObjectKey(cartModel.productId),
+                    trailingActions: [
+                      SwipeAction(
+                        title: "Delete",
+                        forceAlignmentToBoundary: true,
+                        performsFirstActionWithFullSwipe: true,
+                        onTap: (CompletionHandler handler) async {
+                          print('deleted');
 
-                            await FirebaseFirestore.instance
-                                .collection('cart')
-                                .doc(user!.uid)
-                                .collection('cartOrders')
-                                .doc(cartModel.productId)
-                                .delete();
-                          },
-                        )
-                      ],
-                      child: Card(
-                        elevation: 5,
-                        // color: AppConstant.appTextColor,
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            // backgroundColor: AppConstant.appMainColor,
-                            backgroundImage:
-                            NetworkImage(cartModel.productImages[0]),
-                          ),
-                          title: Text(cartModel.productName),
-                          subtitle: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(cartModel.productTotalPrice.toString()),
-                            ],
-                          ),
+                          await FirebaseFirestore.instance
+                              .collection('cart')
+                              .doc(user!.uid)
+                              .collection('cartOrders')
+                              .doc(cartModel.productId)
+                              .delete();
+                        },
+                      )
+                    ],
+                    child: Card(
+                      elevation: 5,
+                      // color: AppConstant.appTextColor,
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          // backgroundColor: AppConstant.appMainColor,
+                          backgroundImage:
+                          NetworkImage(cartModel.productImages[0]),
+                        ),
+                        title: Text(cartModel.productName),
+                        subtitle: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(cartModel.productTotalPrice.toString()),
+                          ],
                         ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               );
             }
 

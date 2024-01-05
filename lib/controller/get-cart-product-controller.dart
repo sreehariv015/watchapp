@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-
 import '../models/cart-model.dart';
 import '../models/product-model.dart';
 
@@ -25,12 +22,13 @@ class CartItemController extends GetxController {
       int updatedQuantity = currentQuantity + quantityIncrement;
 
       try {
-        double totalPrice = double.parse(
+        double totalPrice = double.tryParse(
           productModel.isSale
               ? productModel.salePrice.replaceAll(',', '')
               : productModel.fullPrice.replaceAll(',', ''),
-        ) *
-            updatedQuantity;
+        ) ?? 0.0;
+
+        totalPrice *= updatedQuantity;
 
         await documentReference.update({
           'productQuantity': updatedQuantity,
@@ -41,7 +39,6 @@ class CartItemController extends GetxController {
         print("Product exists");
       } catch (e) {
         print("Error updating quantity: $e");
-        // Handle the error, set a default value for totalPrice, or take appropriate action.
       }
     } else {
       await FirebaseFirestore.instance.collection('cart').doc(uId).set(
@@ -74,7 +71,6 @@ class CartItemController extends GetxController {
 
       await documentReference.set(cartModel.toMap());
 
-      print("Product added");
       Get.snackbar("Success", "Product added");
     }
   }

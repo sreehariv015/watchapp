@@ -40,20 +40,6 @@ class _GetProductWidgetState extends State<GetProductWidget> {
           // Rest of your widget tree using the 'data'
           return Column(
             children: [
-              const Align(
-                alignment: Alignment(-0.96, 0),
-                child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Text(
-                      "Top Selection",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Colors.black,
-                      )
-                  ),
-                ),
-              ),
               SizedBox(
                 width: MediaQuery.of(context).size.height,
                 height: MediaQuery.of(context).size.width,
