@@ -56,18 +56,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             icon: const Icon(Icons.shopping_cart,
                 color: Colors.black
             ), // Add to Cart icon
-            onPressed: () async {
-              try {
-                await _CartItemController.checkProductExistence(
-                  uId: user!.uid,
-                  productModel: widget.productModel,
-                );
+            onPressed: ()  {
                 // Navigate to the CartScreen
                  Get.to(() => const Cart());
-              } catch (e) {
-                print("Error adding to cart: $e");
-                // Handle the error, e.g., show a snackbar or display an error message.
-              }
             },
           ),
         ],
@@ -278,7 +269,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   borderRadius: BorderRadius.circular(20),
                                   child: Image(
                                     image: NetworkImage(
-                                        widget.productModel.productImages[1]),
+                                        widget.productModel.productImages[1],
+                                        scale: 1.0
+                                    ),
                                     fit: BoxFit.fill,
                                   )),
                             ),

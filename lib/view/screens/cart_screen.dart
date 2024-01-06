@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -137,22 +136,21 @@ class _CartState extends State<Cart> {
                             children: [
                               GestureDetector(
                                 onTap: () async {
-                                  if (cartModel.productQuantity >
-                                      1) {
-                                    await FirebaseFirestore
-                                        .instance
+                                  if (cartModel.productQuantity > 1) {
+                                    await FirebaseFirestore.instance
                                         .collection('cart')
                                         .doc(user!.uid)
                                         .collection('cartOrders')
                                         .doc(cartModel.productId)
                                         .update({
-                                      'productQuantity':
-                                      FieldValue.increment(-1),
-                                      'productTotalPrice':
-                                      FieldValue.increment(
-                                          -double.parse(
-                                              cartModel.fullPrice)),
+                                      'productQuantity': FieldValue.increment(-1),
+                                      'productTotalPrice': FieldValue.increment(
+                                        -double.parse(cartModel.fullPrice.replaceAll(',', '')),
+                                      ),
                                     });
+
+                                    // Call fetchProductPrice after updating the cart
+                                    _productPriceController.fetchProductPrice();
                                   }
                                 },
                                 child: const CircleAvatar(
@@ -172,12 +170,14 @@ class _CartState extends State<Cart> {
                                       .collection('cartOrders')
                                       .doc(cartModel.productId)
                                       .update({
-                                    'productQuantity':
-                                    FieldValue.increment(1),
-                                    'productTotalPrice':
-                                    FieldValue.increment(
-                                        double.parse(cartModel.fullPrice)),
+                                    'productQuantity': FieldValue.increment(1),
+                                    'productTotalPrice': FieldValue.increment(
+                                      double.parse(cartModel.fullPrice.replaceAll(',', '')),
+                                    ),
                                   });
+
+                                  // Call fetchProductPrice after updating the cart
+                                  _productPriceController.fetchProductPrice();
                                 },
                                 child: const CircleAvatar(
                                   radius: 14.0,
