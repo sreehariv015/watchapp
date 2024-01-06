@@ -27,7 +27,50 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     Size halfwidth = MediaQuery.of(context).size / 2;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        elevation: 0,
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        title: Container(
+          alignment: Alignment.center,
+          margin: const EdgeInsets.all(10),
+          width: size.width,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: const InputDecoration(
+                hintText: 'Search',
+                border: InputBorder.none,
+                icon: Icon(Icons.search, size: 25, color: Colors.black),
+              ),
+              onChanged: (value) {},
+            ),
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart,
+                color: Colors.black
+            ), // Add to Cart icon
+            onPressed: () async {
+              try {
+                await _CartItemController.checkProductExistence(
+                  uId: user!.uid,
+                  productModel: widget.productModel,
+                );
+                // Navigate to the CartScreen
+                 Get.to(() => const Cart());
+              } catch (e) {
+                print("Error adding to cart: $e");
+                // Handle the error, e.g., show a snackbar or display an error message.
+              }
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
           child: Column(children: [
@@ -416,7 +459,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               height: 56,
               color: Colors.red,
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.off(() => const Cart());
+                  },
                   child: const Text(
                     "Buy now",
                     style: TextStyle(color: Colors.black, fontSize: 21),

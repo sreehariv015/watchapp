@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:watchapp/view/screens/home_page.dart';
 import 'package:watchapp/view/screens/profile.dart';
 import 'package:watchapp/view/screens/settings_page.dart';
-
 import '../../controller/get_user_data_controller.dart';
 import '../../controller/google_signin_controller.dart';
 import 'cart_screen.dart';
@@ -199,7 +198,7 @@ class _MainPageState extends State<MainPage1> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              backgroundColor: Colors.blueAccent,
+              backgroundColor: Colors.white,
               elevation: 0,
               toolbarHeight: 65.0,
               leading: Builder(
@@ -215,21 +214,42 @@ class _MainPageState extends State<MainPage1> {
               ),
             ),
             body: _pages[_currentSelectedIndex],
-            bottomNavigationBar: CurvedNavigationBar(
-              height: 52,
-              color: Colors.blueAccent,
-              backgroundColor: Colors.white,
-              items: const <Widget>[
-                Icon(Icons.home, size: 25, color: Colors.white),
-                Icon(Icons.favorite, size: 25, color: Colors.white),
-                Icon(Icons.shopping_cart, size: 25, color: Colors.white),
-                Icon(Icons.settings, size: 25, color: Colors.white),
-              ],
-              onTap: (index) {
-                setState(() {
-                  _currentSelectedIndex = index;
-                });
-              },
+            bottomNavigationBar: SizedBox(
+              height: 60,
+              child: GNav(
+                backgroundColor: Colors.white,
+                color: Colors.black,
+                activeColor: Colors.white,
+                tabBackgroundColor: Colors.blueGrey,
+                gap: 8,
+                iconSize: 24,
+                padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 11),
+                duration: const Duration(milliseconds: 800),
+                tabs: const [
+                  GButton(
+                    icon: Icons.home,
+                    text: 'Home',
+                  ),
+                  GButton(
+                    icon: Icons.favorite,
+                    text: 'Favorites',
+                  ),
+                  GButton(
+                    icon: Icons.shopping_cart,
+                    text: 'Cart',
+                  ),
+                  GButton(
+                    icon: Icons.settings,
+                    text: 'Settings',
+                  ),
+                ],
+                selectedIndex: _currentSelectedIndex,
+                onTabChange: (index) {
+                  setState(() {
+                    _currentSelectedIndex = index;
+                  });
+                },
+              ),
             ),
           ),
         );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:watchapp/view/screens/home_page.dart';
 import 'package:watchapp/view/screens/main_page.dart';
 
 Future<void> main() async {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           theme: ThemeData(primarySwatch: Colors.blue),
           debugShowCheckedModeBanner: false,
-          home: const MainPage1(),
+          home: const HomePage(),
         );
       },
     );

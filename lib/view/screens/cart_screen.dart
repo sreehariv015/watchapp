@@ -122,7 +122,9 @@ class _CartState extends State<Cart> {
                       leading: CircleAvatar(
                         backgroundColor: Colors.grey,
                         backgroundImage: NetworkImage(
-                            cartModel.productImages[0]),
+                            cartModel.productImages[0],
+                          scale: 1.0,
+                        ),
                       ),
                       title: Text(cartModel.productName),
                       subtitle: Row(

@@ -3,12 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:watchapp/view/screens/main_page.dart';
 
-import '../../controller/cart-price-controller.dart';
 import '../../models/cart-model.dart';
 class OrdersPage extends StatefulWidget {
   const OrdersPage({super.key});
@@ -66,51 +64,49 @@ class _OrdersPageState extends State<OrdersPage> {
             }
 
             if (snapshot.data != null) {
-              return Container(
-                child: ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    final productData = snapshot.data!.docs[index];
-                    CartModel cartModel = CartModel(
-                      productId: productData['productId'],
-                      categoryId: productData['categoryId'],
-                      productName: productData['productName'],
-                      categoryName: productData['categoryName'],
-                      salePrice: productData['salePrice'],
-                      fullPrice: productData['fullPrice'],
-                      productImages: productData['productImages'],
-                      deliveryTime: productData['deliveryTime'],
-                      isSale: productData['isSale'],
-                      productDescription: productData['productDescription'],
-                      createdAt: productData['createdAt'],
-                      updatedAt: productData['updatedAt'],
-                      productQuantity: productData['productQuantity'],
-                      productTotalPrice: double.parse(
-                          productData['productTotalPrice'].toString()),
-                    );
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  final productData = snapshot.data!.docs[index];
+                  CartModel cartModel = CartModel(
+                    productId: productData['productId'],
+                    categoryId: productData['categoryId'],
+                    productName: productData['productName'],
+                    categoryName: productData['categoryName'],
+                    salePrice: productData['salePrice'],
+                    fullPrice: productData['fullPrice'],
+                    productImages: productData['productImages'],
+                    deliveryTime: productData['deliveryTime'],
+                    isSale: productData['isSale'],
+                    productDescription: productData['productDescription'],
+                    createdAt: productData['createdAt'],
+                    updatedAt: productData['updatedAt'],
+                    productQuantity: productData['productQuantity'],
+                    productTotalPrice: double.parse(
+                        productData['productTotalPrice'].toString()),
+                  );
 
-                    return Card(
-                      elevation: 5,
-                      // color: AppConstant.appTextColor,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          // backgroundColor: AppConstant.appMainColor,
-                          backgroundImage:
-                          NetworkImage(cartModel.productImages[0]),
-                        ),
-                        title: Text(cartModel.productName),
-                        subtitle: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(cartModel.productTotalPrice.toString()),
-                          ],
-                        ),
+                  return Card(
+                    elevation: 5,
+                    // color: AppConstant.appTextColor,
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        // backgroundColor: AppConstant.appMainColor,
+                        backgroundImage:
+                        NetworkImage(cartModel.productImages[0]),
                       ),
-                    );
-                  },
-                ),
+                      title: Text(cartModel.productName),
+                      subtitle: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(cartModel.productTotalPrice.toString()),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               );
             }
 

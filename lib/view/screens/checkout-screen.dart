@@ -236,12 +236,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ],
                     child: Card(
                       elevation: 5,
-                      // color: AppConstant.appTextColor,
+                       //color: AppConstant.appTextColor,
                       child: ListTile(
                         leading: CircleAvatar(
                           // backgroundColor: AppConstant.appMainColor,
                           backgroundImage:
-                          NetworkImage(cartModel.productImages[0]),
+                          NetworkImage(cartModel.productImages[0],
+                              scale: 1.0,),
                         ),
                         title: Text(cartModel.productName),
                         subtitle: Row(

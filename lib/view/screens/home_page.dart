@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../widget/banner-widget.dart';
 import '../widget/category_widget.dart';
 import '../widget/product-list-widget.dart';
@@ -24,7 +23,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.white,
         title: Container(
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10),
