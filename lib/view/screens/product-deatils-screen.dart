@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:watchapp/view/screens/cart_screen.dart';
+import '../../controller/add_product_controller_faverote.dart';
 import '../../controller/get-cart-product-controller.dart';
 import '../../models/product-model.dart';
 class ProductDetailsScreen extends StatefulWidget {
@@ -16,6 +17,7 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final CarouselController carouselController = CarouselController();
+  final addFirebaseController = Get.put(AddFirebaseController());
   bool isFavorite = false;
   int currentIndex = 0;
   User? user = FirebaseAuth.instance.currentUser;
@@ -172,10 +174,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       size: 30,
                       color: Colors.redAccent,
                     ),
-                    onPressed: () {
+                    onPressed: ()  async {
                       setState(() {
                         isFavorite = !isFavorite;
                       });
+                      await addFirebaseController.addFavoriteItem(
+                          uId: user!.uid,
+                          productModel: widget.productModel);
                     },
                   ),
                 ),
