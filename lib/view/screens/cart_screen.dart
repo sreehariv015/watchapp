@@ -114,85 +114,116 @@ class _CartState extends State<Cart> {
                       },
                     )
                       ],
-                      child: Card(
-                    elevation: 5,
-                    color: Colors.white,
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.grey,
-                        backgroundImage: NetworkImage(
-                            cartModel.productImages[0],
-                          scale: 1.0,
-                        ),
-                      ),
-                      title: Text(cartModel.productName),
-                      subtitle: Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                              "Price : ${cartModel.productTotalPrice.toString()}"),
-                          Row(
-                            children: [
-                              GestureDetector(
-                                onTap: () async {
-                                  if (cartModel.productQuantity > 1) {
-                                    await FirebaseFirestore.instance
-                                        .collection('cart')
-                                        .doc(user!.uid)
-                                        .collection('cartOrders')
-                                        .doc(cartModel.productId)
-                                        .update({
-                                      'productQuantity': FieldValue.increment(-1),
-                                      'productTotalPrice': FieldValue.increment(
-                                        -double.parse(cartModel.fullPrice.replaceAll(',', '')),
-                                      ),
-                                    });
-
-                                    // Call fetchProductPrice after updating the cart
-                                    _productPriceController.fetchProductPrice();
-                                  }
-                                },
-                                child: const CircleAvatar(
-                                  radius: 14.0,
-                                  backgroundColor: Colors.grey,
-                                  child: Text('-'),
+                      child: SizedBox(
+                        child: Card(
+                          elevation: 5,
+                          color: Colors.white,
+                          child: ListTile(
+                            leading:
+                            CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                cartModel.productImages[0],
+                                scale: 1.0,
+                              ),
+                            ),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  cartModel.productName,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: Get.width / 20.0,
-                              ),
-                              GestureDetector(
-                                onTap: () async {
-                                  await FirebaseFirestore.instance
-                                      .collection('cart')
-                                      .doc(user!.uid)
-                                      .collection('cartOrders')
-                                      .doc(cartModel.productId)
-                                      .update({
-                                    'productQuantity': FieldValue.increment(1),
-                                    'productTotalPrice': FieldValue.increment(
-                                      double.parse(cartModel.fullPrice.replaceAll(',', '')),
+                                Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Text(
+                                    cartModel.categoryName,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                      fontSize: 15,
                                     ),
-                                  });
-
-                                  // Call fetchProductPrice after updating the cart
-                                  _productPriceController.fetchProductPrice();
-                                },
-                                child: const CircleAvatar(
-                                  radius: 14.0,
-                                  backgroundColor: Colors.grey,
-                                  child: Text('+'),
+                                  ),
                                 ),
-                              ),
-                            ],
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text("Price: ${cartModel.productTotalPrice.toString()}"),
+                                    Row(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () async {
+                                            if (cartModel.productQuantity > 1) {
+                                              await FirebaseFirestore.instance
+                                                  .collection('cart')
+                                                  .doc(user!.uid)
+                                                  .collection('cartOrders')
+                                                  .doc(cartModel.productId)
+                                                  .update({
+                                                'productQuantity': FieldValue.increment(-1),
+                                                'productTotalPrice': FieldValue.increment(
+                                                  -double.parse(cartModel.fullPrice.replaceAll(',', '')),
+                                                ),
+                                              });
+
+                                              // Call fetchProductPrice after updating the cart
+                                              _productPriceController.fetchProductPrice();
+                                            }
+                                          },
+                                          child: const CircleAvatar(
+                                            radius: 16,
+                                            backgroundColor: Colors.red,
+                                            child: Text('-',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.bold
+                                              ),),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: Get.width / 20.0,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () async {
+                                            await FirebaseFirestore.instance
+                                                .collection('cart')
+                                                .doc(user!.uid)
+                                                .collection('cartOrders')
+                                                .doc(cartModel.productId)
+                                                .update({
+                                              'productQuantity': FieldValue.increment(1),
+                                              'productTotalPrice': FieldValue.increment(
+                                                double.parse(cartModel.fullPrice.replaceAll(',', '')),
+                                              ),
+                                            });
+
+                                            // Call fetchProductPrice after updating the cart
+                                            _productPriceController.fetchProductPrice();
+                                          },
+                                          child: const CircleAvatar(
+                                            radius: 16,
+                                            child: Text('+',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold
+                                              ),),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Text("Quantity: ${cartModel.productQuantity}")
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                          Text(
-                              "Quantity : ${cartModel.productQuantity}")
-                        ],
-                      ),
-                    ),
-                      ),
+                        ),
+                      )
                     );
                       },
                     );
@@ -222,13 +253,17 @@ class _CartState extends State<Cart> {
                     width: Get.width / 2.0,
                     height: Get.height / 18,
                     decoration: BoxDecoration(
-                      color: Colors.greenAccent,
+                      color: Colors.redAccent,
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     child: TextButton(
                       child: const Text(
                         "Checkout",
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(
+                            color: Colors.black,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold
+                        ),
                       ),
                       onPressed: () async {
                         if (_productPriceController.totalPrice.value > 0) {

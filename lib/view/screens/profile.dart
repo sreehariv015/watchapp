@@ -1,4 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import '../../controller/get_user_data_controller.dart';
+import '../../controller/google_signin_controller.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -8,6 +14,28 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+
+  final GoogleSignInController googleSignInController = GoogleSignInController();
+  final GetUserDataController _getUserDataController = Get.put(GetUserDataController());
+
+  late final User user;
+  late List<QueryDocumentSnapshot<Object?>> userData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    user = FirebaseAuth.instance.currentUser!;
+    _getUserData();
+  }
+
+  Future<void> _getUserData() async {
+    userData = await _getUserDataController.getUserData(user.uid);
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+
   var email=TextEditingController();
   var password=TextEditingController();
   var mobile=TextEditingController();
@@ -20,163 +48,75 @@ class _ProfileState extends State<Profile> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Form(
-            key: save_key,
-            child: SizedBox(
-              width: size.width,
-              height: size.height,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 25),
-                    const Center(
-                        child: Text("Profile",
-                      style: TextStyle(
-                        color: Colors.red,
-                          fontSize: 50,
-                          //fontWeight: FontWeight.bold
-
-                      ),)),
-                    const SizedBox(height: 10,),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Stack(
-                          children: [
-                        const CircleAvatar(
-                          radius: 86,
-                          backgroundImage: AssetImage(
-                            'assets/images/profile.png',
-                          ),
-                        ),
-                        Positioned(
-                            left: 130,
-                            top: 110,
-                            child: IconButton(
-                                onPressed: () {
-
-                                },
-                                icon: const Icon(
-                                  Icons.add_a_photo_rounded,
-                                  color: Colors.red,
-                                  size: 35,
-                                )))
-                      ]),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: TextFormField(
-                        decoration:
-                        const InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(25)),
-                                borderSide: BorderSide(color: Colors.white,)),
-                            hintText: "Name",
-                            hintStyle: TextStyle(
-                                color: Colors.black
-                            ),
-                            prefixIcon: Icon(Icons.person,color: Colors.black,)),
-                        validator: (value) {
-                          if (value==null || value.isEmpty){
-                            return "Name can't be empty";
-                          }
-                          if(!RegExp(r'^[A-Za-z]+([\ A-Za-z]+)$').hasMatch(value)){
-                            return "Name contains[A-Z,a-z]";
-                          }
-                          return null ;
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.phone,
-                        decoration:
-                        const InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(25)),
-                                borderSide: BorderSide(color: Colors.white,)),
-                            hintText: "Mobile no",
-                            hintStyle: TextStyle(
-                                color: Colors.black
-                            ),
-                            prefixIcon: Icon(Icons.phone,color: Colors.black,)),
-                        controller: mobile,
-                        validator: (value) {
-                          if (value==null || value.isEmpty){
-                            return "Mobile no can't be empty";
-                          }
-                          if (!RegExp(r'^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$')
-                              .hasMatch(value)) {
-                            return "Enter a valid mobile number";
-                          }
-                          return null ;
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(25)),
-                                borderSide: BorderSide(color: Colors.white)),
-                            hintText: "E-mail",
-                            hintStyle: TextStyle(
-                                color: Colors.black
-                            ),
-                            prefixIcon: Icon(Icons.email,color: Colors.black,)),
-                        controller: email,
-                        validator: (value) {
-                          if (value==null || value.isEmpty){
-                            return "Email can't be empty";
-                          }
-                          if(!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)){
-                            return "Enter a valid email address";
-                          }
-                          return null ;
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: TextFormField(
-                        //obscureText: true,
-                        // obscuringCharacter: "*",
-                        decoration: const InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(25)),
-                                borderSide: BorderSide(color: Colors.white)),
-                            hintText: "Password",
-                            hintStyle: TextStyle(
-                                color: Colors.black
-                            ),
-                            prefixIcon: Icon(Icons.lock,color: Colors.black,)),
-                        controller: password,
-                        validator: (value) {
-                          if (value==null || value.isEmpty){
-                            return "Password can't be empty";
-                          }
-                          if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
-                            return "Password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
-                          }
-                          return null ;
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 20,),
-                  ],
+        body:  Stack(
+          children: [
+          // Background image
+          Image.asset(
+          'assets/images/img.png',
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+        ),
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+               CircleAvatar(
+                radius: 60,
+                backgroundImage: NetworkImage(
+                    userData.isNotEmpty ? userData[0]['userImg'] ?? '' : ''
                 ),
               ),
-            )),
+              const SizedBox(height: 20),
+               Text(
+                "${userData.isNotEmpty ? userData[0]['username'] : 'N/A'}",
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              ProfileDetail(label: 'Email', value: '${userData.isNotEmpty ? userData[0]['email'] : 'N/A'}'),
+              ProfileDetail(label: 'Phone', value: '**** ***** ****'),
+              ProfileDetail(label: 'Address', value: '**** ***** ****'),
+            ],
+          ),
+        ),
+        ]
+      ),
+    )
+    );
+  }
+}
+class ProfileDetail extends StatelessWidget {
+  final String label;
+  final String value;
+
+  ProfileDetail({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(width: 20),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 16,
+            ),
+          ),
+        ],
       ),
     );
   }

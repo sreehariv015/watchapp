@@ -63,6 +63,7 @@ class AddFirebaseController extends GetxController {
           ? productModel.salePrice
           : productModel.fullPrice) *
           updatedQuantity;
+
       print("Product quantity updated: $totalPrice");
       await documentReference.update({
         'productQuantity': updatedQuantity,

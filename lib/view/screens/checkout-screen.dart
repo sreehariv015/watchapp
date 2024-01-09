@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:get/get.dart';
 import 'package:watchapp/view/screens/main_page.dart';
@@ -112,7 +111,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     String address = addressController.text.trim();
                     String customerToken = await getCustomerDeviceToken();
 
-                    //place order serice
+                    //place order service
                     _placeOrderController.placeOrder(
                       context: context,
                       customerName: name,
@@ -126,7 +125,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 },
                 child: const Text(
                   "Place Order",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                 ),
               )
             ],
@@ -145,19 +144,18 @@ class _CheckoutPageState extends State<CheckoutPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          // backgroundColor: AppConstant.appMainColor,
-          elevation: 2,
+          elevation: 0,
           leading: IconButton(
               onPressed: () => Get.offAll(() => const MainPage1(),
                   transition: Transition.leftToRightWithFade),
-              icon: const Icon(CupertinoIcons.back, color: Colors.white)),
+              icon: const Icon(CupertinoIcons.back, color: Colors.black)),
           centerTitle: true,
-          title: Text("Checkout page",
+          title: const Text("Checkout Page",
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.sp,
-                fontFamily: 'Roboto-Regular',
+                color: Colors.black,
+                fontSize: 20,
               )),
+          backgroundColor: Colors.white,
         ),
         body: StreamBuilder(
           stream: FirebaseFirestore.instance
@@ -234,7 +232,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       )
                     ],
                     child: Card(
-                      elevation: 5,
+                      elevation: 1,
                        //color: AppConstant.appTextColor,
                       child: ListTile(
                         leading: CircleAvatar(
@@ -243,11 +241,39 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           NetworkImage(cartModel.productImages[0],
                               scale: 1.0,),
                         ),
-                        title: Text(cartModel.productName),
+                        title: Column(
+                          children: [
+                            Align(
+                              alignment: const Alignment(-0.99, 0),
+                              child: Text(cartModel.productName,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold
+                              ) ,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Align(
+                                alignment: const Alignment(-0.99, 0),
+                                child: Text(cartModel.categoryName,
+                                  style: const TextStyle(
+                                  ) ,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         subtitle: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(cartModel.productTotalPrice.toString()),
+                            Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Text("₹ : ${cartModel.productTotalPrice.toString()}",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -278,14 +304,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     width: Get.width / 2.0,
                     height: Get.height / 18,
                     decoration: BoxDecoration(
-                      // color: AppConstant.appScendoryColor,
+                       color: Colors.red,
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     child: TextButton(
                       child: const Text(
                         "Confirm Order",
                         style: TextStyle(
-                            // color: AppConstant.appTextColor
+                             color: Colors.black,
+                          fontSize: 16,
                         ),
                       ),
                       onPressed: () {
