@@ -330,11 +330,12 @@ class _Settings1State extends State<Settings1> {
                 },
                 leading: const Icon(Icons.logout,
                   size: 30,
-                  color: Color(0xFF4A4A5F),
+                  color: Colors.red,
                 ),
                 title: const Text("Log Out",
                   style: TextStyle(
                     fontSize: 19,
+                    color: Colors.red
                   ),),
               ),
             ),

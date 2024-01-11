@@ -45,47 +45,60 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body:  Stack(
-          children: [
-          // Background image
-          Image.asset(
-          'assets/images/img.png',
-          fit: BoxFit.cover,
-          width: double.infinity,
-          height: double.infinity,
-        ),
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-               CircleAvatar(
-                radius: 60,
-                backgroundImage: NetworkImage(
-                    userData.isNotEmpty ? userData[0]['userImg'] ?? '' : ''
-                ),
-              ),
-              const SizedBox(height: 20),
-               Text(
-                "${userData.isNotEmpty ? userData[0]['username'] : 'N/A'}",
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 10),
-              ProfileDetail(label: 'Email', value: '${userData.isNotEmpty ? userData[0]['email'] : 'N/A'}'),
-              ProfileDetail(label: 'Phone', value: '**** ***** ****'),
-              ProfileDetail(label: 'Address', value: '**** ***** ****'),
-            ],
-          ),
-        ),
-        ]
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body:  Stack(
+        children: [
+        // Background image
+        Image.asset(
+        'assets/images/img.png',
+        fit: BoxFit.cover,
+        width: double.infinity,
+        height: double.infinity,
       ),
-    )
+      Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 100,),
+             Row(
+               mainAxisAlignment: MainAxisAlignment.start,
+               children: [
+                 CircleAvatar(
+                   radius: 60,
+                   backgroundImage: NetworkImage(
+                     userData.isNotEmpty && userData[0]['userImg'] != null && userData[0]['userImg'].isNotEmpty
+                         ? userData[0]['userImg']
+                         : 'https://via.placeholder.com/150', // Placeholder URL for testing
+                   ),
+                 ),
+               ],
+             ),
+             Row(
+               mainAxisAlignment: MainAxisAlignment.start,
+               children: [
+                 Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: Text(
+                    "${userData.isNotEmpty ? userData[0]['username'] : 'N/A'}",
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+            ),
+                 ),
+               ],
+             ),
+            const SizedBox(height: 10),
+            ProfileDetail(label: 'Email', value: '${userData.isNotEmpty ? userData[0]['email'] : 'N/A'}'),
+            ProfileDetail(label: 'Phone no', value: '**** ***** ****'),
+            ProfileDetail(label: 'Address', value: '**** ***** ****'),
+          ],
+        ),
+      ),
+      ]
+    ),
     );
   }
 }

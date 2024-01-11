@@ -24,7 +24,7 @@ class _MainPageState extends State<MainPage1> {
   var titles = ["Home", "Favorites", "Cart", "Settings"];
   final List<Widget> _pages = [
     const HomePage(),
-    Favorites(),
+    const Favorites(),
     const Cart(),
     const Settings1(),
   ];
@@ -99,10 +99,11 @@ class _MainPageState extends State<MainPage1> {
                     child: Stack(
                       children: [
                         CircleAvatar(
-                          radius: 50,
-                          backgroundImage:
-                          NetworkImage(
-                              userData.isNotEmpty ? userData[0]['userImg'] ?? '' : ''
+                          radius: 60,
+                          backgroundImage: NetworkImage(
+                            userData.isNotEmpty && userData[0]['userImg'] != null && userData[0]['userImg'].isNotEmpty
+                                ? userData[0]['userImg']
+                                : 'https://placehold.co/600x400/png', // Replace with your default image URL
                           ),
                         ),
                       ],
@@ -165,8 +166,12 @@ class _MainPageState extends State<MainPage1> {
                         googleSignInController.signOutGoogle();
                       });
                     },
-                    leading: const Icon(Icons.logout),
-                    title: const Text('Logout'),
+                    leading: const Icon(Icons.logout,
+                    color: Colors.red),
+                    title: const Text('Logout',
+                      style: TextStyle(color: Colors.red),
+
+                    ),
                   ),
                   const Spacer(),
                   DefaultTextStyle(
@@ -220,7 +225,7 @@ class _MainPageState extends State<MainPage1> {
                 backgroundColor: Colors.white,
                 color: Colors.black,
                 activeColor: Colors.white,
-                tabBackgroundColor: Colors.blueGrey,
+                tabBackgroundColor: Colors.grey,
                 gap: 8,
                 iconSize: 24,
                 padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 11),

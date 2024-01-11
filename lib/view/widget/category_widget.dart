@@ -54,11 +54,8 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                 return Padding(
                   padding: const EdgeInsets.all(.0),
                   child: GestureDetector(
-                    onTap: () {
-                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                     return const CategoryTapPage();
-                   },));
-                    },
+                    onTap: () =>  Get.offAll(() => AllSingleCategoryProductsScreen(categoryId:categoryModel.categoryId,),
+                        transition: Transition.leftToRightWithFade),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(

@@ -184,20 +184,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     },
                   ),
                 ),
-                Positioned(
-                  top: 65,
-                  left: 370,
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.share_outlined,
-                      size: 30,
-                      color: Colors.black,
-                    ),
-                    onPressed: () {
-                      setState(() {});
-                    },
-                  ),
-                ),
+                // Positioned(
+                //   top: 65,
+                //   left: 370,
+                //   child: IconButton(
+                //     icon: const Icon(
+                //       Icons.share_outlined,
+                //       size: 30,
+                //       color: Colors.black,
+                //     ),
+                //     onPressed: () {
+                //       setState(() {});
+                //     },
+                //   ),
+                // ),
               ],
             ),
             const SizedBox(

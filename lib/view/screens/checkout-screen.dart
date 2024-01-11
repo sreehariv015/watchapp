@@ -97,35 +97,43 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ),
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  // backgroundColor: AppConstant.appMainColor,
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                ),
-                onPressed: () async {
-                  if (nameController.text != '' &&
-                      phoneController.text != '' &&
-                      addressController.text != '') {
-                    String name = nameController.text.trim();
-                    String phone = phoneController.text.trim();
-                    String address = addressController.text.trim();
-                    String customerToken = await getCustomerDeviceToken();
+              SizedBox(
+                height: 40,
+                width: 350,
+                child: ElevatedButton(
 
-                    //place order service
-                    _placeOrderController.placeOrder(
-                      context: context,
-                      customerName: name,
-                      customerPhone: phone,
-                      customerAddress: address,
-                      customerDeviceToken: customerToken,
-                    );
-                  } else {
-                    print("Fill The Details");
-                  }
-                },
-                child: const Text(
-                  "Place Order",
-                  style: TextStyle(color: Colors.black),
+                  style: ElevatedButton.styleFrom(
+                     backgroundColor:Colors.red,
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  ),
+                  onPressed: () async {
+                    if (nameController.text != '' &&
+                        phoneController.text != '' &&
+                        addressController.text != '') {
+                      String name = nameController.text.trim();
+                      String phone = phoneController.text.trim();
+                      String address = addressController.text.trim();
+                      String customerToken = await getCustomerDeviceToken();
+
+                      //place order service
+                      _placeOrderController.placeOrder(
+                        context: context,
+                        customerName: name,
+                        customerPhone: phone,
+                        customerAddress: address,
+                        customerDeviceToken: customerToken,
+                      );
+                    } else {
+                      print("Fill The Details");
+                    }
+                  },
+                  child: const Text(
+                    "Place Order",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 17
+                    ),
+                  ),
                 ),
               )
             ],
