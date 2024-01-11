@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-class MobileNumber1 extends StatefulWidget {
-  const MobileNumber1({super.key});
+
+import '../../controller/verify-phone-controller.dart';
+class VerifyOtp extends StatefulWidget {
+  final String verificationId;
+  const VerifyOtp({Key? key, required this.verificationId}) : super(key: key);
 
   @override
-  State<MobileNumber1> createState() => _MobileNumber1State();
+  State<VerifyOtp> createState() => _VerifyOtpState();
 }
 
-class _MobileNumber1State extends State<MobileNumber1> {
-  var mobile=TextEditingController();
+class _VerifyOtpState extends State<VerifyOtp> {
+  final mobile=TextEditingController();
   final mobilekey=GlobalKey<FormState>();
-
+  bool isLoading6 = false;
+  final SentOtpController _sentOtpController = Get.put(SentOtpController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class _MobileNumber1State extends State<MobileNumber1> {
           child: Column(
             children: [
               const SizedBox(height: 320,),
-              const Center(child: Text("Phone Verification",
+              const Center(child: Text('OTP Verification',
                 style: TextStyle(
                     fontSize: 36,
                     color: Colors.red
@@ -31,7 +35,7 @@ class _MobileNumber1State extends State<MobileNumber1> {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Center(
-                  child: Text("We need to register your phone without getting started",
+                  child: Text('Enter the OTP code to verify your phone number',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -50,21 +54,17 @@ class _MobileNumber1State extends State<MobileNumber1> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                           borderSide: BorderSide(color: Colors.white,)),
-                      hintText: "Mobile No",
+                      hintText: "OTP NO",
                       hintStyle: TextStyle(
                           color: Colors.black
                       ),
                       prefixIcon: Icon(Icons.phone_android)),
                   controller: mobile,
                   validator: (value) {
-                    if (value==null || value.isEmpty){
-                      return "mobile no can't be empty";
+                    if (value == null || value.isEmpty) {
+                      return "Please input your OTP";
                     }
-                    if (!RegExp(r'^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$')
-                        .hasMatch(value)) {
-                      return "enter a valid mobile number";
-                    }
-                    return null ;
+                    return null;
                   },
                 ),
               ),
@@ -80,12 +80,11 @@ class _MobileNumber1State extends State<MobileNumber1> {
                   width: 260,
                   height: 50,
                   child: TextButton(onPressed: () {
-                    if(mobilekey.currentState!.validate()){
-                      Get.snackbar(
-                          'Phone services not available', 'Sign in with google');
-                    }
+                    // Call your verification function from the controller
+                    // Pass the entered OTP and verification ID
+                    _sentOtpController.verifyOtp(mobile.text, widget.verificationId);
 
-                  }, child: const Text("GENERATE OTP",
+                  }, child: const Text("Continue",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,

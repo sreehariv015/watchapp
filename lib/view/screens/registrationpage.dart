@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:watchapp/view/screens/phone_number_page.dart';
-
+import '../../controller/email_pass_controller/email-sign-in-controller.dart';
 import '../../controller/google_signin_controller.dart';
+import 'email_validation_screen.dart';
 import 'loginpage.dart';
 
 
@@ -16,12 +18,57 @@ class _LoginPage1State extends State<LoginPage24> {
   bool passwordVisible=false;
   bool passVisible=false;
 
-  var name=TextEditingController();
-  var email=TextEditingController();
-  var password=TextEditingController();
-  var confirm_password=TextEditingController();
-
-  final registrationkey=GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+  final _nameTextController = TextEditingController();
+  final _emailTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
+  final GoogleSignInController _googleSignInController =
+  Get.put(GoogleSignInController());
+  final EmailPassController _emailPassController =
+  Get.put(EmailPassController());
+  Widget getTextField(
+      {required String hint,
+        required var icons,
+        bool obstxt = null ?? false,
+        var suficons,
+        required var validator,
+        required var controller,
+        required var keyboardType}) {
+    return TextFormField(
+      obscureText: obstxt,
+      keyboardType: keyboardType,
+      validator: validator,
+      controller: controller,
+      decoration: InputDecoration(
+          suffixIcon: suficons,
+          errorStyle: const TextStyle(
+            color: Colors.yellow,
+            fontSize: null,
+            fontWeight: FontWeight.w400,
+            fontStyle: FontStyle.normal,
+          ),
+          prefixIcon: icons,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.transparent),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.transparent),
+          ),
+          contentPadding:
+          const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+          filled: true,
+          fillColor: const Color(0xFFF1F4FF),
+          hintText: hint,
+          hintStyle: const TextStyle(
+            color: Colors.black54,
+            fontFamily: 'Roboto-Regular',
+            fontSize: 15,
+            height: 0,
+          )),
+    );
+  }
 
   GoogleSignInController googleSignInController=GoogleSignInController();
 
@@ -33,7 +80,7 @@ class _LoginPage1State extends State<LoginPage24> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Form(
-            key:registrationkey ,
+            key:_formKey ,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -80,10 +127,11 @@ class _LoginPage1State extends State<LoginPage24> {
                   height: 20,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
-                    decoration:
-                    const InputDecoration(
+                      controller: _nameTextController,
+                  decoration:
+                     const InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
@@ -120,7 +168,7 @@ class _LoginPage1State extends State<LoginPage24> {
                           color: Colors.black
                         ),
                         prefixIcon: Icon(Icons.email,color: Colors.black,)),
-                    controller: email,
+                    controller: _emailTextController,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Email can't be empty";
@@ -154,7 +202,7 @@ class _LoginPage1State extends State<LoginPage24> {
                         });
                       }, icon: Icon(passwordVisible?Icons.visibility:Icons.visibility_off,color: Colors.black,))
                     ),
-                    controller: password,
+                    controller: _passwordTextController,
                     obscureText: !passwordVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
@@ -162,41 +210,6 @@ class _LoginPage1State extends State<LoginPage24> {
                       }
                       if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
                         return "Password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]";
-                      }
-                      return null ;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
-                   // obscureText: true,
-                    //obscuringCharacter: "*",
-                    decoration:  InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            borderSide: BorderSide(color: Colors.white)),
-                        hintText: "Confirm Password",
-                        hintStyle: const TextStyle(
-                            color: Colors.black
-                        ),
-                        prefixIcon: const Icon(Icons.lock,color: Colors.black,),
-                    suffixIcon: IconButton(onPressed: () {
-                      setState(() {
-                        passVisible=!passVisible;
-                      });
-                    }, icon: Icon(passVisible?Icons.visibility:Icons.visibility_off,color: Colors.black,))
-                    ),
-                    controller: confirm_password,
-                    obscureText: !passVisible,
-                    validator: (value) {
-                      if (value==null || value.isEmpty){
-                        return "Re-enter your password";
-                      }
-                      else if(value!=password.text){
-                        return 'Password contains[A-Z,a-z,(123..)(8-12 characters),(!@#\$&*~)]';
                       }
                       return null ;
                     },
@@ -216,16 +229,34 @@ class _LoginPage1State extends State<LoginPage24> {
                     ),
                     width: 260,
                     height: 50,
-                    child: TextButton(onPressed: () {
-                      if(registrationkey.currentState!.validate()){
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
-                        setState(() {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                            return const Login11();
-                          },));
-                        });
+                    child: TextButton(onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        _emailPassController.updateLoading();
+                        try {
+                          await _emailPassController.signupUser(
+                            _emailTextController.text,
+                            _passwordTextController.text,
+                            _nameTextController.text,
+                          );
+                          if (_emailPassController.currentUser !=
+                              null) {
+                            Get.off(
+                                    () => EmailValidationScreen(
+                                    user: _emailPassController
+                                        .currentUser!),
+                                transition:
+                                Transition.leftToRightWithFade);
+                          } else {
+                            // No user is currently authenticated
+                            Get.snackbar('No user is',
+                                'currently authenticated');
+                          }
+                        } catch (e) {
+                          Get.snackbar('Error', e.toString());
+                        } finally {
+                          _emailPassController.updateLoading();
+                        }
                       }
-
                     }, child: const Text("Sign up",
                       style: TextStyle(
                         color: Colors.white,

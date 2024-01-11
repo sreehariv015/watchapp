@@ -5,7 +5,6 @@ import 'package:watchapp/view/screens/splash_screen.dart';
 
 import '../../models/user_model.dart';
 import '../get-device-token-controller.dart';
-
 class EmailPassController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   RxBool passwordVisible = true.obs;
@@ -34,8 +33,7 @@ class EmailPassController extends GetxController {
         email: userCredential.user!.email ?? '',
         phone: userCredential.user!.phoneNumber ?? '',
         userImg: userCredential.user!.photoURL ??
-            'https://firebasestorage.googleapis.com/v0/b/bridge-events-abe67.appspot.com/o/front-view-angry-model.jpg?alt=media&token=b08fcac9-0912-4ff5-bb7c-3464fb2d7c8f',
-        // userDeviceToken: getDeviceTokenController.deviceToken.toString(),
+            'https://firebasestorage.googleapis.com/v0/b/dealninja-2b50b.appspot.com/o/User.png?alt=media&token=b2e7d3ec-7ff6-4567-84b5-d9cee26253f2',
         country: '',
         userAddress: '',
         street: '',

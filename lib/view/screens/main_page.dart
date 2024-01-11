@@ -103,7 +103,7 @@ class _MainPageState extends State<MainPage1> {
                           backgroundImage: NetworkImage(
                             userData.isNotEmpty && userData[0]['userImg'] != null && userData[0]['userImg'].isNotEmpty
                                 ? userData[0]['userImg']
-                                : 'https://placehold.co/600x400/png', // Replace with your default image URL
+                                : 'https://via.placeholder.com/150', // Replace with your default image URL
                           ),
                         ),
                       ],

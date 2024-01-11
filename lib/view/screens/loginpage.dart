@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:watchapp/controller/google_signin_controller.dart';
 import 'package:watchapp/view/screens/phone_number_page.dart';
 import 'package:watchapp/view/screens/registrationpage.dart';
-
+import '../../controller/email_pass_controller/email-sign-in-controller.dart';
 import 'forgot_password_page.dart';
 import 'main_page.dart';
 
@@ -16,14 +19,60 @@ class Login11 extends StatefulWidget {
 
 class _LoginPage1State extends State<Login11> {
   bool passwordVisible=false;
-
-  var emailController = TextEditingController();
-  var passController = TextEditingController();
-
-
-  final loginkey=GlobalKey<FormState>();
-
   GoogleSignInController googleSignInController=GoogleSignInController();
+  final _formKey = GlobalKey<FormState>();
+  final _emailTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
+  get passwordTextController => _passwordTextController;
+
+  get emailTextController => _emailTextController;
+  final EmailPassController _emailPassController =
+  Get.put(EmailPassController());
+  final GoogleSignInController _googleSignInController =
+  Get.put(GoogleSignInController());
+  Widget getTextField(
+      {required String hint,
+        bool obstxt = null ?? false,
+        var suficons,
+        required var validator,
+        required var icons,
+        required var controller,
+        required var keyboardType}) {
+    return TextFormField(
+      obscureText: obstxt,
+      keyboardType: keyboardType,
+      validator: validator,
+      controller: controller,
+      decoration: InputDecoration(
+          suffixIcon: suficons,
+          errorStyle: const TextStyle(
+            color: Colors.yellow,
+            fontSize: null,
+            fontWeight: FontWeight.w400,
+            fontStyle: FontStyle.normal,
+          ),
+          prefixIcon: icons,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.transparent),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.transparent),
+          ),
+          contentPadding:
+          EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+          filled: true,
+          fillColor: const Color(0xFFF1F4FF),
+          hintText: hint,
+          hintStyle: const TextStyle(
+            color: Colors.black54,
+            fontFamily: 'Roboto-Regular',
+            fontSize: 15,
+            height: 0,
+          )),
+    );
+  }
 
 
   @override
@@ -33,7 +82,7 @@ class _LoginPage1State extends State<Login11> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Form(
-            key:loginkey ,
+            key:_formKey ,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -93,7 +142,7 @@ class _LoginPage1State extends State<Login11> {
                           color: Colors.black
                         ),
                         prefixIcon: Icon(Icons.mail,color: Colors.black,)),
-                    controller: emailController,
+                    controller: _emailTextController,
                     validator: (value) {
                       if (value==null || value.isEmpty){
                         return "Email can't be empty";
@@ -126,7 +175,7 @@ class _LoginPage1State extends State<Login11> {
                         }, icon: Icon(passwordVisible?Icons.visibility:Icons.visibility_off,
                           color: Colors.black,))
                     ),
-                    controller: passController,
+                    controller: _passwordTextController,
                     obscureText: !passwordVisible,
                     validator: (value) {
                       if (value==null || value.isEmpty){
@@ -170,17 +219,29 @@ class _LoginPage1State extends State<Login11> {
                     ),
                     width: 220,
                     height: 53,
-                    child: TextButton(onPressed: () {
-
-                      if(loginkey.currentState!.validate()){
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
-                        setState(() {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
-                           return const MainPage1();
-                          },), (route) => false);
-                        });
+                    child: TextButton( onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        _emailPassController.updateLoading();
+                        try {
+                          UserCredential? userCredential =
+                          await _emailPassController
+                              .signinUser(
+                            _emailTextController.text,
+                            _passwordTextController.text,
+                          );
+                          if (userCredential!
+                              .user!.emailVerified) {
+                            final user = userCredential.user;
+                            Get.off(() => const MainPage1(),
+                                transition: Transition
+                                    .leftToRightWithFade);
+                          }
+                        } catch (e) {
+                          print(e);
+                        } finally {
+                          _emailPassController.updateLoading();
+                        }
                       }
-
                     }, child: const Text("Sign in",style: TextStyle(
                         fontWeight:FontWeight.bold ,
                         color: Colors.white,

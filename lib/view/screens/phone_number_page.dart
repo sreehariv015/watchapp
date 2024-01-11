@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../controller/verify-phone-controller.dart';
 class MobileNumber1 extends StatefulWidget {
   const MobileNumber1({super.key});
 
@@ -7,16 +11,13 @@ class MobileNumber1 extends StatefulWidget {
 }
 
 class _MobileNumber1State extends State<MobileNumber1> {
-  var mobile=TextEditingController();
-
-
-  final mobilekey=GlobalKey<FormState>();
+  final SentOtpController _sentOtpController = Get.put(SentOtpController());
+  final TextEditingController _phoneNumberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Form(
-        key: mobilekey,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -53,7 +54,7 @@ class _MobileNumber1State extends State<MobileNumber1> {
                           color: Colors.black
                       ),
                       prefixIcon: Icon(Icons.phone_android)),
-                  controller: mobile,
+                  controller: _phoneNumberController,
                   validator: (value) {
                     if (value==null || value.isEmpty){
                       return "mobile no can't be empty";
@@ -78,9 +79,8 @@ class _MobileNumber1State extends State<MobileNumber1> {
                   width: 260,
                   height: 50,
                   child: TextButton(onPressed: () {
-                    if(mobilekey.currentState!.validate()){
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Success")),);
-                    }
+                    String phoneNumber = "+91${_phoneNumberController.text.trim()}";
+                    _sentOtpController.sendOtp(phoneNumber);
 
                   }, child: const Text("Send the code",
                     style: TextStyle(
