@@ -27,7 +27,7 @@ class _FrontPage1State extends State<FrontPage1> {
           key: loginkey,
           child: Column(
             children: [
-              const SizedBox(height: 50,),
+              const SizedBox(height: 10,),
               const Padding(
                 padding: EdgeInsets.only(right: 25),
                 child: Center(
@@ -66,65 +66,75 @@ class _FrontPage1State extends State<FrontPage1> {
                   ),
                 ),
               ),
-              const SizedBox(height: 200,),
+              const SizedBox(height: 150,),
               Container(
                 alignment: Alignment.center,
-                child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color:Colors.black,
-                        borderRadius: BorderRadius.circular(5)
-
-                    ),
-                    width: halfwidth.width,
-                    height: 50,
-                    child: TextButton(onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return const Login11();
-                      },));
-
-                    }, child: const Text("Sign in",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 23
-                      ),)),
-                  ),
-                  const SizedBox(width: 30,
-                  child: Text("Or",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22
-                    ),
-                  )),
-                  SizedBox(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color:Colors.red,
-                          borderRadius: BorderRadius.circular(5)
-
+                child:Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        height: 50,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return const Login11();
+                              }),
+                            );
+                          },
+                          child: const Text(
+                            "Sign in",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 23,
+                            ),
+                          ),
+                        ),
                       ),
-                      width: halfwidth.width,
-                      height: 50,
-                      child: TextButton(onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
-                          return const LoginPage24();
-                        },));
-
-                      }, child: const Text("Register",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 23
-                        ),)),
                     ),
-
-                  ),
-                ]),
+                    const Text("Or",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500
+                      ),),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        height: 50,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return const LoginPage24();
+                              }),
+                            );
+                          },
+                          child: const Text(
+                            "Register",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 23,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 75,),
+              const SizedBox(height: 45,),
               const Text("Or continue with",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,

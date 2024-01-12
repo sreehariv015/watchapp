@@ -83,7 +83,7 @@ class _GetProductWidgetState extends State<GetProductWidget> {
                               ClipRRect(
                                 borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
                                 child: SizedBox(
-                                  height: 163,
+                                  height: 148,
                                   width: double.infinity,
                                   child: Image.network(
                                     height: size.height,
@@ -108,7 +108,7 @@ class _GetProductWidgetState extends State<GetProductWidget> {
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w300,
                                     color: Colors.black,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                   ),
                                 ),
                               ),
