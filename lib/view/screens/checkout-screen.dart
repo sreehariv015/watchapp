@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import '../../controller/cart-price-controller.dart';
 import '../../controller/place-order-controller.dart';
 import '../../models/cart-model.dart';
 import '../../services/get-customer-device-token.dart';
+import '../../services/upi_india/upi_india.dart';
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key});
 
@@ -17,6 +19,8 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
+  String? totalAmount;
+
   User? user = FirebaseAuth.instance.currentUser;
   final ProductPriceController productPriceController =
   Get.put(ProductPriceController());
@@ -101,9 +105,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 height: 40,
                 width: 350,
                 child: ElevatedButton(
-
                   style: ElevatedButton.styleFrom(
-                     backgroundColor:Colors.red,
+                    backgroundColor: Colors.black,
                     padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                   ),
                   onPressed: () async {
@@ -114,27 +117,29 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       String phone = phoneController.text.trim();
                       String address = addressController.text.trim();
                       String customerToken = await getCustomerDeviceToken();
-
-                      //place order service
-                      _placeOrderController.placeOrder(
-                        context: context,
-                        customerName: name,
-                        customerPhone: phone,
-                        customerAddress: address,
-                        customerDeviceToken: customerToken,
-                      );
+                      String totalAmount =
+                      productPriceController.totalPrice.value.toString();
+                      Get.off(UpiScreen(
+                        name: name,
+                        phone: phone,
+                        address: address,
+                        customerToken: customerToken,
+                        totalAmount: totalAmount,
+                      ));
                     } else {
-                      print("Fill The Details");
+                      if (kDebugMode) {
+                        print("Fill The Details");
+                      }
                     }
                   },
                   child: const Text(
                     "Place Order",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 17
+                      color: Colors.black,
+                      fontSize: 17,
                     ),
                   ),
-                ),
+                )
               )
             ],
           ),

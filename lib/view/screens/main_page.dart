@@ -220,16 +220,14 @@ class _MainPageState extends State<MainPage1> {
             ),
             body: _pages[_currentSelectedIndex],
             bottomNavigationBar: SizedBox(
-              height: 60,
+              height: 70,
               child: GNav(
                 backgroundColor: Colors.white,
                 color: Colors.black,
                 activeColor: Colors.white,
                 tabBackgroundColor: Colors.grey,
                 gap: 8,
-                iconSize: 24,
-                padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 11),
-                duration: const Duration(milliseconds: 800),
+                padding: const EdgeInsets.all(15),
                 tabs: const [
                   GButton(
                     icon: Icons.home,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:watchapp/view/screens/phone_number_page.dart';
 import 'package:watchapp/view/screens/registrationpage.dart';
 
@@ -18,6 +19,7 @@ class _FrontPage1State extends State<FrontPage1> {
 
   @override
   Widget build(BuildContext context) {
+    Size halfwidth = MediaQuery.of(context).size / 2;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -75,7 +77,7 @@ class _FrontPage1State extends State<FrontPage1> {
                         borderRadius: BorderRadius.circular(5)
 
                     ),
-                    width: 180,
+                    width: halfwidth.width,
                     height: 50,
                     child: TextButton(onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -104,7 +106,7 @@ class _FrontPage1State extends State<FrontPage1> {
                           borderRadius: BorderRadius.circular(5)
 
                       ),
-                      width: 180,
+                      width: halfwidth.width,
                       height: 50,
                       child: TextButton(onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) {

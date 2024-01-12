@@ -83,7 +83,7 @@ class _GetProductWidgetState extends State<GetProductWidget> {
                               ClipRRect(
                                 borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
                                 child: SizedBox(
-                                  height: 170,
+                                  height: 163,
                                   width: double.infinity,
                                   child: Image.network(
                                     height: size.height,

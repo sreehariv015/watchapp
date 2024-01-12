@@ -66,8 +66,8 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                             child: Column(
                               children: [
                                 Container(
-                                  width: 80, // Set a fixed width for the container
-                                  height: 80, // Set a fixed height for the container
+                                  width: 90, // Set a fixed width for the container
+                                  height: 90, // Set a fixed height for the container
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     boxShadow: [
@@ -98,15 +98,6 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  categoryModel.categoryName,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.black,
-                                  ),
-                                )
                               ],
                             ),
                           ),
