@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:watchapp/view/screens/cart_screen.dart';
 import '../../controller/add_product_controller_faverote.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../controller/get-cart-product-controller.dart';
 import '../../models/product-model.dart';
 class ProductDetailsScreen extends StatefulWidget {
@@ -18,10 +19,32 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final CarouselController carouselController = CarouselController();
   final addFirebaseController = Get.put(AddFirebaseController());
-  bool isFavorite = false;
   int currentIndex = 0;
   User? user = FirebaseAuth.instance.currentUser;
   final CartItemController _CartItemController = Get.put(CartItemController());
+      bool isFavorite = false;
+
+      @override
+      void initState() {
+  super.initState();
+  // Load the favorite status from SharedPreferences when the widget is created
+  loadFavoriteStatus();
+  }
+
+  // Load favorite status from SharedPreferences
+  Future<void> loadFavoriteStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isFavorite = prefs.getBool('favorite_${widget.productModel.productId}') ?? false;
+    });
+  }
+
+  // Save favorite status to SharedPreferences
+  Future<void> saveFavoriteStatus(bool status) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('favorite_${widget.productModel.productId}', status);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -165,25 +188,38 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     },
                   ),
                 ),
-                Positioned(
-                  top: 20,
-                  left: 370,
+                Align(
+                  alignment: Alignment.topRight,
                   child: IconButton(
                     icon: Icon(
                       isFavorite ? Icons.favorite : Icons.favorite_border,
                       size: 30,
                       color: Colors.redAccent,
                     ),
-                    onPressed: ()  async {
+                    onPressed: () async {
                       setState(() {
                         isFavorite = !isFavorite;
                       });
-                      await addFirebaseController.addFavoriteItem(
+
+                      if (isFavorite) {
+                        // If becoming favorite, add to Firebase
+                        await addFirebaseController.addFavoriteItem(
                           uId: user!.uid,
-                          productModel: widget.productModel);
+                          productModel: widget.productModel,
+                        );
+                      } else {
+                        // If removing from favorites, delete from Firebase
+                        await addFirebaseController.deleteFavoriteItem(
+                          uId: user!.uid,
+                          productId: widget.productModel.productId,
+                        );
+                      }
+
+                      // Save the favorite status to SharedPreferences
+                      await saveFavoriteStatus(isFavorite);
                     },
                   ),
-                ),
+                )
                 // Positioned(
                 //   top: 65,
                 //   left: 370,

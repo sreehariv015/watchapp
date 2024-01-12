@@ -27,7 +27,6 @@ class _FrontPage1State extends State<FrontPage1> {
           key: loginkey,
           child: Column(
             children: [
-              const SizedBox(height: 10,),
               const Padding(
                 padding: EdgeInsets.only(right: 25),
                 child: Center(
@@ -66,7 +65,7 @@ class _FrontPage1State extends State<FrontPage1> {
                   ),
                 ),
               ),
-              const SizedBox(height: 150,),
+              const SizedBox(height: 170,),
               Container(
                 alignment: Alignment.center,
                 child:Row(
@@ -134,7 +133,7 @@ class _FrontPage1State extends State<FrontPage1> {
                   ],
                 ),
               ),
-              const SizedBox(height: 45,),
+              const SizedBox(height: 70,),
               const Text("Or continue with",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
