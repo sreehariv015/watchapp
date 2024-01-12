@@ -135,7 +135,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   child: const Text(
                     "Place Order",
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: 17,
                     ),
                   ),

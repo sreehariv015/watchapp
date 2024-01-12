@@ -2,10 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:watchapp/view/auth_ui/welcome_screen.dart';
 
 import '../models/user_model.dart';
 import '../view/screens/main_page.dart';
-import '../view/screens/splash_screen.dart';
+import '../view/auth_ui/splash_screen.dart';
 
 class GoogleSignInController extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -67,7 +68,7 @@ class GoogleSignInController extends GetxController {
          await _googleSignIn.signOut();
          user(null);
          print("User Signed Out");
-          Get.offAll(() => const SplashScreen1() );
+          Get.offAll(() => const WelcomeScreen1() );
        }catch (e) {
          print("Error signing out: $e");
        }

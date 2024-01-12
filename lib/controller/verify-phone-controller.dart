@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:watchapp/view/screens/main_page.dart';
 import '../models/user_model.dart';
-import '../view/screens/phone_number_otp_sent_page.dart';
+import '../view/auth_ui/phone_number_otp_sent_page.dart';
 import 'get-device-token-controller.dart';
 // Import Firestore
 

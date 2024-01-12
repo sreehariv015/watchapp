@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:watchapp/view/screens/phone_number_page.dart';
-import 'package:watchapp/view/screens/registrationpage.dart';
+import 'package:watchapp/view/auth_ui/phone_number_page.dart';
+import 'package:watchapp/view/auth_ui/sign_up_page.dart';
 
 import '../../controller/google_signin_controller.dart';
-import 'loginpage.dart';
+import 'sign_in_page.dart';
 
-class FrontPage1 extends StatefulWidget {
-  const FrontPage1({super.key});
+class WelcomeScreen1 extends StatefulWidget {
+  const WelcomeScreen1({super.key});
 
   @override
-  State<FrontPage1> createState() => _FrontPage1State();
+  State<WelcomeScreen1> createState() => _WelcomeScreen1State();
 }
 
-class _FrontPage1State extends State<FrontPage1> {
+class _WelcomeScreen1State extends State<WelcomeScreen1> {
   final loginkey=GlobalKey<FormState>();
   GoogleSignInController googleSignInController=GoogleSignInController();
 
@@ -57,7 +57,7 @@ class _FrontPage1State extends State<FrontPage1> {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(4.0),
                 child: Text("Our watches that match your standard",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -133,7 +133,7 @@ class _FrontPage1State extends State<FrontPage1> {
                   ],
                 ),
               ),
-              const SizedBox(height: 70,),
+              const SizedBox(height: 100,),
               const Text("Or continue with",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,

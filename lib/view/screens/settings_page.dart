@@ -1,5 +1,9 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:watchapp/view/auth_ui/welcome_screen.dart';
 import 'package:watchapp/view/screens/profile.dart';
 
 import '../../controller/google_signin_controller.dart';
@@ -307,7 +311,9 @@ class _Settings1State extends State<Settings1> {
             padding: const EdgeInsets.all(8.0),
             child: Card(
               child: ListTile(
-                onTap: () {},
+                onTap: () {
+
+                },
                 leading: const Icon(Icons.account_circle,
                   size: 30,
                   color: Color(0xFF4A4A5F),

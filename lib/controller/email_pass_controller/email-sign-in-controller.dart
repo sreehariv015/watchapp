@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:watchapp/view/screens/splash_screen.dart';
+import 'package:watchapp/view/auth_ui/splash_screen.dart';
+import 'package:watchapp/view/auth_ui/welcome_screen.dart';
 
 import '../../models/user_model.dart';
 import '../get-device-token-controller.dart';
@@ -98,7 +99,7 @@ class EmailPassController extends GetxController {
         "Password reset link sent to $userEmail",
         snackPosition: SnackPosition.TOP,
       );
-      Get.off(const SplashScreen1(),
+      Get.off(const WelcomeScreen1(),
           transition: Transition.leftToRightWithFade);
     } on FirebaseAuthException catch (e) {
       Get.snackbar(

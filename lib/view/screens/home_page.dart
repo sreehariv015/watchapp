@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
+        automaticallyImplyLeading: false, // Disable the back button
         title: Container(
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10),

@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:watchapp/view/auth_ui/welcome_screen.dart';
 import 'package:watchapp/view/screens/main_page.dart';
-import 'package:watchapp/view/screens/splash_screen.dart';
-import '../../controller/email_pass_controller/email-validation-controller.dart';
-
+import '../../../controller/email_pass_controller/email-validation-controller.dart';
 class EmailValidationScreen extends StatefulWidget {
   final User user;
   const EmailValidationScreen({super.key, required this.user});
@@ -117,7 +116,7 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                      MaterialStateProperty.all(Color(0xFF1F41BB)),
+                      MaterialStateProperty.all(const Color(0xFF1F41BB)),
                     ),
                     onPressed: () async {
                       setState(() {
@@ -192,7 +191,7 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
                   await FirebaseAuth.instance.signOut();
                   setState(() {
                     _isSigningOut = false;
-                    Get.off(const SplashScreen1(),
+                    Get.off(const WelcomeScreen1(),
                         transition: Transition.rightToLeftWithFade);
                   });
                 },

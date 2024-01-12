@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 
 Future<String> getCustomerDeviceToken() async {
   try {
@@ -9,7 +10,9 @@ Future<String> getCustomerDeviceToken() async {
       throw Exception("Error");
     }
   } catch (e) {
-    print("Errro $e");
+    if (kDebugMode) {
+      print("Error $e");
+    }
     throw Exception("Error");
   }
 }
