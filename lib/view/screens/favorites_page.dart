@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:watchapp/view/screens/product-deatils-screen.dart';
-
 import '../widget/faverote_widget.dart';
 
 class Favorites extends StatefulWidget {
