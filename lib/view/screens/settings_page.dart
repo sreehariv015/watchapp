@@ -329,10 +329,9 @@ class _Settings1State extends State<Settings1> {
             padding: const EdgeInsets.all(8.0),
             child: Card(
               child: ListTile(
-                onTap: () {
-                  setState(() {
-                    googleSignInController.signOutGoogle();
-                  });
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+                  Get.offAll(() => const WelcomeScreen1());
                 },
                 leading: const Icon(Icons.logout,
                   size: 30,

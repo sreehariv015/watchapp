@@ -164,7 +164,9 @@ class _UpiScreenState extends State<UpiScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('UPI'),
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Text('UPI',style: TextStyle(color: Colors.black),),
       ),
       body: Column(
         children: <Widget>[

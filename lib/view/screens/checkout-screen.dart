@@ -317,14 +317,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     width: Get.width / 2.0,
                     height: Get.height / 18,
                     decoration: BoxDecoration(
-                       color: Colors.red,
+                       color: Colors.black,
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     child: TextButton(
                       child: const Text(
                         "Confirm Order",
                         style: TextStyle(
-                             color: Colors.black,
+                             color: Colors.white,
                           fontSize: 16,
                         ),
                       ),

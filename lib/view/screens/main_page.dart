@@ -9,6 +9,7 @@ import 'package:watchapp/view/screens/profile.dart';
 import 'package:watchapp/view/screens/settings_page.dart';
 import '../../controller/get_user_data_controller.dart';
 import '../../controller/google_signin_controller.dart';
+import '../auth_ui/welcome_screen.dart';
 import 'cart_screen.dart';
 import 'favorites_page.dart';
 
@@ -25,7 +26,7 @@ class _MainPageState extends State<MainPage1> {
   final List<Widget> _pages = [
     const HomePage(),
     const Favorites(),
-    const Cart(),
+    const CartScreen(),
     const Settings1(),
   ];
 
@@ -161,10 +162,9 @@ class _MainPageState extends State<MainPage1> {
                     title: const Text('Favourites'),
                   ),
                   ListTile(
-                    onTap: () {
-                      setState(() {
-                        googleSignInController.signOutGoogle();
-                      });
+                    onTap: () async {
+                      await FirebaseAuth.instance.signOut();
+                      Get.offAll(() => const WelcomeScreen1());
                     },
                     leading: const Icon(Icons.logout,
                     color: Colors.red),

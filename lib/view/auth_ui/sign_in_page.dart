@@ -232,7 +232,7 @@ class _LoginPage1State extends State<Login11> {
                           if (userCredential!
                               .user!.emailVerified) {
                             final user = userCredential.user;
-                            Get.off(() => const MainPage1(),
+                            Get.offAll(() => const MainPage1(),
                                 transition: Transition
                                     .leftToRightWithFade);
                           }
